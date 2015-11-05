@@ -1,0 +1,15 @@
+ja:
+  header:
+    site_title: クラフトランド（仮）
+  helpers:
+    links:
+      cancel: キャンセル
+    submit:
+      confirm: 確認
+  admin:
+    users:
+      index:
+        default:  通常
+        no_users: 'ユーザーはありません。'
+      form:
+        not_editable_for_self: '自分では変更できません。'

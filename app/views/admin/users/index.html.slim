@@ -1,0 +1,30 @@
+- model_class = User
+ul.nav.nav-pills
+  li class=(@role.nil? ? 'active' : '')
+    = link_to t('nav.all'), admin_users_path
+  li class=(@role == 'admin' ? 'active' : '')
+    = link_to User.human_attribute_name(:is_admin), admin_users_path(role: :admin)
+  li class=(@role == 'seller' ? 'active' : '')
+    = link_to User.human_attribute_name(:is_seller), admin_users_path(role: :seller)
+- if @users.present?
+  = paginate @users
+  table.table.table-striped
+    caption= render 'layouts/paginate_info', items: @users
+    thead
+      tr
+        th= model_class.human_attribute_name(:id)
+        th= model_class.human_attribute_name(:roles)
+        th= model_class.human_attribute_name(:email)
+        th= model_class.human_attribute_name(:label)
+        th
+          = model_class.human_attribute_name(:current_sign_in_at)
+          br
+          = model_class.human_attribute_name(:last_sign_in_at)
+        th= model_class.human_attribute_name(:created_at)
+        th
+    tbody
+      - @users.each do |user|
+        = render 'admin/users/user', user: user
+- else
+  .alert
+    p.text-muted=t '.no_users'
