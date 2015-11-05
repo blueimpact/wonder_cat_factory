@@ -35,6 +35,10 @@ html lang="ja"
                   li= link_to edit_user_registration_path do
                     i.fa.fa-cog>
                     span=t 'nav.settings_page'
+                  - if current_user.seller?
+                    li.divider
+                    li= link_to seller_products_path do
+                      span=t 'nav.seller_page'
                   - if current_user.admin?
                     li.divider
                     li= link_to admin_users_path do

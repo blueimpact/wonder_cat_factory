@@ -3,6 +3,9 @@ ja:
     site_title: クラフトランド（仮）
   helpers:
     links:
+      show: 詳細
+      edit: 編集
+      destroy: 削除
       cancel: キャンセル
     submit:
       confirm: 確認

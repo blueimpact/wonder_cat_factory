@@ -7,10 +7,15 @@ Rails.application.routes.draw do
     delete 'logout' => 'devise/sessions#destroy', as: :logout
   end
 
-  resources :products
+  resources :products, only: [:index, :show]
 
   namespace :admin do
     resources :users do
+    end
+  end
+
+  namespace :seller do
+    resources :products do
     end
   end
 end

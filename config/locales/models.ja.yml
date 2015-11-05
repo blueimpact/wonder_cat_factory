@@ -22,3 +22,11 @@ ja:
         current_sign_in_at: 現ログイン日時
         last_sign_in_at: 前ログイン日時
         created_at: 登録日時
+      product:
+        <<: *timestamps
+        id: ID
+        title: タイトル
+        description: 説明文
+        price: 値段
+        goal: 目標入札数
+        closes_on: 締切日

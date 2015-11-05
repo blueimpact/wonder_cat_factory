@@ -12,6 +12,12 @@ Module.new do
         FactoryGirl.create(:user, :admin)
       end
     end
+
+    def login_seller
+      login_user do
+        FactoryGirl.create(:user, :seller)
+      end
+    end
   end
 
   module Request
