@@ -19,6 +19,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 
 gem 'rails-i18n'
+gem 'devise-i18n'
 
 gem 'pry-rails'
 gem 'awesome_print'
