@@ -1,0 +1,6 @@
+deployment:
+  production:
+    branch: master
+    commands:
+      - git push git@heroku.com:craftland.git master -f
+      - heroku run rake db:migrate --app craftland
