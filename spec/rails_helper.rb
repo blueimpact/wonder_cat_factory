@@ -19,4 +19,9 @@ RSpec.configure do |config|
   config.before do
     FactoryGirl.reload
   end
+
+  config.before do
+    FileUtils.rm_rf Rails.root.join('tmp/uploads')
+    FactoryGirl.reload
+  end
 end

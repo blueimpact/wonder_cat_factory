@@ -14,6 +14,9 @@ gem 'slim-rails'
 gem 'kaminari'
 gem 'settingslogic'
 gem 'devise'
+gem 'carrierwave', require: %w(carrierwave carrierwave/orm/activerecord)
+gem 'carrierwave-aws'
+gem 'rmagick'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
@@ -30,6 +33,7 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'tapp'
   gem 'quiet_assets'
+  gem 'dotenv-rails'
 
   gem 'rspec-rails'
   gem 'spring'

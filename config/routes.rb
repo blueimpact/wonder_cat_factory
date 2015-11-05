@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   namespace :seller do
     resources :products do
+      resources :pictures, only: [:create, :destroy]
     end
   end
 end
