@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: craftland
+  password:
+
+development:
+  <<: *default
+  database: craftland_development
+
+test:
+  <<: *default
+  database: craftland_test
+
+production:
+  <<: *default
+  database: craftland_production
+  username: craftland
+  password: <%= ENV['CRAFTLAND_DATABASE_PASSWORD'] %>
