@@ -124,9 +124,6 @@ GEM
     hashdiff (0.2.2)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
-    jbuilder (2.3.2)
-      activesupport (>= 3.0.0, < 5)
-      multi_json (~> 1.2)
     jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -326,7 +323,6 @@ DEPENDENCIES
   guard-bundler
   guard-livereload
   guard-rspec
-  jbuilder (~> 2.0)
   jquery-rails
   kaminari
   letter_opener
