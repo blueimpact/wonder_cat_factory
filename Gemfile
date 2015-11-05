@@ -14,6 +14,7 @@ gem 'foreman'
 gem 'slim-rails'
 gem 'kaminari'
 gem 'settingslogic'
+gem 'devise'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
