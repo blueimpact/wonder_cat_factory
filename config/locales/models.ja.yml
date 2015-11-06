@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       product: 作品
+      picture: 写真
     attributes:
       timestamps: &timestamps
         created_at: 作成日時
@@ -30,3 +31,7 @@ ja:
         price: 値段
         goal: 目標入札数
         closes_on: 締切日
+      picture:
+        <<: *timestamps
+        id: ID
+        image: 画像
