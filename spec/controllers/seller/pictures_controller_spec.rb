@@ -7,6 +7,10 @@ RSpec.describe Seller::PicturesController, type: :controller do
     { image: Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/image.jpg')) }
   }
 
+  let(:invalid_attributes) {
+    { image: nil }
+  }
+
   before do
     @product = FactoryGirl.create(:product, user: @current_user)
   end
@@ -16,6 +20,12 @@ RSpec.describe Seller::PicturesController, type: :controller do
       expect {
         post :create, { product_id: @product.id, picture: valid_attributes }
       }.to change(Picture, :count).by(1)
+    end
+
+    it "fails without image" do
+      expect {
+        post :create, { product_id: @product.id, picture: invalid_attributes }
+      }.not_to change(Picture, :count)
     end
   end
 

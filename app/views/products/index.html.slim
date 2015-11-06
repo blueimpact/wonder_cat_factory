@@ -3,10 +3,10 @@ ol.breadcrumb
 
 .row
   - @products.each do |product|
-    .col-md-4
+    .col-md-3
       .thumbnail
         - if product.pictures.present?
-          img.img-responsive src=product.pictures.first.image.try(:url)
+          img.img-responsive src=product.pictures.first.image.url(:rect)
         .caption.text-center
           h3= product.title
           p= product.description

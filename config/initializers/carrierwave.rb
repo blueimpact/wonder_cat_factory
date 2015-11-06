@@ -26,7 +26,7 @@ CarrierWave.configure do |config|
     }
   else
     config.storage = :file
-    # config.enable_processing = false
+    config.enable_processing = true
   end
 
   config.cache_dir = Rails.root.join('tmp/uploads').to_s
