@@ -5,7 +5,9 @@ RSpec.describe Seller::ProductsController, type: :controller do
 
   let(:valid_attributes) {
     {
-      title: 'Product'
+      title: 'Product',
+      price: 1000,
+      goal: 10
     }
   }
 
@@ -16,7 +18,7 @@ RSpec.describe Seller::ProductsController, type: :controller do
       products = FactoryGirl.create_list(:product, 2, user: @current_user)
       FactoryGirl.create(:product, :with_user)
       get :index, {}
-      expect(assigns(:products)).to eq products
+      expect(assigns(:products)).to eq products.to_a
     end
   end
 
@@ -65,7 +67,7 @@ RSpec.describe Seller::ProductsController, type: :controller do
 
       it "redirects to the created product" do
         post :create, {:product => valid_attributes}
-        expect(response).to redirect_to([:seller, Product.last])
+        expect(response).to redirect_to([:edit, :seller, Product.last])
       end
     end
 
@@ -106,7 +108,7 @@ RSpec.describe Seller::ProductsController, type: :controller do
       it "redirects to the product" do
         product = Product.create! valid_attributes
         put :update, {:id => product.to_param, :product => valid_attributes}
-        expect(response).to redirect_to([:seller, product])
+        expect(response).to redirect_to([:edit, :seller, product])
       end
     end
 

@@ -25,7 +25,7 @@ class Seller::ProductsController < ApplicationController
     @product.user = current_user
 
     if @product.save
-      redirect_to [:seller, @product], notice: 'Product was successfully created.'
+      redirect_to [:edit, :seller, @product], notice: 'Product was successfully created.'
     else
       render :new
     end
@@ -34,8 +34,9 @@ class Seller::ProductsController < ApplicationController
   # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
-      redirect_to [:seller, @product], notice: 'Product was successfully updated.'
+      redirect_to [:edit, :seller, @product], notice: 'Product was successfully updated.'
     else
+      flash.now[:alert] = 'Failed to update.'
       render :edit
     end
   end

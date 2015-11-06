@@ -5,7 +5,7 @@ FactoryGirl.define do
     sequence(:description) { |i| "Description #{i}" }
     price 10000
     goal 100
-    closes_on "2015-11-05"
+    sequence(:closes_on) { |i| 1.month.since + i }
     bids_count 0
   end
 

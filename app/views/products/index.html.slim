@@ -1,23 +1,20 @@
-h1 Listing products
+ol.breadcrumb
+  li.active=t 'nav.home'
 
-table
-  thead
-    tr
-      th User
-      th Title
-      th Description
-      th Price
-      th Goal
-      th Closes on
-      th Bids count
-
-  tbody
-    - @products.each do |product|
-      tr
-        td = product.user
-        td = product.title
-        td = product.description
-        td = product.price
-        td = product.goal
-        td = product.closes_on
-        td = product.bids_count
+.row
+  - @products.each do |product|
+    .col-md-4
+      .thumbnail
+        - if product.pictures.present?
+          img.img-responsive src=product.pictures.first.image.try(:url)
+        .caption.text-center
+          h3= product.title
+          p= product.description
+          .progress
+            .progress-bar style="width: #{product.progress}%"
+          .row
+            .col-md-6
+              p.text-right= number_to_percentage(product.progress, precision: 0)
+              p.text-right= t('.left') + distance_of_time_in_words_to_now(product.closes_on)
+            .col-md-6
+              a.btn.btn-primary.btn-lg= t('.bid')

@@ -3,7 +3,11 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = Product.all
+    @products =
+      Product.active
+      .order(closes_on: :asc)
+      .includes(:pictures)
+      .page(params[:page])
   end
 
   # GET /products/1

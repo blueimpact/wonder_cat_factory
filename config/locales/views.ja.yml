@@ -10,6 +10,10 @@ ja:
       cancel: キャンセル
     submit:
       confirm: 確認
+  products:
+    index:
+      left: あと
+      bid: 入札する
   admin:
     users:
       index:
