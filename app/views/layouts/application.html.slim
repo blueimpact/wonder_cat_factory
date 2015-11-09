@@ -27,6 +27,7 @@ html lang="ja"
         a.navbar-brand href=root_path =t 'header.site_title'
         .navbar-collapse.collapse.navbar-responsive-collapse
           - if current_user
+            = render 'layouts/admin_menu'
             ul.nav.navbar-nav.navbar-right
               li.dropdown.bordered
                 a.dropdown-toggle data-toggle="dropdown" href="#"
