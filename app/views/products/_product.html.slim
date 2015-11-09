@@ -1,0 +1,8 @@
+.col-md-3 id=dom_id(product)
+  .thumbnail
+    - if product.pictures.present?
+      img.img-responsive src=product.pictures.first.image.url(:rect)
+    .caption.text-center
+      h3= product.title
+      p= product.description
+      = render 'bids', product: product

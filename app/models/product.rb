@@ -16,6 +16,8 @@ class Product < ActiveRecord::Base
   scope :with_picture, -> { where(arel_table[:pictures_count].gt(0)) }
   scope :without_picture, -> { where(pictures_count: 0) }
 
+  scope :bidden_by, ->(user) { joins(:bids).where(bids: { user: user }) }
+
   def progress
     @progress ||= (bids_count.to_f / goal)
   end

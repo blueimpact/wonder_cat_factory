@@ -8,6 +8,10 @@ class ProductsController < ApplicationController
       .order(closes_on: :asc)
       .includes(:pictures)
       .page(params[:page])
+
+    if @bidden = current_user && params[:bidden].presence
+      @products = @products.bidden_by(current_user)
+    end
   end
 
   # GET /products/1

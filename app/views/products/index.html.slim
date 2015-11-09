@@ -1,13 +1,11 @@
-ol.breadcrumb
-  li.active=t 'nav.home'
+- if current_user
+  ul.nav.nav-pills
+    li class=(@bidden ? 'active' : '')
+      = link_to t('products.bids.bidden'), root_path(bidden: (@bidden ? nil : 1))
 
-.row
-  - @products.each do |product|
-    .col-md-3
-      .thumbnail
-        - if product.pictures.present?
-          img.img-responsive src=product.pictures.first.image.url(:rect)
-        .caption.text-center
-          h3= product.title
-          p= product.description
-          = render 'bids', product: product
+- if @products.present?
+  .row
+    = render @products
+- else
+  .alert
+    p.text-muted=t '.no_products'

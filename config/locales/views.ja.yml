@@ -17,6 +17,8 @@ ja:
       bidden: 入札済
       bid_question: 入札？
       bid_requires_login: 入札するにはログインしてください。
+    index:
+      no_products: '作品はありません。'
   admin:
     users:
       index:

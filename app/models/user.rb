@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     is_seller?
   end
 
+  def bid product
+    bids.create(product: product)
+  end
+
   def bidded? product
     @bidded_product_ids ||= bids.pluck(:product_id)
     @bidded_product_ids.include? product.id
