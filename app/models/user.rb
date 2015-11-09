@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  has_many :products
+  has_many :products, dependent: :destroy
+  has_many :bids, dependent: :destroy
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -14,5 +16,10 @@ class User < ActiveRecord::Base
 
   def seller?
     is_seller?
+  end
+
+  def bidded? product
+    @bidded_product_ids ||= bids.pluck(:product_id)
+    @bidded_product_ids.include? product.id
   end
 end

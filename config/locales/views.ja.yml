@@ -8,12 +8,15 @@ ja:
       destroy: 削除
       back: 戻る
       cancel: キャンセル
+      bid: 入札する
     submit:
       confirm: 確認
   products:
-    index:
+    bids:
       left: あと
-      bid: 入札する
+      bidden: 入札済
+      bid_question: 入札？
+      bid_requires_login: 入札するにはログインしてください。
   admin:
     users:
       index:

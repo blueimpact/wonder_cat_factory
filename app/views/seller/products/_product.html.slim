@@ -7,6 +7,7 @@ tr id=dom_id(product)
   td= product.title
   td= product.description
   td.text-right= number_to_currency(product.price)
+  td.text-right= product.bids_count.to_i
   td.text-right= product.goal
   td.text-right title=l(product.closes_on)
     - if product.closes_on.future?

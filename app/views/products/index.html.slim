@@ -10,11 +10,4 @@ ol.breadcrumb
         .caption.text-center
           h3= product.title
           p= product.description
-          .progress
-            .progress-bar style="width: #{product.progress}%"
-          .row
-            .col-md-6
-              p.text-right= number_to_percentage(product.progress, precision: 0)
-              p.text-right= t('.left') + distance_of_time_in_words_to_now(product.closes_on)
-            .col-md-6
-              a.btn.btn-primary.btn-lg= t('.bid')
+          = render 'bids', product: product

@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
   belongs_to :user
   has_many :pictures, autosave: true, dependent: :destroy
+  has_many :bids, dependent: :destroy
 
   validates :title, presence: true
   validates :price,
@@ -17,6 +18,10 @@ class Product < ActiveRecord::Base
 
   def progress
     @progress ||= (bids_count.to_f / goal)
+  end
+
+  def percentage
+    progress * 100
   end
 
   def has_picture?

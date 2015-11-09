@@ -31,6 +31,7 @@ ja:
         price: 値段
         goal: 目標入札数
         closes_on: 締切日
+        bids_count: 入札数
       picture:
         <<: *timestamps
         id: ID
