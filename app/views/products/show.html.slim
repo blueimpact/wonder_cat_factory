@@ -1,27 +1,17 @@
-p#notice = notice
+ol.breadcrumb
+  li= link_to t('nav.home'), root_path
+  li= @product.title
 
-p
-  strong User:
-  = @product.user
-p
-  strong Title:
-  = @product.title
-p
-  strong Description:
-  = @product.description
-p
-  strong Price:
-  = @product.price
-p
-  strong Goal:
-  = @product.goal
-p
-  strong Closes on:
-  = @product.closes_on
-p
-  strong Bids count:
-  = @product.bids_count
-
-= link_to 'Edit', edit_product_path(@product)
-'|
-= link_to 'Back', products_path
+.row
+  .col-md-4
+    - if @product.pictures.present?
+      img.img-responsive src=@product.pictures.first.image.url(:rect)
+      .row
+        - @product.pictures.drop(1).each do |picture|
+          .col-md-2
+            img.img-responsive src=picture.image.url(:thumb)
+      .caption.text-center
+        = render 'bids', product: @product
+  .col-md-4
+    h2= @product.title
+    p= @product.description
