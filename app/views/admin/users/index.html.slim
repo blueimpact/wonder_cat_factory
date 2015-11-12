@@ -28,3 +28,7 @@ ul.nav.nav-pills
 - else
   .alert
     p.text-muted=t '.no_users'
+.btn-group
+  = link_to new_admin_user_path, class: 'btn btn-success' do
+    i.fa.fa-plus>
+    =t 'helpers.links.new'

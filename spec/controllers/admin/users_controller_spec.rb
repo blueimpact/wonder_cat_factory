@@ -107,14 +107,21 @@ RSpec.describe Admin::UsersController, type: :controller do
 
       it "assigns the requested user as @user" do
         user = User.create! valid_attributes
-        put :update, {:id => user.to_param, :user => valid_attributes}
+        put :update, {:id => user.to_param, :user => new_attributes}
         expect(assigns(:user)).to eq(user)
       end
 
       it "redirects to the users list" do
         user = User.create! valid_attributes
-        put :update, {:id => user.to_param, :user => valid_attributes}
+        put :update, {:id => user.to_param, :user => new_attributes}
         expect(response).to redirect_to(admin_users_url)
+      end
+
+      it "ignores empty password" do
+        user = User.create! valid_attributes
+        put :update, {:id => user.to_param, :user => new_attributes.merge(password: '')}
+        user.reload
+        expect(user.label).to eq 'New Label'
       end
     end
 

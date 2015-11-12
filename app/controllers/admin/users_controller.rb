@@ -28,10 +28,12 @@ class Admin::UsersController < AdminController
   # POST /admin/users
   def create
     @user = User.new(user_params)
+    @user.try :skip_confirmation!
 
     if @user.save
       redirect_to admin_users_path, notice: 'User was successfully created.'
     else
+      flash.now[:alert] = 'Failed to create.'
       render :new
     end
   end
@@ -42,6 +44,7 @@ class Admin::UsersController < AdminController
     if @user.update(user_params)
       redirect_to admin_users_path, notice: 'User was successfully updated.'
     else
+      flash.now[:alert] = 'Failed to update.'
       render :edit
     end
   end
@@ -61,6 +64,8 @@ class Admin::UsersController < AdminController
   def user_params
     params.require(:user).permit(
       :username, :email, :password, :label, :is_admin, :is_seller
-    )
+    ).tap do |ps|
+      ps.delete(:password) if ps[:password].blank?
+    end
   end
 end
