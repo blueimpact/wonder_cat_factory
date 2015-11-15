@@ -11,7 +11,13 @@ ol.breadcrumb
           .col-md-2
             img.img-responsive src=picture.image.url(:thumb)
       .caption.text-center
+        .row
         = render 'bids', product: @product
   .col-md-4
     h2= @product.title
+    p.text-right= @product.user.label
     p= @product.description
+    - if @product.user == current_user
+      hr
+      = render 'comments/form', product: @product
+      = render @product.comments

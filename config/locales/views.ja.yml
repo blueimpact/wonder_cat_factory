@@ -12,6 +12,7 @@ ja:
       bid: 入札する
     submit:
       confirm: 確認
+      comment: コメントする
   products:
     bids:
       left: あと
