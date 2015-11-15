@@ -1,0 +1,23 @@
+- model_class = Product
+- if @products.present?
+  = paginate @products
+  table.table.table-striped
+    caption= render 'layouts/paginate_info', items: @products
+    thead
+      tr
+        th= Picture.model_name.human
+        th= model_class.human_attribute_name(:user)
+        th= model_class.human_attribute_name(:title)
+        th= model_class.human_attribute_name(:description)
+        th.text-right= model_class.human_attribute_name(:price)
+        th.text-right= model_class.human_attribute_name(:bids_count)
+        th.text-right= model_class.human_attribute_name(:goal)
+        th.text-right= model_class.human_attribute_name(:closes_on)
+        th.text-right= model_class.human_attribute_name(:created_at)
+        th
+    tbody
+      - @products.each do |product|
+        = render 'admin/products/product', product: product
+- else
+  .alert
+    p.text-muted=t '.no_products'

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Seller::ProductsController, type: :controller do
-  login_seller
+RSpec.describe Admin::ProductsController, type: :controller do
+  login_admin
 
   let(:valid_attributes) {
     {
@@ -14,26 +14,13 @@ RSpec.describe Seller::ProductsController, type: :controller do
   let(:invalid_attributes) { { title: nil }}
 
   describe "GET #index" do
-    it "assigns products of current_user as @products" do
-      products = FactoryGirl.create_list(:product, 2, user: @current_user)
-      FactoryGirl.create(:product, :with_user)
+    it "assigns all products as @products" do
+      products = [
+        *FactoryGirl.create_list(:product, 2, user: @current_user),
+        FactoryGirl.create(:product, :with_user)
+      ]
       get :index, {}
       expect(assigns(:products)).to eq products
-    end
-  end
-
-  describe "GET #show" do
-    it "assigns the requested product as @product" do
-      product = Product.create! valid_attributes
-      get :show, {:id => product.to_param}
-      expect(assigns(:product)).to eq(product)
-    end
-  end
-
-  describe "GET #new" do
-    it "assigns a new product as @product" do
-      get :new, {}
-      expect(assigns(:product)).to be_a_new(Product)
     end
   end
 
@@ -42,45 +29,6 @@ RSpec.describe Seller::ProductsController, type: :controller do
       product = Product.create! valid_attributes
       get :edit, {:id => product.to_param}
       expect(assigns(:product)).to eq(product)
-    end
-  end
-
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Product" do
-        expect {
-          post :create, {:product => valid_attributes}
-        }.to change(Product, :count).by(1)
-      end
-
-      it "assigns a newly created product as @product" do
-        post :create, {:product => valid_attributes}
-        expect(assigns(:product)).to be_a(Product)
-        expect(assigns(:product)).to be_persisted
-      end
-
-      it "sets user as current_user" do
-        post :create, {:product => valid_attributes}
-        product = assigns(:product)
-        expect(product.user).to eq @current_user
-      end
-
-      it "redirects to the created product" do
-        post :create, {:product => valid_attributes}
-        expect(response).to redirect_to([:edit, :seller, Product.last])
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns a newly created but unsaved product as @product" do
-        post :create, {:product => invalid_attributes}
-        expect(assigns(:product)).to be_a_new(Product)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, {:product => invalid_attributes}
-        expect(response).to render_template("new")
-      end
     end
   end
 

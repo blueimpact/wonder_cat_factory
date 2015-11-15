@@ -27,6 +27,11 @@ ja:
         no_users: 'ユーザーはありません。'
       form:
         not_editable_for_self: '自分では変更できません。'
+    products:
+      product:
+        no_pictures: '写真はありません。'
+      index:
+        no_products: '作品はありません。'
   seller:
     products:
       product:

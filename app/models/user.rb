@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
   scope :admin, -> { where(is_admin: true) }
   scope :seller, -> { where(is_seller: true) }
 
+  def to_s
+    label.presence || email
+  end
+
   def admin?
     is_admin?
   end

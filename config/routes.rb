@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users do
-    end
+    resources :users
+    resources :products, only: [:index, :edit, :update, :destroy]
   end
 
   namespace :seller do

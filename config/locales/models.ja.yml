@@ -26,6 +26,7 @@ ja:
       product:
         <<: *timestamps
         id: ID
+        user: 作者
         title: タイトル
         description: 説明文
         price: 値段

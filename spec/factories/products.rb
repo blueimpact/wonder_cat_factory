@@ -5,7 +5,7 @@ FactoryGirl.define do
     sequence(:description) { |i| "Description #{i}" }
     price 10000
     goal 100
-    sequence(:closes_on) { |i| 1.month.since + i }
+    sequence(:closes_on) { |i| 1.month.since + i.day }
     bids_count 0
 
     transient do

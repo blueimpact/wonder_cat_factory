@@ -1,5 +1,6 @@
 - if controller.class.parent == Admin
   ul.nav.navbar-nav
-    li class=(controller_name == 'users' ? 'active' : '')
-      = link_to admin_users_path do
-        = User.model_name.human
+    - [User, Product].each do |model|
+      li class=(controller_name == model.model_name.plural ? 'active' : '')
+        = link_to [:admin, model.model_name.plural] do
+          = model.model_name.human
