@@ -1,3 +1,8 @@
+ol.breadcrumb
+  li= link_to t('nav.home'), root_path
+  li= link_to @product.title, @product
+  li=t ('helpers.links.edit')
+
 = render 'form'
 
 hr

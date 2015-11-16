@@ -2,6 +2,11 @@ ol.breadcrumb
   li= link_to t('nav.home'), root_path
   li= @product.title
 
+- if @product.user == current_user
+  .pull-right
+    = link_to edit_seller_product_path(@product), class: 'btn btn-default btn-xs', title: t('helpers.links.show') do
+      i.fa.fa-fw.fa-pencil>
+      =t 'helpers.links.edit'
 .row
   .col-md-4
     - if @product.pictures.present?

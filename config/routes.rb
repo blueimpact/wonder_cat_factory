@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   namespace :seller do
-    resources :products do
+    resources :products, only: [:index, :new, :create, :edit, :update, :destroy] do
       resources :pictures, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end

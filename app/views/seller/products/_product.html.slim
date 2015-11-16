@@ -17,7 +17,7 @@ tr id=dom_id(product)
   td.text-right title=l(product.created_at)
     = time_ago_in_words(product.created_at) + t('datetime.ago')
   td.text-right
-    = link_to seller_product_path(product.id), class: 'btn btn-default btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do
+    = link_to product, class: 'btn btn-default btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do
       i.fa.fa-fw.fa-info-circle
     = link_to edit_seller_product_path(product.id), class: 'btn btn-default btn-xs', title: "#{ t('.edit', default: t('helpers.links.edit')) }" do
       i.fa.fa-fw.fa-pencil

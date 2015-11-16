@@ -22,14 +22,6 @@ RSpec.describe Seller::ProductsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested product as @product" do
-      product = Product.create! valid_attributes
-      get :show, {:id => product.to_param}
-      expect(assigns(:product)).to eq(product)
-    end
-  end
-
   describe "GET #new" do
     it "assigns a new product as @product" do
       get :new, {}
@@ -67,7 +59,7 @@ RSpec.describe Seller::ProductsController, type: :controller do
 
       it "redirects to the created product" do
         post :create, {:product => valid_attributes}
-        expect(response).to redirect_to([:edit, :seller, Product.last])
+        expect(response).to redirect_to(Product.last)
       end
     end
 
@@ -108,7 +100,7 @@ RSpec.describe Seller::ProductsController, type: :controller do
       it "redirects to the product" do
         product = Product.create! valid_attributes
         put :update, {:id => product.to_param, :product => valid_attributes}
-        expect(response).to redirect_to([:edit, :seller, product])
+        expect(response).to redirect_to(product)
       end
     end
 
