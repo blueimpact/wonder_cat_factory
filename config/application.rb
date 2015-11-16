@@ -4,7 +4,7 @@ require 'rails/all'
 
 Bundler.require(*Rails.groups)
 
-module Craftland
+module WonderCatFactory
   class Application < Rails::Application
     config.active_record.default_timezone = :local
     config.time_zone = 'Tokyo'

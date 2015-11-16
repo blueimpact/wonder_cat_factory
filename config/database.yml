@@ -2,19 +2,16 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: craftland
+  username: wonder_cat_factory
   password:
 
 development:
   <<: *default
-  database: craftland_development
+  database: wonder_cat_factory_development
 
 test:
   <<: *default
-  database: craftland_test
+  database: wonder_cat_factory_test
 
 production:
   <<: *default
-  database: craftland_production
-  username: craftland
-  password: <%= ENV['CRAFTLAND_DATABASE_PASSWORD'] %>

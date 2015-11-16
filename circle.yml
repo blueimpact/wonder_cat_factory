@@ -2,5 +2,5 @@ deployment:
   production:
     branch: master
     commands:
-      - git push git@heroku.com:craftland.git master -f
-      - heroku run rake db:migrate --app craftland
+      - git push git@heroku.com:wonder-cat-factory.git master -f
+      - heroku run rake db:migrate --app wonder-cat-factory

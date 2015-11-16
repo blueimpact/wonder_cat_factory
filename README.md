@@ -1,13 +1,12 @@
-# クラフトランド（仮）
-
+# 不思議のチェシャネ工房
 
 ## 開発用
 
 ### データベース
 
 ```sh
-% createuser -e -s -d craftland
 % bundle
+% bundle exec rake db:create_user
 % bundle exec rake db:create
 % bundle exec rake db:schema:load
 ```
