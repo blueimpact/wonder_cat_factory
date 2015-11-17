@@ -23,11 +23,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   version :rect do
-    process resize_to_fill: [600, 600]
+    process resize_to_fill: Settings.pictures.image.rect.size.values
   end
 
   version :thumb do
-    process resize_to_fill: [50, 50]
+    process resize_to_fill: Settings.pictures.image.thumb.size.values
   end
 
   def extension_white_list

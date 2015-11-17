@@ -1,6 +1,27 @@
 @import 'bootstrap';
 @import 'font-awesome';
+@import "compass";
 
 .btn + .btn {
     margin-left: floor($font-size-base / 2);
+}
+
+.image-gallery {
+    .image-main {
+        margin-bottom: $padding-base-vertical;
+    }
+    a.active {
+        img {
+            @include box-shadow($brand-primary 0 0 5px);
+        }
+    }
+    .row {
+        margin-left: -2px;
+        margin-right: -2px;
+        [class*='col-'] {
+            padding-left: 2px;
+            padding-right: 2px;
+            padding-bottom: 4px;
+        }
+    }
 }

@@ -1,5 +1,14 @@
 defaults: &defaults
-  dummy: dummy
+  pictures:
+    image:
+      rect:
+        size:
+          width: 600
+          height: 600
+      thumb:
+        size:
+          width: 100
+          height: 100
 
 development:
   <<: *defaults

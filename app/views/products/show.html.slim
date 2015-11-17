@@ -9,14 +9,14 @@ ol.breadcrumb
       =t 'helpers.links.edit'
 .row
   .col-md-4
-    - if @product.pictures.present?
-      img.img-responsive src=@product.pictures.first.image.url(:rect)
+    .image-gallery
+      img.img-responsive.image-main
       .row
-        - @product.pictures.drop(1).each do |picture|
-          .col-md-2
-            img.img-responsive src=picture.image.url(:thumb)
+        - @product.pictures.each do |picture|
+          .col-xs-2
+            a href="#" data-image=picture.image.url(:rect)
+              img.img-responsive src=picture.image.url(:thumb)
       .caption.text-center
-        .row
         = render 'bids', product: @product
   .col-md-4
     h2= @product.title
