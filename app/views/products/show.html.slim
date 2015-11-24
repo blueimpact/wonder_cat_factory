@@ -1,5 +1,6 @@
 ol.breadcrumb
   li= link_to t('nav.home'), root_path
+  li= link_to user_label_for(@product.user), user_products_path(@product.user)
   li= @product.title
 
 - if @product.user == current_user
@@ -20,7 +21,9 @@ ol.breadcrumb
         = render 'bids', product: @product
   .col-md-4
     h2= @product.title
-    p.text-right= @product.user.label
+    p.text-right
+      = link_to user_products_path(@product.user) do
+        = (@product.user == current_user) ? t('helpers.links.my_products') : @product.user
     p= @product.description
     - if @product.user == current_user
       hr

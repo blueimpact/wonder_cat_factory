@@ -1,9 +1,11 @@
 tr id=dom_id(product)
   td.text-center
-    - if product.has_picture?
-      img src=product.pictures.first.image.url(:thumb)
-    - else
-      i.fa.fa-3x.fa-exclamation-triangle.text-warning title=t('.no_pictures')
+    = link_to product do
+      - if product.has_picture?
+        img src=product.pictures.first.image.url(:thumb)
+      - else
+        - size = Settings.pictures.image.thumb.size.values_at('width', 'height').join('x')
+        img data-src="holder.js/#{size}?text=No Photo"
   td= product.title
   td= product.description
   td.text-right= number_to_currency(product.price)
@@ -17,9 +19,5 @@ tr id=dom_id(product)
   td.text-right title=l(product.created_at)
     = time_ago_in_words(product.created_at) + t('datetime.ago')
   td.text-right
-    = link_to product, class: 'btn btn-default btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do
-      i.fa.fa-fw.fa-info-circle
-    = link_to edit_seller_product_path(product.id), class: 'btn btn-default btn-xs', title: "#{ t('.edit', default: t('helpers.links.edit')) }" do
-      i.fa.fa-fw.fa-pencil
     = link_to seller_product_path(product.id), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-danger btn-xs', title: "#{ t('.destroy', default: t('helpers.links.destroy')) }"  do
       i.fa.fa-fw.fa-times

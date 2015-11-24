@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     get 'login' => 'devise/sessions#new', as: :login
     delete 'logout' => 'devise/sessions#destroy', as: :logout
   end
+  resources :users, only: [] do
+    resources :products, only: [:index]
+  end
 
   resources :products, only: [:index, :show] do
     resource :bid, only: [:create, :destroy]

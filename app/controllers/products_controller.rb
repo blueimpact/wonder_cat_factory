@@ -1,12 +1,13 @@
 class ProductsController < ApplicationController
+  before_action :set_user, only: [:index]
   before_action :set_product, only: [:show]
 
   # GET /products
   def index
     @products =
-      Product.ready
+      (@user.try(:products) || Product).ready
       .order(closes_on: :asc)
-      .includes(:pictures)
+      .includes(:pictures, :user)
       .page(params[:page])
 
     if @bidden = current_user && params[:bidden].presence
@@ -19,6 +20,10 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.find_by(id: params[:user_id])
+  end
 
   def set_product
     @product = Product.find(params[:id])

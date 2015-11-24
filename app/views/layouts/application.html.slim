@@ -31,6 +31,7 @@ html lang="ja"
             ul.nav.navbar-nav.navbar-right
               li.dropdown.bordered
                 a.dropdown-toggle data-toggle="dropdown" href="#"
+                  span>= current_user.email
                   i.fa.fa-chevron-down
                 ul.dropdown-menu
                   li= link_to edit_user_registration_path do
@@ -46,13 +47,13 @@ html lang="ja"
                       span=t 'nav.admin_page'
                     - if respond_to? :letter_opener_web_path
                       li= link_to 'Letter Opener', letter_opener_web_path
-              li= link_to t('nav.logout'), logout_path, method: :delete
+                  li.divider
+                  li= link_to t('nav.logout'), logout_path, method: :delete
             p.navbar-text.navbar-right
               - if current_user.is_admin?
                 span.label.label-danger> admin
               - if current_user.is_seller?
                 span.label.label-info> seller
-              span= current_user.email
           - else
             ul.nav.navbar-nav.navbar-right
               li= link_to t('nav.login'), login_path

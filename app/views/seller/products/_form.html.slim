@@ -23,4 +23,7 @@
     .col-md-offset-2.col-md-6
       = f.submit nil, class: 'btn btn-primary'
       '
-      = link_to t("helpers.links.cancel"), seller_products_path, class: 'btn btn-default'
+      - if @product.persisted?
+        = link_to t("helpers.links.cancel"), @product, class: 'btn btn-default'
+      - else
+        = link_to t("helpers.links.cancel"), seller_products_path, class: 'btn btn-default'
