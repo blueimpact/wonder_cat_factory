@@ -22,8 +22,7 @@ ol.breadcrumb
   .col-md-4
     h2= @product.title
     p.text-right
-      = link_to user_products_path(@product.user) do
-        = (@product.user == current_user) ? t('helpers.links.my_products') : @product.user
+      = link_to user_label_for(@product.user), user_products_path(@product.user)
     p= @product.description
     - if @product.user == current_user
       hr

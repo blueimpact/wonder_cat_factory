@@ -2,11 +2,8 @@ ol.breadcrumb
   li= link_to t('nav.home'), root_path
   - if @user
     li= user_label_for @user
-
-- if current_user
-  ul.nav.nav-pills
-    li class=(@bidden ? 'active' : '')
-      = link_to t('products.bids.bidden'), root_path(bidden: (@bidden ? nil : 1))
+  - if action_name == 'bidden'
+    li=t 'nav.my_bids'
 
 - if @products.present?
   .row

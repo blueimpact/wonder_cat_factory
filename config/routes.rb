@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show] do
     resource :bid, only: [:create, :destroy]
+    collection do
+      get :bidden
+    end
   end
 
   namespace :admin do

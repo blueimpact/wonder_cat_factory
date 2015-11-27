@@ -10,21 +10,6 @@ RSpec.describe ProductsController, type: :controller do
       get :index
       expect(assigns(:products).to_a).to eq products
     end
-
-    describe 'for user' do
-      login_user
-
-      it 'filters by bidden' do
-        products = FactoryGirl.create_list(:product, 2, :with_user, :with_one_picture)
-        products.each do |product|
-          @current_user.bid product
-        end
-        FactoryGirl.create(:product, :with_user, :with_one_picture)
-
-        get :index, { bidden: true }
-        expect(assigns(:products).to_a).to eq products
-      end
-    end
   end
 
   describe "GET #show" do
@@ -32,6 +17,21 @@ RSpec.describe ProductsController, type: :controller do
       product = FactoryGirl.create(:product, :with_user)
       get :show, {:id => product.to_param}
       expect(assigns(:product)).to eq(product)
+    end
+  end
+
+  describe "GET #bidden" do
+    login_user
+
+    it 'filters by bidden' do
+      products = FactoryGirl.create_list(:product, 2, :with_user, :with_one_picture)
+      products.each do |product|
+        @current_user.bid product
+      end
+      FactoryGirl.create(:product, :with_user, :with_one_picture)
+
+      get :bidden
+      expect(assigns(:products).to_a).to eq products
     end
   end
 end

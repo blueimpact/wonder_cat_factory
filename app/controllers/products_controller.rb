@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_user, only: [:index]
+  before_action :set_user, only: [:index, :bidden]
   before_action :set_product, only: [:show]
 
   # GET /products
@@ -9,14 +9,17 @@ class ProductsController < ApplicationController
       .order(closes_on: :asc)
       .includes(:pictures, :user)
       .page(params[:page])
-
-    if @bidden = current_user && params[:bidden].presence
-      @products = @products.bidden_by(current_user)
-    end
   end
 
   # GET /products/1
   def show
+  end
+
+  # GET /products/bidden
+  def bidden
+    index
+    @products = @products.bidden_by(current_user)
+    render :index
   end
 
   private
