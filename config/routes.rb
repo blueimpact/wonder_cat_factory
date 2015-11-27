@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show] do
     resource :bid, only: [:create, :destroy]
+    resources :bids, only: [:index]
     collection do
       get :bidden
     end

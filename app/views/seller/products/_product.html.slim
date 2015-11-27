@@ -1,11 +1,7 @@
 tr id=dom_id(product)
   td.text-center
     = link_to product do
-      - if product.has_picture?
-        img src=product.pictures.first.image.url(:thumb)
-      - else
-        - size = Settings.pictures.image.thumb.size.values_at('width', 'height').join('x')
-        img data-src="holder.js/#{size}?text=No Photo"
+      = render 'products/top_thumb', product: product
   td= product.title
   td= product.description
   td.text-right= number_to_currency(product.price)

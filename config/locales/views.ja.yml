@@ -10,6 +10,7 @@ ja:
       back: 戻る
       cancel: キャンセル
       bid: 入札する
+      bids: 入札一覧
     submit:
       confirm: 確認
       comment: コメントする
@@ -21,6 +22,9 @@ ja:
       bid_requires_login: 入札するにはログインしてください。
     index:
       no_products: '作品はありません。'
+  bids:
+    index:
+      no_bids: '入札はありません。'
   admin:
     users:
       index:

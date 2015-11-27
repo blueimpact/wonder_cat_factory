@@ -1,6 +1,11 @@
 class BidsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_product, only: [:create, :destroy]
+  before_action :set_product, only: [:index, :create, :destroy]
+
+  # GET /products/1/bids
+  def index
+    @bids = @product.bids.order(created_at: :desc).page(params[:page])
+  end
 
   # POST /products/1/bid
   def create

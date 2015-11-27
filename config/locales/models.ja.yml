@@ -4,6 +4,7 @@ ja:
       user: ユーザー
       product: 作品
       picture: 写真
+      bid: 入札
     attributes:
       timestamps: &timestamps
         created_at: 作成日時
@@ -37,3 +38,5 @@ ja:
         <<: *timestamps
         id: ID
         image: 画像
+      bid:
+        created_at: 入札日時

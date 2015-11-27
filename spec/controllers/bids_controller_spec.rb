@@ -6,6 +6,16 @@ RSpec.describe BidsController, type: :controller do
   before do
     @product = FactoryGirl.create(:product, user: @current_user)
   end
+  
+
+  describe "GET #index" do
+    it "assigns bids" do
+      bids = FactoryGirl.create_list(:bid, 2, :with_user, product: @product)
+      get :index, { product_id: @product.id }
+
+      expect(assigns(:bids)).to eq bids.reverse
+    end
+  end
 
   describe "POST #create" do
     it "creates bid" do
