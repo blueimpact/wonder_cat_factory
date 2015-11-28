@@ -3,7 +3,7 @@ ol.breadcrumb
   li= link_to user_label_for(@product.user), user_products_path(@product.user)
   li= @product.title
 
-- if @product.user == current_user
+- if can? :manage, @product
   .pull-right
     = link_to edit_seller_product_path(@product), class: 'btn btn-default btn-xs' do
       i.fa.fa-fw.fa-pencil>

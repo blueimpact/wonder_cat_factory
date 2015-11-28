@@ -14,6 +14,7 @@ gem 'slim-rails'
 gem 'kaminari'
 gem 'settingslogic'
 gem 'devise'
+gem 'cancancan'
 gem 'carrierwave', require: %w(carrierwave carrierwave/orm/activerecord)
 gem 'carrierwave-aws'
 gem 'rmagick'

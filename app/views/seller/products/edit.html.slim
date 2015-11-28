@@ -4,6 +4,14 @@ ol.breadcrumb
   li= link_to @product.title, @product
   li=t 'helpers.links.edit'
 
+- if can? :manage, @product
+  .pull-right
+    span.btn.btn-default.btn-xs.active
+      i.fa.fa-fw.fa-pencil>
+      =t 'helpers.links.edit'
+    = link_to product_bids_path(@product), class: 'btn btn-default btn-xs' do
+      i.fa.fa-fw.fa-gavel>
+      =t 'helpers.links.bids'
 .row
   .col-md-8
     = render 'form'
