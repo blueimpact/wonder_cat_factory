@@ -10,9 +10,11 @@ Rails.application.routes.draw do
     resources :products, only: [:index]
   end
 
-  resources :products, only: [:index, :show] do
+  resources :products do
     resource :bid, only: [:create, :destroy]
     resources :bids, only: [:index]
+    resources :pictures, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
     collection do
       get :bidden
     end
@@ -20,14 +22,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :products, only: [:index, :edit, :update, :destroy]
+    resources :products, only: [:index]
   end
 
   namespace :seller do
-    resources :products, only: [:index, :new, :create, :edit, :update, :destroy] do
-      resources :pictures, only: [:create, :destroy]
-      resources :comments, only: [:create, :destroy]
-    end
+    resources :products, only: [:index]
   end
 
   if Rails.env.development?

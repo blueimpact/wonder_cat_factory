@@ -5,7 +5,7 @@ ol.breadcrumb
 
 - if can? :manage, @product
   .pull-right
-    = link_to edit_seller_product_path(@product), class: 'btn btn-default btn-xs' do
+    = link_to edit_product_path(@product), class: 'btn btn-default btn-xs' do
       i.fa.fa-fw.fa-pencil>
       =t 'helpers.links.edit'
     = link_to product_bids_path(@product), class: 'btn btn-default btn-xs' do
@@ -24,8 +24,6 @@ ol.breadcrumb
         = render 'bids', product: @product
   .col-md-4
     h2= @product.title
-    p.text-right
-      = link_to user_label_for(@product.user), user_products_path(@product.user)
     p= @product.description
     - if @product.user == current_user
       hr

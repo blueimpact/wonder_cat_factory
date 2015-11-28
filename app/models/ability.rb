@@ -11,5 +11,7 @@ class Ability
       can :access, :seller
       can :manage, Product, user_id: user.id
     end
+
+    can [:index, :show], Product
   end
 end

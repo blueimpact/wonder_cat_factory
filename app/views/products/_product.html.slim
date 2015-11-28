@@ -1,4 +1,6 @@
 .col-md-3 id=dom_id(product)
+  .text-right
+    = link_to user_label_for(product.user), user_products_path(product.user)
   .thumbnail
     - if product.pictures.present?
       = link_to product_path(product) do

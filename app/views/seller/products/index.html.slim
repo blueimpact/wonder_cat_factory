@@ -3,7 +3,7 @@ ol.breadcrumb
   li=t 'nav.seller_page'
 
 - model_class = Product
-= link_to t('helpers.submit.create'), new_seller_product_path, class: 'btn btn-success'
+= link_to t('helpers.submit.create'), new_product_path, class: 'btn btn-success'
 
 - if @products.present?
   = paginate @products

@@ -1,5 +1,5 @@
-class Seller::PicturesController < SellerController
-  before_action :set_product
+class PicturesController < SellerController
+  load_and_authorize_resource :product
   before_action :set_picture, only: [:destroy]
 
   # POST /products/1/pictures
@@ -8,23 +8,19 @@ class Seller::PicturesController < SellerController
     @picture.product = @product
 
     if @picture.save
-      redirect_to [:edit, :seller, @product], notice: 'Picture was successfully created.'
+      redirect_to [:edit, @product], notice: 'Picture was successfully created.'
     else
-      redirect_to [:edit, :seller, @product], alert: 'Failed to create Picture.'
+      redirect_to [:edit, @product], alert: 'Failed to create Picture.'
     end
   end
 
   # DELETE /products/1/pictures/1
   def destroy
     @picture.destroy
-    redirect_to [:edit, :seller, @product], notice: 'Picture was successfully destroyed.'
+    redirect_to [:edit, @product], notice: 'Picture was successfully destroyed.'
   end
 
   private
-
-  def set_product
-    @product = Product.find(params[:product_id])
-  end
 
   def set_picture
     @picture = @product.pictures.find(params[:id])

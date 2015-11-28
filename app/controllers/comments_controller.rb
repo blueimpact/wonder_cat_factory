@@ -1,5 +1,5 @@
-class Seller::CommentsController < SellerController
-  before_action :set_product
+class CommentsController < SellerController
+  load_and_authorize_resource :product
   before_action :set_comment, only: [:destroy]
 
   # POST /comments

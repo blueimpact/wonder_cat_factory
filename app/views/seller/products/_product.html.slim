@@ -15,5 +15,5 @@ tr id=dom_id(product)
   td.text-right title=l(product.created_at)
     = time_ago_in_words(product.created_at) + t('datetime.ago')
   td.text-right
-    = link_to seller_product_path(product.id), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-danger btn-xs', title: "#{ t('.destroy', default: t('helpers.links.destroy')) }"  do
+    = link_to product_path(product.id), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-danger btn-xs', title: "#{ t('.destroy', default: t('helpers.links.destroy')) }"  do
       i.fa.fa-fw.fa-times
