@@ -22,6 +22,8 @@ gem 'rmagick'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'compass-rails'
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
 
 gem 'rails-i18n'
 gem 'devise-i18n'

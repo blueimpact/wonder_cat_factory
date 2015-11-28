@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
     @product.user = current_user
 
     if @product.save
-      redirect_to @product, notice: 'Product was successfully created.'
+      redirect_to [:edit, @product], notice: 'Product was successfully created.'
     else
       render :new
     end
@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
-      redirect_to @product, notice: 'Product was successfully updated.'
+      redirect_to [:edit, @product], notice: 'Product was successfully updated.'
     else
       flash.now[:alert] = 'Failed to update.'
       render :edit

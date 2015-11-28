@@ -58,6 +58,8 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
+    bootstrap3-datetimepicker-rails (4.17.37)
+      momentjs-rails (>= 2.8.1)
     builder (3.2.2)
     byebug (8.2.0)
     cancancan (1.13.1)
@@ -190,6 +192,8 @@ GEM
     mime-types (2.99)
     mini_portile (0.6.2)
     minitest (5.8.3)
+    momentjs-rails (2.10.6)
+      railties (>= 3.1)
     multi_json (1.11.2)
     nenv (0.2.0)
     newrelic_rpm (3.14.0.305)
@@ -358,6 +362,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  bootstrap3-datetimepicker-rails
   cancancan
   carrierwave
   carrierwave-aws
@@ -378,6 +383,7 @@ DEPENDENCIES
   kaminari
   letter_opener
   letter_opener_web
+  momentjs-rails
   newrelic_rpm
   pg
   pry-byebug

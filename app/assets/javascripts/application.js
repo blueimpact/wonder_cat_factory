@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require holder.min.js
+//= require moment
+//= require moment/ja
+//= require bootstrap-datetimepicker
 //= require_tree .

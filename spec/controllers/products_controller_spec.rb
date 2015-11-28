@@ -89,7 +89,7 @@ RSpec.describe ProductsController, type: :controller do
 
         it "redirects to the created product" do
           post :create, {:product => valid_attributes}
-          expect(response).to redirect_to(Product.last)
+          expect(response).to redirect_to([:edit, Product.last])
         end
       end
 
@@ -129,7 +129,7 @@ RSpec.describe ProductsController, type: :controller do
 
         it "redirects to the product" do
           put :update, {:id => product.to_param, :product => new_attributes}
-          expect(response).to redirect_to(product)
+          expect(response).to redirect_to([:edit, product])
         end
       end
 
