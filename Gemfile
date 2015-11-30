@@ -38,6 +38,7 @@ group :development, :test do
   gem 'tapp'
   gem 'quiet_assets'
   gem 'dotenv-rails'
+  gem 'factory_girl_rails'
 
   gem 'rspec-rails'
   gem 'spring'
@@ -46,7 +47,7 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-livereload', require: false
-  gem 'factory_girl_rails'
+  gem 'guard-rubocop'
 end
 
 group :development do
