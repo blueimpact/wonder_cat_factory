@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :bid do
-    user nil
+    user
     product nil
   end
 end

@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :product do
-    user nil
+    user
     sequence(:title) { |i| "Product #{i}" }
     sequence(:description) { |i| "Description #{i}" }
-    price 10000
+    price 10_000
     goal 100
     sequence(:closes_on) { |i| 1.month.since + i.day }
     bids_count 0
@@ -22,12 +22,13 @@ FactoryGirl.define do
 
     after(:create) do |product, evaluator|
       if evaluator.pictures_count > 0
-        product.pictures = build_list(:picture, evaluator.pictures_count, :with_image)
+        product.pictures =
+          build_list(:picture, evaluator.pictures_count, :with_image)
       end
     end
   end
 
   trait :with_product do
-    association :product, :with_user, factory: :product
+    association :product, factory: :product
   end
 end

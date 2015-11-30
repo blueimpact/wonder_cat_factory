@@ -5,11 +5,11 @@ FactoryGirl.define do
     sequence(:label) { |i| "label_#{i}" }
 
     transient do
-      confirmed true
+      confirmed? true
     end
 
     trait :unconfirmed do
-      confirmed false
+      confirmed? false
     end
 
     trait :admin do
@@ -21,13 +21,15 @@ FactoryGirl.define do
     end
 
     before(:create) do |user, evaluator|
-      if evaluator.confirmed
-        user.skip_confirmation!
-      end
+      evaluator.confirmed? && user.skip_confirmation!
     end
   end
 
   trait :with_user do
     user
+  end
+
+  trait :without_user do
+    user nil
   end
 end

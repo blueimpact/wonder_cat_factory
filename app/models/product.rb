@@ -27,7 +27,7 @@ class Product < ActiveRecord::Base
     progress * 100
   end
 
-  def has_picture?
+  def with_picture?
     pictures.length > 0
   end
 end

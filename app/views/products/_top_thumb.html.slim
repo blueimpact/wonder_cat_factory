@@ -1,4 +1,4 @@
-- if product.has_picture?
+- if product.with_picture?
   img src=product.pictures.first.image.url(:thumb)
 - else
   - size = Settings.pictures.image.thumb.size.values_at('width', 'height').join('x')

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   %w(admin seller).each do |role|
     define_method "authenticate_#{role}!" do
       unless current_user && current_user.send("#{role}?")
-        redirect_back_or :root, :alert => "This page is for #{role} only."
+        redirect_back_or :root, alert: "This page is for #{role} only."
         false
       end
     end

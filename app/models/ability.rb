@@ -1,7 +1,7 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize user
     if user.try(:is_admin?)
       can :access, :admin
       can :manage, :all

@@ -22,27 +22,18 @@ Style/BlockEndNewline:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/BracesAroundHashParameters:
-  Enabled: false
+  Exclude:
+    - 'spec/**/*'
 
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/ClassAndModuleChildren:
   Enabled: false
 
-# Offense count: 102
 Style/Documentation:
   Enabled: false
 
 # Configuration parameters: MinBodyLength.
 Style/GuardClause:
-  Enabled: false
-
-# Cop supports --auto-correct.
-# Configuration parameters: MaxLineLength.
-Style/IfUnlessModifier:
-  Enabled: false
-
-# Cop supports --auto-correct.
-Style/Lambda:
   Enabled: false
 
 # Cop supports --auto-correct.

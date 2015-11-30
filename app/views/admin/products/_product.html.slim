@@ -1,6 +1,6 @@
 tr id=dom_id(product)
   td.text-center
-    - if product.has_picture?
+    - if product.with_picture?
       img src=product.pictures.first.image.url(:thumb)
     - else
       i.fa.fa-3x.fa-exclamation-triangle.text-warning title=t('.no_pictures')

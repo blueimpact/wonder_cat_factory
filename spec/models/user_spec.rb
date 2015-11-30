@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   describe '#bidded?' do
     before do
       @user = FactoryGirl.create(:user)
-      @product = FactoryGirl.create(:product, :with_user)
+      @product = FactoryGirl.create(:product)
     end
 
     it 'return false if not bidded' do

@@ -4,7 +4,8 @@ RSpec.describe Seller::PicturesController, type: :controller do
   login_seller
 
   let(:valid_attributes) {
-    { image: Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/image.jpg')) }
+    file = Rails.root.join('spec/fixtures/image.jpg')
+    { image: Rack::Test::UploadedFile.new(file) }
   }
 
   let(:invalid_attributes) {
@@ -15,22 +16,22 @@ RSpec.describe Seller::PicturesController, type: :controller do
     @product = FactoryGirl.create(:product, user: @current_user)
   end
 
-  describe "POST #create" do
-    it "creates picture" do
+  describe 'POST #create' do
+    it 'creates picture' do
       expect {
         post :create, { product_id: @product.id, picture: valid_attributes }
       }.to change(Picture, :count).by(1)
     end
 
-    it "fails without image" do
+    it 'fails without image' do
       expect {
         post :create, { product_id: @product.id, picture: invalid_attributes }
       }.not_to change(Picture, :count)
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys picture" do
+  describe 'DELETE #destroy' do
+    it 'destroys picture' do
       picture = FactoryGirl.create(:picture, :with_image, product: @product)
 
       expect {
@@ -38,5 +39,4 @@ RSpec.describe Seller::PicturesController, type: :controller do
       }.to change(Picture, :count).by(-1)
     end
   end
-
 end
