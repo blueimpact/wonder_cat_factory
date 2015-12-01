@@ -28,4 +28,4 @@ ol.breadcrumb
     - if @product.user == current_user
       hr
       = render 'comments/form', product: @product
-      = render @product.comments
+    = render @product.comments
