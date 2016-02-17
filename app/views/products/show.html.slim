@@ -14,7 +14,10 @@ ol.breadcrumb
 .row
   .col-md-4
     .image-gallery
-      img.img-responsive.image-main
+      .image-main
+        - @product.pictures.each do |picture|
+          .image-zoom data-url=picture.image.url
+            img.img-responsive data-src=picture.image.url(:rect)
       .row
         - @product.pictures.each do |picture|
           .col-xs-2
