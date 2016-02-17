@@ -3,9 +3,7 @@ SimpleCov.start 'rails'
 
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
-if Rails.env.production?
-  abort 'The Rails environment is running in production mode!'
-end
+abort("Running in production mode!") if Rails.env.production?
 
 require 'spec_helper'
 require 'rspec/rails'
@@ -18,10 +16,6 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.infer_spec_type_from_file_location!
-
-  config.before do
-    FactoryGirl.reload
-  end
 
   config.before do
     FileUtils.rm_rf Rails.root.join('tmp/uploads')
