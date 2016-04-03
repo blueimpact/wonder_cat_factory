@@ -14,15 +14,20 @@ ol.breadcrumb
 .row
   .col-md-4
     .image-gallery
-      .image-main
+      .image-main.tab-content
         - @product.pictures.each do |picture|
-          .image-zoom data-url=picture.image.url
-            img.img-responsive data-src=picture.image.url(:rect)
-      .row
+          a.tab-pane id=dom_id(picture, :main) data-toggle="modal" data-target="##{dom_id(picture, :dlg)}"
+            img.img-responsive src=picture.image.url(:rect)
+          .modal.fade id=dom_id(picture, :dlg) tabindex="-1" role="dialog"
+            .modal-dialog.modal-lg
+              .modal-content
+                .image-zoom
+                  img.img-responsive src=picture.image.url
+      ul.nav
         - @product.pictures.each do |picture|
-          .col-xs-2
-            a href="#" data-image=picture.image.url(:rect)
-              img.img-responsive src=picture.image.url(:thumb)
+          li
+            a href="##{dom_id(picture, :main)}" data-toggle="tab"
+              img.img-tiny src=picture.image.url(:thumb)
       .caption.text-center
         = render 'bids', product: @product
   .col-md-4

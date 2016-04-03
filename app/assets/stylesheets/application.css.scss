@@ -4,30 +4,46 @@
 @import "compass";
 
 .btn + .btn {
-    margin-left: floor($font-size-base / 2);
+  margin-left: floor($font-size-base / 2);
 }
 
 .image-gallery {
-    .image-main {
-        margin-bottom: $padding-base-vertical;
+  .image-main {
+    margin-bottom: $padding-base-vertical;
+    a {
+      cursor: zoom-in;
     }
-    a.active {
-        img {
-            @include box-shadow($brand-primary 0 0 5px);
-        }
+    a:hover {
+      img {
+        @include box-shadow($brand-primary 0 0 5px);
+      }
     }
-    .row {
-        margin-left: -2px;
-        margin-right: -2px;
-        [class*='col-'] {
-            padding-left: 2px;
-            padding-right: 2px;
-            padding-bottom: 4px;
-        }
+  }
+  .nav {
+    margin-bottom: $padding-base-vertical;
+    .active {
+      img {
+        @include box-shadow($brand-primary 0 0 5px);
+      }
     }
+    li {
+      float: left;
+      &+li {
+        margin-left: 10px;
+      }
+      a {
+        padding: 0;
+      }
+    }
+  }
+}
+
+.img-tiny {
+  width: 100px;
+  height: 100px;
 }
 
 .thumb-placeholder {
-    width: 100px;
-    height: 100px;
+  width: 100px;
+  height: 100px;
 }
