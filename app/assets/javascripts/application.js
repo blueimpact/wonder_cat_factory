@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require holder.min.js
-//= require jquery.zoom.min.js
+//= require holder
+//= require jquery.zoom
 //= require moment
 //= require moment/ja
 //= require bootstrap-datetimepicker
