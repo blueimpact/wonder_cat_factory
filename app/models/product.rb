@@ -28,6 +28,6 @@ class Product < ActiveRecord::Base
   end
 
   def with_picture?
-    pictures.length > 0
+    pictures.present?
   end
 end

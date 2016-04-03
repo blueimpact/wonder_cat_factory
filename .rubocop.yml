@@ -1,13 +1,15 @@
 inherit_from: .rubocop_todo.yml
 
 AllCops:
-  RunRailsCops: true
   Exclude:
     - 'Rakefile'
     - 'Guardfile'
     - 'bin/**/*'
     - 'db/**/*'
     - 'config/**/*'
+
+Rails:
+  Enabled: true
 
 # Configuration parameters: EnforcedStyle, SupportedStyles, ProceduralMethods, FunctionalMethods, IgnoredMethods.
 Style/BlockDelimiters:
@@ -47,5 +49,5 @@ Style/MultilineBlockLayout:
     - 'spec/**/*'
 
 # Cop supports --auto-correct.
-Style/SingleSpaceBeforeFirstArg:
+Style/SpaceBeforeFirstArg:
   Enabled: false
