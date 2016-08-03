@@ -51,3 +51,9 @@ Style/MultilineBlockLayout:
 # Cop supports --auto-correct.
 Style/SpaceBeforeFirstArg:
   Enabled: false
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle, SupportedStyles, AllowSafeAssignment.
+# SupportedStyles: require_parentheses, require_no_parentheses
+Style/TernaryParentheses:
+  Enabled: false

@@ -11,11 +11,11 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products =
-      (@user.try(:products) || Product).ready
-      .order(closes_on: :asc)
-      .includes(:pictures, :user)
-      .page(params[:page])
+    @products = (@user.try(:products) || Product)
+                .ready
+                .order(closes_on: :asc)
+                .includes(:pictures, :user)
+                .page(params[:page])
   end
 
   # GET /products/1
@@ -63,6 +63,6 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product)
-      .permit(:title, :description, :price, :goal, :closes_on)
+          .permit(:title, :description, :price, :goal, :closes_on)
   end
 end
