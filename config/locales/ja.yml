@@ -28,15 +28,3 @@ ja:
         other: ! '%{count}年'
     ago: 前
     after: 後
-  nav:
-    home: ホーム
-    login: ログイン
-    logout: ログアウト
-    signup: 新規登録
-    confirmation: 確認
-    admin_page: 管理者ページ
-    seller_page: 出品者ページ
-    my_bids: マイ入札
-    my_products: マイ作品
-    settings_page: 設定
-    all: 全て

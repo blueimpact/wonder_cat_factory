@@ -1,15 +1,27 @@
 div id=dom_id(product, :bids)
-  .progress
-    .progress-bar.progress-bar-info style="width: #{product.percentage}%"
-      = number_to_percentage(product.percentage, precision: 0)
+  - current_bid = product.bids.find_by(user: current_user)
+  - current_bid_index = current_bid&.queue_index
+  p.text-left
+    - product.bids_count.times do |i|
+      - if i == current_bid_index
+        i.fa.fa-male.text-danger
+      - else
+        i.fa.fa-male.text-success
+    - [0, product.goal - product.bids_count].max.times do
+      i.fa.fa-male.text-muted
+  p=t '.people_are_expected', count: product.goal
+  p=t '.people_are_waiting', count: product.bids_count
+  - if current_bid_index
+    p=t '.you_are_nth', index: current_bid_index + 1
   .row
     .col-lg-6
       .text-right= number_to_currency(product.price)
       .text-right= t('.left') + distance_of_time_in_words_to_now(product.closes_on)
     .col-lg-6
       - if current_user
-        - if current_user.bidded?(product)
-          span.btn.btn-primary.btn-lg.disabled=t '.bidden'
+        - if current_bid
+          span.btn.btn-primary.btn-lg.disabled
+            =t '.bidden'
         - else
           = link_to product_bid_path(product), method: :post, remote: true, class: 'btn btn-primary btn-lg' do
             =t 'helpers.links.bid'
