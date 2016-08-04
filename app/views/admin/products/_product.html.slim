@@ -10,11 +10,8 @@ tr id=dom_id(product)
   td.text-right= number_to_currency(product.price)
   td.text-right= product.bids_count.to_i
   td.text-right= product.goal
-  td.text-right title=l(product.closes_on)
-    - if product.closes_on.future?
-      = distance_of_time_in_words_to_now(product.closes_on) + t('datetime.after')
-    - else
-      = distance_of_time_in_words_to_now(product.closes_on) + t('datetime.ago')
+  td.text-right title=(product.closes_on && l(product.closes_on))
+    = display_date product.closes_on
   td.text-right title=l(product.created_at)
     = time_ago_in_words(product.created_at) + t('datetime.ago')
   td.text-right

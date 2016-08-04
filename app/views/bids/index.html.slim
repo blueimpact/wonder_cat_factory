@@ -28,11 +28,8 @@ ol.breadcrumb
         | /
         span<= @product.goal
       dt= Product.human_attribute_name(:closes_on)
-      dd title=l(@product.closes_on)
-        - if @product.closes_on.future?
-          = distance_of_time_in_words_to_now(@product.closes_on) + t('datetime.after')
-        - else
-          = distance_of_time_in_words_to_now(@product.closes_on) + t('datetime.ago')
+      dd title=(@product.closes_on && l(@product.closes_on))
+        = display_date @product.closes_on
       dt= Product.human_attribute_name(:created_at)
       dd title=l(@product.created_at)
         = time_ago_in_words(@product.created_at) + t('datetime.ago')

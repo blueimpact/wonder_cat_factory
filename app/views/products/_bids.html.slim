@@ -16,7 +16,8 @@ div id=dom_id(product, :bids)
   .row
     .col-lg-6
       .text-right= number_to_currency(product.price)
-      .text-right= t('.left') + distance_of_time_in_words_to_now(product.closes_on)
+      - if product.closes_on
+        .text-right= t('.left') + distance_of_time_in_words_to_now(product.closes_on)
     .col-lg-6
       - if current_user
         - if current_bid
