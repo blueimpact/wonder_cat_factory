@@ -43,6 +43,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'rack-livereload'
   gem 'guard'
   gem 'guard-bundler'
   gem 'guard-rspec'
