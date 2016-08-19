@@ -26,6 +26,8 @@ ja:
     submit:
       confirm: 確認
       comment: コメントする
+  messages:
+    not_authorized: '権限がありません。'
   products:
     bids:
       people_are_expected: '%{count}人並ぶと作り始めます。'
