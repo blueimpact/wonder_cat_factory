@@ -1,18 +1,8 @@
 = form_for [:admin, @user], html: { class: "form-horizontal" } do |f|
-  .form-group
-    = f.label :email, class: 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :email, class: 'text_field form-control'
-  .form-group
-    = f.label :label, class: 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :label, class: 'text_field form-control'
-  .form-group
-    = f.label :password, class: 'control-label col-md-2'
-    .col-md-10
-      = f.password_field :password, class: 'text_field form-control'
-  .form-group
-    .col-md-offset-2.col-md-10
+  = input f, :email
+  = input f, :label
+  = input_password f, :password
+  = without_label do
       - if current_user == @user
         .checkbox.text-muted
           label
@@ -32,8 +22,7 @@
           = f.check_box :is_seller
           '
           = User.human_attribute_name(:is_seller)
-  .form-group
-    .col-md-offset-2.col-md-10
+  = without_label do
       - if @user.persisted?
         = f.submit nil, class: 'btn btn-primary'
       - else

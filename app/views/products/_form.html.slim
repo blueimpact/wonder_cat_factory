@@ -1,27 +1,12 @@
-= form_for @product, html: {class: 'form-horizontal' } do |f|
-  .form-group
-    = f.label :title, class: 'control-label col-md-2'
-    .col-md-10
-      = f.text_field :title, class: 'form-control'
-  .form-group
-    = f.label :description, class: 'control-label col-md-2'
-    .col-md-10
-      = f.text_area :description, class: 'form-control'
-  .form-group
-    = f.label :price, class: 'control-label col-md-2'
-    .col-md-6
-      = f.number_field :price, class: 'form-control'
-  .form-group
-    = f.label :goal, class: 'control-label col-md-2'
-    .col-md-6
-      = f.number_field :goal, class: 'form-control'
-  .form-group
-    = f.label :closes_on, class: 'control-label col-md-2'
-    .col-md-6
-      .input-group.datepicker
-        = f.text_field :closes_on, class: 'form-control'
-        span.input-group-addon
-          i.fa.fa-calendar
-  .form-group
-    .col-md-offset-2.col-md-6
-      = f.submit nil, class: 'btn btn-primary'
+= form_for @product, html: { class: 'form-horizontal' } do |f|
+  = input f, :title
+  = input_text f, :description
+  = input_number f, :price
+  = input_number f, :goal
+  = with_label f, :closes_on do
+    .input-group.datepicker
+      = f.text_field :closes_on, class: 'form-control'
+      span.input-group-addon
+        i.fa.fa-calendar
+  = without_label do
+    = f.submit nil, class: 'btn btn-primary'
