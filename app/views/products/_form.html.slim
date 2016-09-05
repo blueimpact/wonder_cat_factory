@@ -8,5 +8,6 @@
       = f.text_field :closes_on, class: 'form-control'
       span.input-group-addon
         i.fa.fa-calendar
+  = input f, :external_url
   = without_label do
     = f.submit nil, class: 'btn btn-primary'

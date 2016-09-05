@@ -33,6 +33,7 @@ ja:
         price: 値段
         goal: 目標数
         closes_on: 締切日
+        external_url: 外部URL
         bids_count: 着列数
         created_at: 登録日時
       picture:

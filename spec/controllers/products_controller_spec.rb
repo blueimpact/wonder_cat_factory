@@ -65,7 +65,8 @@ RSpec.describe ProductsController, type: :controller do
           {
             title: 'Product',
             price: 1000,
-            goal: 10
+            goal: 10,
+            external_url: 'http://store.wonder_cat_factory.test/'
           }
         }
 
@@ -112,7 +113,8 @@ RSpec.describe ProductsController, type: :controller do
       context 'with valid params' do
         let(:new_attributes) {
           {
-            title: 'New Title'
+            title: 'New Title',
+            external_url: 'http://store.wonder_cat_factory.test/'
           }
         }
 

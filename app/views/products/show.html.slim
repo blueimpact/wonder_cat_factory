@@ -1,8 +1,3 @@
-ol.breadcrumb
-  li= link_to t('nav.home'), root_path
-  li= link_to user_label_for(@product.user), user_products_path(@product.user)
-  li= @product.title
-
 - if can? :manage, @product
   .pull-right
     = link_to edit_product_path(@product), class: 'btn btn-default btn-xs' do
@@ -31,7 +26,11 @@ ol.breadcrumb
       .caption.text-center
         = render 'bids', product: @product
   .col-md-4
-    h2= @product.title
+    h2
+      = @product.title
+      small<
+        a href=@product.external_url title=@product.external_url
+          i.fa.fa-external-link
     p= @product.description
     - if @product.user == current_user
       hr

@@ -51,6 +51,12 @@ module FormHelper
     end
   end
 
+  def input_password form, name
+    with_label form, name do
+      form.password_field(name, class: 'form-control')
+    end
+  end
+
   def input_text form, name
     with_label form, name do
       form.text_area(name, class: 'form-control', rows: 2)
