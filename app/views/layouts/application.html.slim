@@ -44,8 +44,6 @@ html lang="ja"
                     li.divider
                     li= link_to seller_products_path do
                       span=t 'nav.seller_page'
-                    li= link_to user_products_path(current_user) do
-                      span=t 'nav.my_products'
                   - if can? :access, :admin
                     li.divider
                     li= link_to admin_users_path do
@@ -58,7 +56,8 @@ html lang="ja"
               - if current_user.is_admin?
                 span.label.label-danger> admin
               - if current_user.is_seller?
-                span.label.label-info> seller
+                = link_to seller_products_path do
+                  span.label.label-info> seller
           - else
             ul.nav.navbar-nav.navbar-right
               li= link_to t('nav.login'), login_path

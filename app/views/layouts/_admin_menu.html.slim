@@ -1,4 +1,4 @@
-- if controller.class.parent == Admin
+- if current_user&.admin?
   ul.nav.navbar-nav
     - [User, Product].each do |model|
       li class=(controller_name == model.model_name.plural ? 'active' : '')

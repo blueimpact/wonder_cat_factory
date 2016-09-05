@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
   load_resource :user, only: [:index, :bidden]
   load_and_authorize_resource :product, only: [:show, :edit, :update, :destroy]
 

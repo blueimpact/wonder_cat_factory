@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
-  root 'products#index'
+  root 'products#bidden'
 
   devise_for :users
   devise_scope :user do
     get 'login' => 'devise/sessions#new', as: :login
     delete 'logout' => 'devise/sessions#destroy', as: :logout
-  end
-  resources :users, only: [] do
-    resources :products, only: [:index]
   end
 
   resources :products do
@@ -21,12 +18,14 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users
-    resources :products, only: [:index]
+    resources :users do
+      resources :products, only: [:index]
+    end
+    resources :products, only: [:index, :show]
   end
 
   namespace :seller do
-    resources :products, only: [:index]
+    resources :products, only: [:index, :show]
   end
 
   if Rails.env.development?

@@ -9,8 +9,10 @@ div id=dom_id(product, :bids)
         i.fa.fa-male.text-success
     - [0, product.goal - product.bids_count].max.times do
       i.fa.fa-male.text-muted
-  p=t '.people_are_expected', count: product.goal
-  p=t '.people_are_waiting', count: product.bids_count
+  p
+    =t '.people_are_expected', count: product.goal
+    br
+    =t '.people_are_waiting', count: product.bids_count
   - if current_bid_index
     p=t '.you_are_nth', index: current_bid_index + 1
   .row

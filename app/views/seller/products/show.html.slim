@@ -1,0 +1,13 @@
+ol.breadcrumb
+  li= link_to t('nav.seller_page'), [:seller, :products]
+  li= @product.title
+
+- if can? :manage, @product
+  .pull-right
+    = render 'products/action_buttons', product: @product
+
+.row
+  .col-md-1
+    = render 'products/top_thumb', product: @product
+  .col-md-9
+    = render 'products/attributes', product: @product

@@ -1,9 +1,8 @@
 tr id=dom_id(product)
   td.text-center
-    = link_to product do
+    = link_to [:seller, product] do
       = render 'products/top_thumb', product: product
   td= product.title
-  td= product.description
   td.text-right= number_to_currency(product.price)
   td.text-right= product.bids_count.to_i
   td.text-right= product.goal

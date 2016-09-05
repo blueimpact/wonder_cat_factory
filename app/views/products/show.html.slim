@@ -1,38 +1,12 @@
 - if can? :manage, @product
   .pull-right
-    = link_to edit_product_path(@product), class: 'btn btn-default btn-xs' do
-      i.fa.fa-fw.fa-pencil>
-      =t 'helpers.links.edit'
-    = link_to product_bids_path(@product), class: 'btn btn-default btn-xs' do
-      i.fa.fa-fw.fa-gavel>
-      =t 'helpers.links.bids'
+    - if as_admin?
+      = link_to [:admin, @product], class: 'btn btn-default btn-xs' do
+        i.fa.fa-fw.fa-cog>
+        =t 'nav.admin_page'
+    - else
+      = link_to [:seller, @product], class: 'btn btn-default btn-xs' do
+        i.fa.fa-fw.fa-cog>
+        =t 'nav.seller_page'
 .row
-  .col-md-4
-    .image-gallery
-      .image-main.tab-content
-        - @product.pictures.each do |picture|
-          a.tab-pane id=dom_id(picture, :main) data-toggle="modal" data-target="##{dom_id(picture, :dlg)}"
-            img.img-responsive src=picture.image.url(:rect)
-          .modal.fade id=dom_id(picture, :dlg) tabindex="-1" role="dialog"
-            .modal-dialog.modal-lg
-              .modal-content
-                .image-zoom
-                  img.img-responsive src=picture.image.url
-      ul.nav
-        - @product.pictures.each do |picture|
-          li
-            a href="##{dom_id(picture, :main)}" data-toggle="tab"
-              img.img-tiny src=picture.image.url(:thumb)
-      .caption.text-center
-        = render 'bids', product: @product
-  .col-md-4
-    h2
-      = @product.title
-      small<
-        a href=@product.external_url title=@product.external_url
-          i.fa.fa-external-link
-    p= @product.description
-    - if @product.user == current_user
-      hr
-      = render 'comments/form', product: @product
-    = render @product.comments
+  = render @product

@@ -1,9 +1,7 @@
 .col-md-3 id=dom_id(product)
-  .text-right
-    = link_to user_label_for(product.user), user_products_path(product.user)
   .thumbnail
     - if product.pictures.present?
-      = link_to product_path(product) do
+      a href=product.external_url target='_blank'
         img.img-responsive src=product.pictures.first.image.url(:rect)
     .caption.text-center
       h3= product.title

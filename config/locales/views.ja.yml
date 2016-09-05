@@ -10,7 +10,6 @@ ja:
     admin_page: 管理者ページ
     seller_page: 出品者ページ
     my_bids: マイ並び中
-    my_products: マイ作品
     settings_page: 設定
     all: 全て
   helpers:
@@ -29,6 +28,8 @@ ja:
   messages:
     not_authorized: '権限がありません。'
   products:
+    attributes:
+      public_url: 公開URL
     bids:
       people_are_expected: '%{count}人並ぶと作り始めます。'
       people_are_waiting: '%{count}人並んでいます。'
@@ -53,6 +54,7 @@ ja:
       product:
         no_pictures: '写真はありません。'
       index:
+        all_products: '全作品'
         no_products: '作品はありません。'
   seller:
     products:

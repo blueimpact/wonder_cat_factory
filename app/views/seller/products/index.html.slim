@@ -1,5 +1,4 @@
 ol.breadcrumb
-  li= link_to t('nav.home'), root_path
   li=t 'nav.seller_page'
 
 - model_class = Product
@@ -13,7 +12,6 @@ ol.breadcrumb
       tr
         th= Picture.model_name.human
         th= model_class.human_attribute_name(:title)
-        th= model_class.human_attribute_name(:description)
         th.text-right= model_class.human_attribute_name(:price)
         th.text-right= model_class.human_attribute_name(:bids_count)
         th.text-right= model_class.human_attribute_name(:goal)

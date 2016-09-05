@@ -1,38 +1,22 @@
 ol.breadcrumb
-  li= link_to t('nav.home'), root_path
-  li= link_to user_label_for(@product.user), user_products_path(@product.user)
-  li= link_to @product.title, @product
+  - if as_admin?
+    li= link_to t('admin.products.index.all_products'), [:admin, :products]
+    li= link_to @product.user, [:admin, @product.user, :products]
+    li= link_to @product.title, [:admin, @product]
+  - else
+    li= link_to t('nav.seller_page'), [:seller, :products]
+    li= link_to @product.title, [:seller, @product]
   li=t 'helpers.links.bids'
 
 - if can? :manage, @product
   .pull-right
-    = link_to edit_product_path(@product), class: 'btn btn-default btn-xs' do
-      i.fa.fa-fw.fa-pencil>
-      =t 'helpers.links.edit'
-    span.btn.btn-default.btn-xs.active
-      i.fa.fa-fw.fa-gavel>
-      =t 'helpers.links.bids'
+    = render 'products/action_buttons', product: @product
+
 .row
-  .col-md-2.col-xs-3
+  .col-md-1
     = render 'products/top_thumb', product: @product
-  .col-md-6.col-xs-9
-    dl.dl-horizontal
-      dt= Product.human_attribute_name(:price)
-      dd= number_to_currency(@product.price)
-      dt
-        span>= Product.human_attribute_name(:bids_count)
-        | /
-        span<= Product.human_attribute_name(:goal)
-      dd
-        span>= @product.bids_count.to_i
-        | /
-        span<= @product.goal
-      dt= Product.human_attribute_name(:closes_on)
-      dd title=(@product.closes_on && l(@product.closes_on))
-        = display_date @product.closes_on
-      dt= Product.human_attribute_name(:created_at)
-      dd title=l(@product.created_at)
-        = time_ago_in_words(@product.created_at) + t('datetime.ago')
+  .col-md-9
+    = render 'products/attributes', product: @product
 
 - if @bids.present?
   = paginate @bids
