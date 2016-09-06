@@ -1,4 +1,4 @@
-class CommentsController < SellerController
+class CommentsController < ApplicationController
   load_and_authorize_resource :product
   before_action :set_comment, only: [:destroy]
 

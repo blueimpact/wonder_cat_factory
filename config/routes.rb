@@ -7,10 +7,8 @@ Rails.application.routes.draw do
     delete 'logout' => 'devise/sessions#destroy', as: :logout
   end
 
-  resources :products do
+  resources :products, only: [:show] do
     resource :bid, only: [:create, :destroy]
-    resources :bids, only: [:index]
-    resources :pictures, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     collection do
       get :bidden
@@ -21,11 +19,17 @@ Rails.application.routes.draw do
     resources :users do
       resources :products, only: [:index]
     end
-    resources :products, only: [:index, :show]
+    resources :products do
+      resources :bids, only: [:index]
+      resources :pictures, only: [:create, :destroy]
+    end
   end
 
   namespace :seller do
-    resources :products, only: [:index, :show]
+    resources :products do
+      resources :bids, only: [:index]
+      resources :pictures, only: [:create, :destroy]
+    end
   end
 
   if Rails.env.development?

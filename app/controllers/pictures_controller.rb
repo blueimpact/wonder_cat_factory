@@ -1,4 +1,4 @@
-class PicturesController < SellerController
+class PicturesController < ApplicationController
   load_and_authorize_resource :product
   before_action :set_picture, only: [:destroy]
 
@@ -8,16 +8,16 @@ class PicturesController < SellerController
     @picture.product = @product
 
     if @picture.save
-      redirect_to [:edit, @product], notice: 'Picture was successfully created.'
+      redirect_to [:edit, role, @product], notice: 'Picture was created.'
     else
-      redirect_to [:edit, @product], alert: 'Failed to create Picture.'
+      redirect_to [:edit, role, @product], alert: 'Failed to create Picture.'
     end
   end
 
   # DELETE /products/1/pictures/1
   def destroy
     @picture.destroy
-    redirect_to [:edit, @product], notice: 'Picture was successfully destroyed.'
+    redirect_to [:edit, role, @product], notice: 'Picture was destroyed.'
   end
 
   private

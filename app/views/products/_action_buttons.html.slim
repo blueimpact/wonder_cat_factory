@@ -1,18 +1,16 @@
 - if action_name == 'edit'
-  - scope = as_admin? ? :admin : :seller
-  = link_to [scope, product], class: 'btn btn-default btn-xs active' do
+  = link_to [role, product], class: 'btn btn-default btn-xs active' do
     i.fa.fa-fw.fa-pencil>
     =t 'helpers.links.edit'
 - else
-  = link_to [:edit, product], class: 'btn btn-default btn-xs' do
+  = link_to [:edit, role, product], class: 'btn btn-default btn-xs' do
     i.fa.fa-fw.fa-pencil>
     =t 'helpers.links.edit'
 - if controller_name == 'bids'
-  - scope = as_admin? ? :admin : :seller
-  = link_to [scope, product], class: 'btn btn-default btn-xs active' do
+  = link_to [role, product], class: 'btn btn-default btn-xs active' do
     i.fa.fa-fw.fa-users>
     =t 'helpers.links.bids'
 - else
-  = link_to [product, :bids], class: 'btn btn-default btn-xs' do
+  = link_to [role, product, :bids], class: 'btn btn-default btn-xs' do
     i.fa.fa-fw.fa-users>
     =t 'helpers.links.bids'

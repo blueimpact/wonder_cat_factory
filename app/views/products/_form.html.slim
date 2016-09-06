@@ -1,4 +1,4 @@
-= form_for @product, html: { class: 'form-horizontal' } do |f|
+= form_for [role, @product], html: { class: 'form-horizontal' } do |f|
   = input f, :title
   = input_text f, :description
   = input_number f, :price

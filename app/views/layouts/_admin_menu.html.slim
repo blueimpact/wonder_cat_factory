@@ -1,6 +1,10 @@
 - if current_user&.admin?
+  - model_names = [User, Product].map(&:model_name)
+  - path_elements = request.path.split('/').select(&:present?)
+  - current = (path_elements & model_names.map(&:plural)).last
   ul.nav.navbar-nav
-    - [User, Product].each do |model|
-      li class=(controller_name == model.model_name.plural ? 'active' : '')
-        = link_to [:admin, model.model_name.plural] do
-          = model.model_name.human
+    - model_names.each do |name|
+      - active = (as_admin? && current == name.plural) ? 'active' : ''
+      li class=active
+        = link_to [:admin, name.plural] do
+          = name.human

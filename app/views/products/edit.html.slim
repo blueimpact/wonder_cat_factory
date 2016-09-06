@@ -1,11 +1,11 @@
 ol.breadcrumb
   - if as_admin?
-    li= link_to t('admin.products.index.all_products'), [:admin, :products]
-    li= link_to @product.user, [:admin, @product.user, :products]
-    li= link_to @product.title, [:admin, @product]
+    li= link_to t('admin.products.index.all_products'), [role, :products]
+    li= link_to @product.user, [role, @product.user, :products]
+    li= link_to @product.title, [role, @product]
   - else
-    li= link_to t('nav.seller_page'), [:seller, :products]
-    li= link_to @product.title, [:seller, @product]
+    li= link_to t('nav.seller_page'), [role, :products]
+    li= link_to @product.title, [role, @product]
   li=t 'helpers.links.edit'
 
 - if can? :manage, @product
@@ -26,11 +26,11 @@ hr
           p
             img.img-responsive src=picture.image.url(:rect)
         .pull-right
-          = link_to [@product, picture], method: :delete, class: 'btn btn-danger' do
+          = link_to [role, @product, picture], method: :delete, class: 'btn btn-danger' do
             i.fa.fa-fw.fa-trash
   .col-md-2
     .thumbnail style="overflow:hidden"
-      = form_for [@product, @product.pictures.build], html: {class: 'form'} do |f|
+      = form_for [role, @product, @product.pictures.build], html: {class: 'form'} do |f|
         = f.file_field :image
         .actions.text-right
           button.btn.btn-success type="submit"
