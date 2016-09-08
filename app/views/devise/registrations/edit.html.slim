@@ -4,7 +4,10 @@
       | Edit #{resource_name.to_s.humanize}
     .panel.panel-default
       .panel-body
-        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f|
+        = form_for(resource,
+        as: resource_name,
+        url: registration_path(resource_name),
+        html: { method: :put, class: 'form-horizontal', :'data-dynamic-validate' => available_users_path, :'data-dynamic-validate-context' => 'update'}) do |f|
           .form-group
             = f.label :email, class: 'col-md-3 control-label'
             .col-md-9
@@ -25,6 +28,14 @@
             .col-md-9
               = f.password_field :current_password, class: 'form-control', autocomplete: "off"
               .help-block we need your current password to confirm your changes
+          .form-group.has-feedback
+            = f.label :label, class: 'col-md-3 control-label'
+            .col-md-9
+              = f.text_field :label, class: 'form-control', autocomplete: "off"
+              .form-control-feedback
+                i.fa.fa-lg
+              .help-block
+                = safe_join resource.errors.full_messages_for(:email), '<br>'.html_safe
           .form-group
             .col-md-offset-3.col-md-9
               button.btn.btn-primary type="submit" =t 'helpers.submit.update'

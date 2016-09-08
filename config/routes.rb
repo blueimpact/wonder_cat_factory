@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
   root 'products#index'
 
-  devise_for :users
+  devise_for :users,
+             controllers: { registrations: 'users/registrations' }
   devise_scope :user do
     get 'login' => 'devise/sessions#new', as: :login
     delete 'logout' => 'devise/sessions#destroy', as: :logout
   end
 
+  resource :users do
+    collection do
+      get :available
+    end
+  end
   resources :products, only: [:show] do
     resource :bid, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]

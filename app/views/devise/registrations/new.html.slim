@@ -7,31 +7,13 @@
         = form_for(resource,
           as: resource_name,
           url: registration_path(resource_name),
-          html: {class: 'form-horizontal'}) do |f|
-          .form-group.has-feedback class=(resource.errors[:email].present? ? 'has-error' : '')
-            = f.label :email, class: 'col-md-3 control-label'
-            .col-md-9
-              = f.email_field :email, autofocus: true, class: 'form-control'
-              .form-control-feedback
-                i.fa.fa-lg
-              .help-block
-                = safe_join resource.errors.full_messages_for(:email), '<br>'.html_safe
-          .form-group.has-feedback class=(resource.errors[:password].present? ? 'has-error' : '')
-            = f.label :password, class: 'col-md-3 control-label'
-            .col-md-9
-              = f.password_field :password, autocomplete: "off", class: 'form-control'
-              .form-control-feedback
-                i.fa.fa-lg
-              .help-block
-                = safe_join resource.errors.full_messages_for(:password), '<br>'.html_safe
-          .form-group.has-feedback class=(resource.errors[:label].present? ? 'has-error' : '')
-            = f.label :label, class: 'col-md-3 control-label'
-            .col-md-9
-              = f.text_field :label, autocomplete: "off", class: 'form-control'
-              .form-control-feedback
-                i.fa.fa-lg
-              .help-block
-                = safe_join resource.errors.full_messages_for(:label), '<br>'.html_safe
+          html: { class: 'form-horizontal', data: { dynamic_validate: available_users_path, dynamic_validate_context: 'create' } }) do |f|
+          = form_group f, :email, with_feedback: true do
+            = f.email_field :email, autofocus: true, class: 'form-control'
+          = form_group f, :password, with_feedback: true do
+            = f.password_field :password, autocomplete: "off", class: 'form-control'
+          = form_group f, :label, with_feedback: true do
+            = f.text_field :label, autocomplete: "off", class: 'form-control'
           .form-group.text-center
             button.btn.btn-primary type="submit" =t 'helpers.submit.create'
 
