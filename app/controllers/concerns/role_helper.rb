@@ -13,16 +13,16 @@ module RoleHelper
       end
 
       define_method "as_#{role}?" do
-        self.role == role
+        current_role == role
       end
 
       helper_method "as_#{role}?"
     end
 
-    helper_method :role
+    helper_method :current_role
   end
 
-  def role
+  def current_role
     nil
   end
 end

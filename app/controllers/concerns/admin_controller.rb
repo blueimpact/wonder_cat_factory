@@ -6,7 +6,7 @@ module AdminController
     before_action :authenticate_admin!
   end
 
-  def role
+  def current_role
     :admin
   end
 end

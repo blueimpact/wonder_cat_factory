@@ -6,7 +6,7 @@ module SellerController
     before_action :authenticate_seller!
   end
 
-  def role
+  def current_role
     :seller
   end
 end

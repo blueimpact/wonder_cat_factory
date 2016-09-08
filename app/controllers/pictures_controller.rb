@@ -8,16 +8,19 @@ class PicturesController < ApplicationController
     @picture.product = @product
 
     if @picture.save
-      redirect_to [:edit, role, @product], notice: 'Picture was created.'
+      redirect_to [:edit, current_role, @product],
+                  notice: 'Picture was created.'
     else
-      redirect_to [:edit, role, @product], alert: 'Failed to create Picture.'
+      redirect_to [:edit, current_role, @product],
+                  alert: 'Failed to create Picture.'
     end
   end
 
   # DELETE /products/1/pictures/1
   def destroy
     @picture.destroy
-    redirect_to [:edit, role, @product], notice: 'Picture was destroyed.'
+    redirect_to [:edit, current_role, @product],
+                notice: 'Picture was destroyed.'
   end
 
   private

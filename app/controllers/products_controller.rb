@@ -32,7 +32,8 @@ class ProductsController < ApplicationController
     @product.user = current_user
 
     if @product.save
-      redirect_to [:edit, role, @product], notice: 'Product was created.'
+      redirect_to [:edit, current_role, @product],
+                  notice: 'Product was created.'
     else
       render :new
     end
@@ -41,7 +42,8 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
-      redirect_to [:edit, role, @product], notice: 'Product was updated.'
+      redirect_to [:edit, current_role, @product],
+                  notice: 'Product was updated.'
     else
       flash.now[:alert] = 'Failed to update.'
       render :edit
@@ -51,7 +53,8 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   def destroy
     @product.destroy
-    redirect_to [role, :products], notice: 'Product was destroyed.'
+    redirect_to [current_role, :products],
+                notice: 'Product was destroyed.'
   end
 
   private
