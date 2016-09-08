@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'products#bidden'
+  root 'products#index'
 
   devise_for :users
   devise_scope :user do
@@ -10,9 +10,6 @@ Rails.application.routes.draw do
   resources :products, only: [:show] do
     resource :bid, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
-    collection do
-      get :bidden
-    end
   end
 
   namespace :admin do

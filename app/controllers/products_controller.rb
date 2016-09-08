@@ -1,19 +1,13 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
-  load_resource :user, only: [:index, :bidden]
+  load_resource :user, only: [:index]
   load_and_authorize_resource :product, only: [:show, :edit, :update, :destroy]
-
-  # GET /products/bidden
-  def bidden
-    index
-    @products = @products.bidden_by(current_user)
-    render :index
-  end
 
   # GET /products
   def index
-    @products = (@user.try(:products) || Product)
+    @products = Product
                 .ready
+                .bidden_by(current_user)
                 .order(closes_on: :asc)
                 .includes(:pictures, :user)
                 .page(params[:page])
