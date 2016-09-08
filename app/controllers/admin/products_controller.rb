@@ -5,7 +5,7 @@ class Admin::ProductsController < ProductsController
   # GET /admin/users/1/products
   def index
     @products = (@user.try(:products) || Product)
-                .order(created_at: :desc)
+                .newer_first
                 .page(params[:page])
   end
 end

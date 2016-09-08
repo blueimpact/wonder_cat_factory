@@ -1,8 +1,10 @@
 class Product < ActiveRecord::Base
+  include TimeScopes
+
   belongs_to :user
   has_many :pictures, autosave: true, dependent: :destroy
   has_many :bids, dependent: :destroy
-  has_many :comments, -> { order(created_at: :desc) }, dependent: :destroy
+  has_many :comments, -> { newer_first }, dependent: :destroy
 
   validates :title, presence: true
   validates :price,

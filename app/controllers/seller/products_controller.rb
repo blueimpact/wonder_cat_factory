@@ -5,7 +5,7 @@ class Seller::ProductsController < ProductsController
   def index
     @products = current_user
                 .products
-                .order(created_at: :desc)
+                .newer_first
                 .page(params[:page])
   end
 end
