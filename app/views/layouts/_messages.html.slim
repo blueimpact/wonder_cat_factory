@@ -6,14 +6,3 @@
   .alert.alert-danger
     button.close data-dismiss="alert" &times;
     p= alert
-    - instance_variables.select do |sym|
-      - obj = instance_variable_get sym
-      - if obj.is_a?(ActiveRecord::Base) && obj.errors.present?
-        ul
-          - obj.errors.full_messages.each do |message|
-            li= message
-- if try(:resource).try(:errors).present?
-  .alert.alert-danger
-    button.close data-dismiss="alert" &times;
-    - resource.errors.full_messages.each do |message|
-      p= message

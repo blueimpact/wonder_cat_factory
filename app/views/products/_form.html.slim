@@ -3,11 +3,12 @@
   = input_text f, :description
   = input_number f, :price
   = input_number f, :goal
-  = with_label f, :closes_on do
+  = form_group f, :closes_on do
     .input-group.datepicker
       = f.text_field :closes_on, class: 'form-control'
       span.input-group-addon
         i.fa.fa-calendar
   = input f, :external_url
-  = without_label do
-    = f.submit nil, class: 'btn btn-primary'
+  = without_feedback do
+    = without_label do
+      = f.submit nil, class: 'btn btn-primary'
