@@ -9,7 +9,7 @@ RSpec.describe Admin::BidsController, type: :controller do
       bids = FactoryGirl.create_list(:bid, 2, product: product)
       get :index, { product_id: product.id }
 
-      expect(assigns(:bids)).to eq bids.reverse
+      expect(assigns(:bids)).to eq bids
     end
   end
 end

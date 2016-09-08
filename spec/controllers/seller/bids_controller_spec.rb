@@ -10,7 +10,7 @@ RSpec.describe Seller::BidsController, type: :controller do
       bids = FactoryGirl.create_list(:bid, 2, product: product)
       get :index, { product_id: product.id }
 
-      expect(assigns(:bids)).to eq bids.reverse
+      expect(assigns(:bids)).to eq bids
     end
 
     it 'fails to access if product seller is not current_user' do

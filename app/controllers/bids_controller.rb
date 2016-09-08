@@ -5,7 +5,7 @@ class BidsController < ApplicationController
   # GET /products/1/bids
   def index
     authorize! :manage, @product
-    @bids = @product.bids.order(created_at: :desc).page(params[:page])
+    @bids = @product.bids.order(created_at: :asc).page(params[:page])
   end
 
   # POST /products/1/bid
