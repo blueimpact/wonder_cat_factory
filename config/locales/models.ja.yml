@@ -16,6 +16,8 @@ ja:
         password: パスワード
         username: ユーザー名
         label: 名前
+        birthday: 生年月日
+        age: 年齢
         is_admin: 管理者
         is_seller: 出品者
         roles: ロール

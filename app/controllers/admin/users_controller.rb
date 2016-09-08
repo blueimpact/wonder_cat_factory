@@ -65,7 +65,7 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :username, :email, :password, :label, :is_admin, :is_seller
+      :username, :email, :password, :label, :birthday, :is_admin, :is_seller
     ).tap do |ps|
       ps.delete(:password) if ps[:password].blank?
     end

@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     is_seller?
   end
 
+  def age
+    birthday.present? ? Time.current.year - birthday.year : nil
+  end
+
   def bid product
     bids.create(product: product)
   end

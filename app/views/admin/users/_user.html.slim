@@ -10,6 +10,8 @@ tr id=dom_id(user)
           .label.label-info seller
   td= user.email
   td= user.label
+  td= user.birthday
+  td.text-right= user.age
   td
     ul.list-unstyled
       - if user.current_sign_in_at

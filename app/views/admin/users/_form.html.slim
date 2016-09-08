@@ -1,27 +1,32 @@
 = form_for [:admin, @user], html: { class: "form-horizontal" } do |f|
   = input f, :email
-  = input f, :label
   = input_password f, :password
+  = input f, :label
+  = with_label f, :birthday do
+    .input-group.datepicker
+      = f.text_field :birthday, class: 'form-control'
+      span.input-group-addon
+        i.fa.fa-calendar
   = without_label do
-      - if current_user == @user
-        .checkbox.text-muted
-          label
-            = f.check_box :is_admin, disabled: true
-            '
-            = User.human_attribute_name(:is_admin)
-            '
-            =t '.not_editable_for_self'
-      - else
-        .checkbox
-          label
-            = f.check_box :is_admin
-            '
-            = User.human_attribute_name(:is_admin)
+    - if current_user == @user
+      .checkbox.text-muted
+        label
+          = f.check_box :is_admin, disabled: true
+          '
+          = User.human_attribute_name(:is_admin)
+          '
+          =t '.not_editable_for_self'
+    - else
       .checkbox
         label
-          = f.check_box :is_seller
+          = f.check_box :is_admin
           '
-          = User.human_attribute_name(:is_seller)
+          = User.human_attribute_name(:is_admin)
+    .checkbox
+      label
+        = f.check_box :is_seller
+        '
+        = User.human_attribute_name(:is_seller)
   = without_label do
       - if @user.persisted?
         = f.submit nil, class: 'btn btn-primary'
