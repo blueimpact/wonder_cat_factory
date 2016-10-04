@@ -3,16 +3,6 @@ class ProductsController < ApplicationController
   load_resource :user, only: [:index]
   load_and_authorize_resource :product, only: [:show, :edit, :update, :destroy]
 
-  # GET /products
-  def index
-    @products = Product
-                .ready
-                .bidden_by(current_user)
-                .order(closes_on: :asc)
-                .includes(:pictures, :user)
-                .page(params[:page])
-  end
-
   # GET /products/1
   def show
   end

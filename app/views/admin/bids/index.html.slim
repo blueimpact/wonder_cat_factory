@@ -1,0 +1,36 @@
+ol.breadcrumb
+  - if as_admin?
+    li= link_to t('admin.products.index.all_products'), [:admin, :products]
+    li= link_to @product.user, [:admin, @product.user, :products]
+    li= link_to @product.title, [:admin, @product]
+  - else
+    li= link_to t('nav.seller_page'), [:seller, :products]
+    li= link_to @product.title, [:seller, @product]
+  li=t 'helpers.links.bids'
+
+- if can? :manage, @product
+  .pull-right
+    = render 'products/action_buttons', product: @product
+
+.row
+  .col-md-1
+    = render 'products/top_thumb', product: @product
+  .col-md-9
+    = render 'products/attributes', product: @product
+
+- if @bids.present?
+  = paginate @bids
+  table.table.table-striped
+    caption= render 'layouts/paginate_info', items: @bids
+    thead
+      tr
+        th= User.human_attribute_name(:label)
+        th= Bid.human_attribute_name(:created_at)
+    tbody
+      - @bids.each do |bid|
+        tr
+          td= bid.user.label
+          td=l bid.created_at
+- else
+  .alert
+    p.text-muted=t '.no_bids'

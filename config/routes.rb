@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'products#index'
+  root 'bids#index'
 
   devise_for :users,
              controllers: { registrations: 'users/registrations' }

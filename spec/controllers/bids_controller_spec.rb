@@ -5,6 +5,19 @@ RSpec.describe BidsController, type: :controller do
 
   let(:product) { FactoryGirl.create(:product, user: @current_user) }
 
+  describe 'GET #index' do
+    it 'assings bids of current_user as @bids' do
+      products = FactoryGirl.create_list(:product, 2, :with_one_picture)
+      products.each do |product|
+        @current_user.bid product
+      end
+      FactoryGirl.create(:product, :with_one_picture)
+
+      get :index
+      expect(assigns(:bids).to_a).to eq @current_user.bids.newer_first
+    end
+  end
+
   describe 'POST #create' do
     it 'creates bid' do
       expect {

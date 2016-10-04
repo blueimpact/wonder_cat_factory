@@ -12,6 +12,6 @@ class Ability
       can :manage, Product, user_id: user.id
     end
 
-    can [:index, :show], Product
+    can [:show], Product
   end
 end
