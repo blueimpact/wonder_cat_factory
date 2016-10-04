@@ -1,6 +1,6 @@
 class BidsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_product, only: [:create, :destroy]
+  before_action :set_product, only: [:show, :create, :destroy]
 
   # GET /bids
   def index
@@ -8,6 +8,11 @@ class BidsController < ApplicationController
             .bids
             .includes(:product)
             .newer_first.page(params[:page])
+  end
+
+  # GET /products/1/bid
+  def show
+    @bid = @product.bids.find_by(user: current_user)
   end
 
   # POST /products/1/bid

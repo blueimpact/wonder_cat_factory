@@ -15,18 +15,12 @@ div id=dom_id(product, :bids)
     =t '.people_are_waiting', count: product.bids_count
   - if current_bid_index
     p=t '.you_are_nth', index: current_bid_index + 1
-  .row
-    .col-lg-6
-      - if product.closes_on
-        .text-right= t('.left') + distance_of_time_in_words_to_now(product.closes_on)
-    .col-lg-6
-      - if current_user
-        - if current_bid
-          span.btn.btn-primary.btn-lg.disabled
-            =t '.bidden'
-        - else
-          = link_to product_bid_path(product), method: :post, remote: true, class: 'btn btn-primary btn-lg' do
-            =t 'helpers.links.bid'
-      - else
-        button.btn.btn-default.btn-lg.has-popover data-toggle="popover" data-placement="top" data-content=t('.bid_requires_login')
-          =t 'helpers.links.bid'
+  - if current_user
+    - if current_bid
+      .btn.btn-primary.btn-lg.btn-block.disabled
+        =t '.bidden'
+      = link_to [product, :bid], class: 'btn btn-default btn-lg btn-block' do
+        =t 'helpers.links.show'
+    - else
+      = link_to product_bid_path(product), method: :post, remote: true, class: 'btn btn-primary btn-lg btn-block' do
+        =t 'helpers.links.bid'

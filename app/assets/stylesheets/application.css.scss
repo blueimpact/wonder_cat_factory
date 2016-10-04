@@ -5,7 +5,11 @@
 
 .btn + .btn {
   margin-left: floor($font-size-base / 2);
+  &.btn-block {
+    margin-left: 0;
+  }
 }
+
 
 .image-gallery {
   .image-main {
