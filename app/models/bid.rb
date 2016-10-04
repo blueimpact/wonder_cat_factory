@@ -3,6 +3,7 @@ class Bid < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :product, counter_cache: true
+  has_many :events, -> { order(created_at: :asc) }, dependent: :destroy
 
   validates :user, presence: true
   validates :product, presence: true, uniqueness: { scope: :user }

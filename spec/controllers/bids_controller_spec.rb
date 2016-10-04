@@ -27,6 +27,15 @@ RSpec.describe BidsController, type: :controller do
       product.reload
       expect(product.bids_count).to eq 1
     end
+
+    it 'creates EnqueuedEvent' do
+      expect {
+        xhr :post, :create, { product_id: product.id }
+      }.to change(Events::EnqueuedEvent, :count).by(1)
+
+      event = Events::EnqueuedEvent.last
+      expect(event.bid.product_id).to eq product.id
+    end
   end
 
   describe 'DELETE #destroy' do

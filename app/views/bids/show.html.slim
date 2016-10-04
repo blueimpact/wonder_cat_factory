@@ -1,1 +1,32 @@
-= render @bid.product
+- product = @bid.product
+- bid_index = @bid.queue_index
+.media
+  .media-left
+    a href=product.external_url target='_blank'
+      img.img-tiny.media-object src=product.pictures.first.image.url(:rect)
+  .media-body
+    h4.media-heading= product.title
+    p.text-left
+      - product.bids_count.times do |i|
+        - if i == bid_index
+          i.fa.fa-male.text-danger
+        - else
+          i.fa.fa-male.text-success
+      - [0, product.goal - product.bids_count].max.times do
+        i.fa.fa-male.text-muted
+    p
+      =t 'products.bids.people_are_expected', count: product.goal
+      br
+      =t 'products.bids.people_are_waiting', count: product.bids_count
+      br
+      =t 'products.bids.you_are_nth', index: bid_index + 1
+
+hr
+
+- if @bid.events.present?
+  - @bid.events.each do |event|
+    .panel.panel-default
+      .panel-heading.text-right
+        =l event.created_at
+      .panel-body
+        = event.to_message

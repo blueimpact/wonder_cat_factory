@@ -17,7 +17,8 @@ class BidsController < ApplicationController
 
   # POST /products/1/bid
   def create
-    @product.bids.create(user: current_user)
+    @bid = @product.bids.create(user: current_user)
+    Events::EnqueuedEvent.trigger @bid
     render :update
   end
 

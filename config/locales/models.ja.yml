@@ -44,3 +44,12 @@ ja:
         image: 画像
       bid:
         created_at: 着列日時
+    events:
+      enqueued_event:
+        message: 着列しました。
+      dequeued_event:
+        message: 順番が回ってきました。
+      started_event:
+        message: 募集を開始しました。
+      goaled_event:
+        message: 着列数が目標を達成しました。制作を開始します。
