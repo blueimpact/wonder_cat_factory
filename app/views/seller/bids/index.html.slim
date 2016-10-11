@@ -33,4 +33,4 @@ ol.breadcrumb
           td=l bid.created_at
 - else
   .alert
-    p.text-muted=t '.no_bids'
+    p.text-muted=t 'messages.no_item', item: Bid.model_name.human

@@ -23,4 +23,4 @@ ol.breadcrumb
         = render 'seller/products/product', product: product
 - else
   .alert
-    p.text-muted=t '.no_products'
+    p.text-muted=t 'messages.no_item', item: Product.model_name.human

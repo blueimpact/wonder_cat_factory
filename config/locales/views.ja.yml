@@ -26,6 +26,7 @@ ja:
       confirm: 確認
       comment: コメントする
   messages:
+    no_item: '%{item}はありません。'
     not_authorized: '権限がありません。'
   products:
     attributes:
@@ -38,27 +39,12 @@ ja:
       bidden: 並んでいます
       bid_question: 並ぶ？
       bid_requires_login: 並ぶにはログインしてください。
-    index:
-      no_products: '作品はありません。'
-  bids:
-    index:
-      no_bids: '着列はありません。'
   admin:
     users:
       index:
         default:  通常
-        no_users: 'ユーザーはありません。'
       form:
         not_editable_for_self: '自分では変更できません。'
     products:
-      product:
-        no_pictures: '写真はありません。'
       index:
         all_products: '全作品'
-        no_products: '作品はありません。'
-  seller:
-    products:
-      product:
-        no_pictures: '写真はありません。'
-      index:
-        no_products: '作品はありません。'
