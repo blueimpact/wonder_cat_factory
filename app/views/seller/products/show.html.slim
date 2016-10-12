@@ -1,6 +1,11 @@
 ol.breadcrumb
-  li= link_to t('nav.seller_page'), [:seller, :products]
-  li= @product.title
+  li= link_to t('nav.seller_page'), [current_role, :products]
+  - if @bid
+    li= link_to @product.title, [current_role, @product]
+    li= link_to t('helpers.links.bids'), [current_role, @product, :bids]
+    li= @bid.user
+  - else
+    li= @product.title
 
 - if can? :manage, @product
   .pull-right
@@ -11,3 +16,11 @@ ol.breadcrumb
     = render 'products/top_thumb', product: @product
   .col-md-9
     = render 'products/attributes', product: @product
+
+hr
+
+- if @events.present?
+  = render partial: 'events/event', collection: @events
+- else
+  .alert
+    p.text-muted=t 'messages.no_item', item: Event.model_name.human

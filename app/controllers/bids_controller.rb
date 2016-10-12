@@ -33,4 +33,8 @@ class BidsController < ApplicationController
   def set_product
     @product = Product.find(params[:product_id])
   end
+
+  def set_events
+    @events = @product.events.order(created_at: :asc).page
+  end
 end

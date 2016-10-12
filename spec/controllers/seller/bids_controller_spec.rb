@@ -17,7 +17,7 @@ RSpec.describe Seller::BidsController, type: :controller do
       product = FactoryGirl.create(:product)
       expect {
         get :index, { product_id: product.id }
-      }.to raise_error(CanCan::AccessDenied)
+      }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

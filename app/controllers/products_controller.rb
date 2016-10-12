@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
-  load_resource :user, only: [:index]
-  load_and_authorize_resource :product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products/1
   def show
@@ -48,6 +47,14 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def set_events
+    @events = @product.events.order(created_at: :asc).page
+  end
 
   def product_params
     params

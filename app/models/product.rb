@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   belongs_to :user
   has_many :pictures, autosave: true, dependent: :destroy
   has_many :bids, dependent: :destroy
+  has_many :events, through: :bids
   has_many :comments, -> { newer_first }, dependent: :destroy
 
   validates :title, presence: true

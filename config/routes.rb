@@ -18,21 +18,22 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
-  namespace :admin do
-    resources :users do
-      resources :products, only: [:index]
-    end
+  concern :manage_products do
     resources :products do
-      resources :bids, only: [:index]
+      resources :bids, only: [:index, :show]
       resources :pictures, only: [:create, :destroy]
     end
   end
 
-  namespace :seller do
-    resources :products do
-      resources :bids, only: [:index]
-      resources :pictures, only: [:create, :destroy]
+  namespace :admin do
+    resources :users do
+      resources :products, only: [:index]
     end
+    concerns :manage_products
+  end
+
+  namespace :seller do
+    concerns :manage_products
   end
 
   if Rails.env.development?

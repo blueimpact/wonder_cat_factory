@@ -18,6 +18,8 @@ ol.breadcrumb
   .col-md-9
     = render 'products/attributes', product: @product
 
+hr
+
 - if @bids.present?
   = paginate @bids
   table.table.table-striped
@@ -27,10 +29,7 @@ ol.breadcrumb
         th= User.human_attribute_name(:label)
         th= Bid.human_attribute_name(:created_at)
     tbody
-      - @bids.each do |bid|
-        tr
-          td= bid.user.label
-          td=l bid.created_at
+      = render partial: 'bids/bid', collection: @bids
 - else
   .alert
     p.text-muted=t 'messages.no_item', item: Bid.model_name.human

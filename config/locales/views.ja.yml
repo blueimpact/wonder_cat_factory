@@ -21,7 +21,8 @@ ja:
       back: 戻る
       cancel: キャンセル
       bid: 並ぶ
-      bids: 着列者一覧
+      bids: 着列者
+      events: イベント
     submit:
       confirm: 確認
       comment: コメントする

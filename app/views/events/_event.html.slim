@@ -1,0 +1,13 @@
+.row id=dom_id(event)
+  .col-md-3.text-success
+    = link_to [current_role, event.bid.product, event.bid] do
+      span.fa-stack.fa-lg.pull-right
+        i.fa.fa-circle.fa-stack-2x
+        i.fa.fa-user.fa-stack-1x.fa-inverse
+    ul.list-unstyled.text-right
+      li=l event.created_at
+      li= link_to event.bid.user, [current_role, event.bid.product, event.bid]
+  .col-md-9
+    .panel.panel-default
+      .panel-body
+        = event.to_message

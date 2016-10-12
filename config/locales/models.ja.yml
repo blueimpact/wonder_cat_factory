@@ -5,6 +5,7 @@ ja:
       product: 作品
       picture: 写真
       bid: 着列
+      event: イベント
     attributes:
       timestamps: &timestamps
         created_at: 作成日時
