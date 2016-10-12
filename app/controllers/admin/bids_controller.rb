@@ -11,7 +11,7 @@ class Admin::BidsController < BidsController
   # GET /admin/products/1/bids/1
   def show
     @bid = @product.bids.find(params[:id])
-    @events = @bid.events.page
+    @events = @product.events.for(@bid.user).page
     render template: 'admin/products/show'
   end
 end

@@ -6,13 +6,14 @@ class BidsController < ApplicationController
   def index
     @bids = current_user
             .bids
-            .includes(:product)
+            .includes(product: [:pictures, :bids])
             .newer_first.page(params[:page])
   end
 
   # GET /products/1/bid
   def show
     @bid = @product.bids.find_by(user: current_user)
+    @events = @product.events.for(current_user).page
   end
 
   # POST /products/1/bid
@@ -24,7 +25,7 @@ class BidsController < ApplicationController
 
   # DELETE /products/1/bid
   def destroy
-    @product.bids.where(user: current_user).destroy_all
+    @product.bids.by(current_user).destroy_all
     render :update
   end
 
@@ -32,9 +33,5 @@ class BidsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:product_id])
-  end
-
-  def set_events
-    @events = @product.events.order(created_at: :asc).page
   end
 end

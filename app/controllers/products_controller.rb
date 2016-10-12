@@ -53,7 +53,7 @@ class ProductsController < ApplicationController
   end
 
   def set_events
-    @events = @product.events.order(created_at: :asc).page
+    @events = @product.events.includes(bid: [:user]).page
   end
 
   def product_params
