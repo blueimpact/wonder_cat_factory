@@ -24,9 +24,4 @@
 hr
 
 - if @events.present?
-  - @events.each do |event|
-    .panel.panel-default
-      .panel-heading.text-right
-        =l event.created_at
-      .panel-body
-        = event.to_message
+  = render partial: 'events/event', collection: @events

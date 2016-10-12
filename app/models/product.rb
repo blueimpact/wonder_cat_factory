@@ -3,12 +3,14 @@ class Product < ActiveRecord::Base
 
   belongs_to :user
   has_many :pictures, autosave: true, dependent: :destroy
-  has_many :bids, dependent: :destroy do
+  has_many :bids, inverse_of: :product, dependent: :destroy do
     def by user
       where(user: user)
     end
   end
-  has_many :events, -> { older_first }, dependent: :destroy do
+  has_many :events, -> { older_first },
+           inverse_of: :product,
+           dependent: :destroy do
     def for user
       bid_is_nil = Event.arel_table[:bid_id].eq(nil)
       bid_user_is_arg_user = Bid.arel_table[:user_id].eq(user.id)

@@ -1,23 +1,25 @@
+- if event.bid
+  - text_class = 'text-success'
+  - panel_class = 'panel-success'
+  - link = current_role && [current_role, event.product, event.bid]
+  - icon = render 'events/bid_icon'
+  - label = current_role && event.bid.user
+- else
+  - text_class = 'text-warning'
+  - panel_class = 'panel-warning'
+  - link = current_role && [current_role, event.product]
+  - icon = render 'events/product_icon'
+  - label = nil
 .row id=dom_id(event)
   .col-md-3
-    - if event.bid
-      .text-success
-        = link_to [current_role, event.product, event.bid] do
-          span.fa-stack.fa-lg.pull-right
-            i.fa.fa-circle.fa-stack-2x
-            i.fa.fa-user.fa-stack-1x.fa-inverse
-        ul.list-unstyled.text-right
-          li=l event.created_at
-          li= link_to event.bid.user, [current_role, event.product, event.bid]
-    - else
-      .text-warning
-        = link_to [current_role, event.product] do
-          span.fa-stack.fa-lg.pull-right
-            i.fa.fa-circle.fa-stack-2x
-            i.fa.fa-gift.fa-stack-1x.fa-inverse
-        ul.list-unstyled.text-right
-          li=l event.created_at
+    div class=text_class
+      .pull-right
+        = link_to_if link, icon, link
+      ul.list-unstyled.text-right
+        li=l event.created_at
+        - if label
+          li= label
   .col-md-9
-    .panel.panel-default
-      .panel-body
+    .panel class=panel_class
+      .panel-body class=text_class
         = event.to_message

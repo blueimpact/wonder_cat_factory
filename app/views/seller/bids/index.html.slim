@@ -1,11 +1,6 @@
 ol.breadcrumb
-  - if as_admin?
-    li= link_to t('admin.products.index.all_products'), [:admin, :products]
-    li= link_to @product.user, [:admin, @product.user, :products]
-    li= link_to @product.title, [:admin, @product]
-  - else
-    li= link_to t('nav.seller_page'), [:seller, :products]
-    li= link_to @product.title, [:seller, @product]
+  li= link_to t('nav.seller_page'), [current_role, :products]
+  li= link_to @product.title, [current_role, @product]
   li=t 'helpers.links.bids'
 
 - if can? :manage, @product
