@@ -20,8 +20,4 @@ ol.breadcrumb
 
 hr
 
-- if @events.present?
-  = render partial: 'events/event', collection: @events
-- else
-  .alert
-    p.text-muted=t 'messages.no_item', item: Event.model_name.human
+= render 'events/event_list', events: @events, product: @product, bid: @bid

@@ -12,8 +12,9 @@ class BidsController < ApplicationController
 
   # GET /products/1/bid
   def show
-    @bid = @product.bids.find_by(user: current_user)
-    @events = @product.events.for(current_user).page
+    @bid = @product.bids.by(current_user).first
+    @events = @product.events.for(current_user).includes(bid: [:user])
+                      .page(params[:page]).per(Settings.events.count_per_page)
   end
 
   # POST /products/1/bid
@@ -33,5 +34,14 @@ class BidsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:product_id])
+  end
+
+  def set_bid
+    @bid = @product.bids.find(params[:id])
+  end
+
+  def set_events
+    @events = @product.events.for(@bid.user).includes(bid: [:user])
+                      .page.per(Settings.events.count_per_page)
   end
 end

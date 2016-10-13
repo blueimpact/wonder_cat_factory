@@ -53,7 +53,8 @@ class ProductsController < ApplicationController
   end
 
   def set_events
-    @events = @product.events.includes(bid: [:user]).page
+    @events = @product.events.includes(bid: [:user])
+                      .page.per(Settings.events.count_per_page)
   end
 
   def product_params

@@ -29,6 +29,13 @@ ja:
   messages:
     no_item: '%{item}はありません。'
     not_authorized: '権限がありません。'
+  views:
+    pagination:
+      first: '<<'
+      last: '>>'
+      next: '>'
+      previous: '<'
+      truncate: '...'
   products:
     attributes:
       public_url: 公開URL

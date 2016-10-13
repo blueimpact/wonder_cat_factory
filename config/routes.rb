@@ -14,13 +14,18 @@ Rails.application.routes.draw do
     end
   end
   resources :products, only: [:show] do
-    resource :bid, only: [:show, :create, :destroy]
+    resource :bid, only: [:show, :create, :destroy] do
+      resources :events, only: [:index]
+    end
     resources :comments, only: [:create, :destroy]
   end
 
   concern :manage_products do
     resources :products do
-      resources :bids, only: [:index, :show]
+      resources :events, only: [:index]
+      resources :bids, only: [:index, :show] do
+        resources :events, only: [:index]
+      end
       resources :pictures, only: [:create, :destroy]
     end
   end

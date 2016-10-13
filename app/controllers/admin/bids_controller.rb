@@ -1,7 +1,9 @@
 class Admin::BidsController < BidsController
   include AdminController
 
-  before_action :set_product, only: [:index, :show]
+  before_action :set_product
+  before_action :set_bid, only: [:show]
+  before_action :set_events, only: [:show]
 
   # GET /admin/products/1/bids
   def index
@@ -10,8 +12,6 @@ class Admin::BidsController < BidsController
 
   # GET /admin/products/1/bids/1
   def show
-    @bid = @product.bids.find(params[:id])
-    @events = @product.events.for(@bid.user).page
     render template: 'admin/products/show'
   end
 end

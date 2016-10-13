@@ -1,7 +1,9 @@
 class Seller::BidsController < BidsController
   include SellerController
 
-  before_action :set_product, only: [:index, :show]
+  before_action :set_product
+  before_action :set_bid, only: [:show]
+  before_action :set_events, only: [:show]
 
   # GET /seller/products/1/bids
   def index
@@ -10,8 +12,6 @@ class Seller::BidsController < BidsController
 
   # GET /seller/products/1/bids/1
   def show
-    @bid = @product.bids.find(params[:id])
-    @events = @product.events.for(@bid.user).page
     render template: 'seller/products/show'
   end
 

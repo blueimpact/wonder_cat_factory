@@ -5,7 +5,8 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users
   def index
-    @users = User.order(:id).page(params[:page]).per(100)
+    @users = User.order(:id)
+                 .page(params[:page]).per(Settings.users.count_per_page)
     case @role = params[:role]
     when 'admin'
       @users = @users.admin
