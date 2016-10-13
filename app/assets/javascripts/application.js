@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require holder
 //= require jquery.zoom
+//= require jquery.infinitescroll.min
 //= require moment
 //= require moment/ja
 //= require bootstrap-datetimepicker
