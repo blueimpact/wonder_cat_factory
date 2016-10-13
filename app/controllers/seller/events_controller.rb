@@ -10,4 +10,10 @@ class Seller::EventsController < EventsController
                       .page(params[:page]).per(Settings.events.count_per_page)
     @events = @events.for(@bid.user) if @bid
   end
+
+  private
+
+  def set_product
+    @product = current_user.products.find(params[:product_id])
+  end
 end

@@ -14,6 +14,23 @@ RSpec.describe Seller::ProductsController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    let(:product) { FactoryGirl.create(:product, user: @current_user) }
+
+    let(:bids) { FactoryGirl.create_list(:bid, 2, product: product) }
+
+    it 'assings events for product' do
+      events = [
+        FactoryGirl.create(:started_event, product: product),
+        *bids.map { |bid|
+          FactoryGirl.create(:enqueued_event, product: product, bid: bid)
+        }
+      ]
+      get :show, { id: product.id }
+      expect(assigns(:events)).to eq events
+    end
+  end
+
   describe 'GET #new' do
     it 'assigns a new product as @product' do
       get :new
