@@ -1,14 +1,11 @@
 - if events.present?
-  - product = defined?(product) ? product : nil
-  - bid = defined?(bid) ? bid : nil
   #events
     = render partial: 'events/event', collection: events
     = paginate events,
       params: { controller: :events,
         action: :index,
         id: nil,
-        product_id: product&.id,
-        bid_id: bid&.id }
+        product_id: product.id }
 - else
   .alert
     p.text-muted=t 'messages.no_item', item: Event.model_name.human
