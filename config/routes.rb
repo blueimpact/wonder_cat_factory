@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
-  concern :manage_products do
+  concern :manage do
     resources :products do
       resources :events, only: [:index]
       resources :bids, only: [:index, :show] do
@@ -31,14 +31,14 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    concerns :manage
     resources :users do
       resources :products, only: [:index]
     end
-    concerns :manage_products
   end
 
   namespace :seller do
-    concerns :manage_products
+    concerns :manage
   end
 
   if Rails.env.development?
