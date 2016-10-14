@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   include TimeScopes
+  include EventTrigger
 
   belongs_to :user
   has_many :pictures, autosave: true, dependent: :destroy
@@ -36,6 +37,9 @@ class Product < ActiveRecord::Base
   scope :goaled, -> { where.not(goaled_at: nil) }
 
   scope :bidden_by, ->(user) { joins(:bids).where(bids: { user: user }) }
+
+  triggers Events::StartedEvent, :started_at
+  triggers Events::GoaledEvent, :goaled_at
 
   def progress
     @progress ||= (bids_count.to_f / goal)

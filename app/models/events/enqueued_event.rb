@@ -3,10 +3,12 @@ class Events::EnqueuedEvent < Events::RegularEvent
 
   def self.trigger bid
     create(product_id: bid.product_id, bid: bid, created_at: bid.created_at)
-      .tap(&:try_trigger_goaled_event)
+      .tap(&:try_goaling)
   end
 
-  def try_trigger_goaled_event
-    Events::GoaledEvent.trigger product if product.goaling?
+  def try_goaling
+    product.with_lock do
+      product.update! goaled_at: Time.current if product.goaling?
+    end
   end
 end
