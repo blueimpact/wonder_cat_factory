@@ -34,13 +34,4 @@ class BidsController < ApplicationController
   def set_product
     @product = Product.find(params[:product_id])
   end
-
-  def set_bid
-    @bid = @product.bids.find(params[:id])
-  end
-
-  def set_events
-    @events = @product.events.for(@bid.user).includes(bid: [:user])
-                      .page.per(Settings.events.count_per_page)
-  end
 end

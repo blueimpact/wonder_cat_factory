@@ -1,5 +1,9 @@
 ol.breadcrumb
-  li= link_to t('nav.seller_page'), [current_role, :products]
+  - if as_admin?
+    li= link_to t('admin.products.index.all_products'), [current_role, :products]
+    li= link_to @product.user, [current_role, @product.user, :products]
+  - else
+    li= link_to t('nav.seller_page'), [current_role, :products]
   li= link_to @product.title, [current_role, @product]
   li=t 'helpers.links.bids'
 
@@ -23,7 +27,7 @@ hr
         th= User.human_attribute_name(:label)
         th= Bid.human_attribute_name(:created_at)
     tbody
-      = render partial: 'bids/bid', collection: @bids
+      = render partial: 'manage/bids/bid', collection: @bids
 - else
   .alert
     p.text-muted=t 'messages.no_item', item: Bid.model_name.human
