@@ -12,6 +12,6 @@ class Admin::BidsController < BidsController
 
   # GET /admin/products/1/bids/1
   def show
-    render template: 'admin/products/show'
+    render template: 'manage/products/show'
   end
 end

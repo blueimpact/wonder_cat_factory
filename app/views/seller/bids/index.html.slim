@@ -4,13 +4,13 @@ ol.breadcrumb
   li=t 'helpers.links.bids'
 
 .pull-right
-  = render 'products/action_buttons', product: @product
+  = render 'manage/products/action_buttons', product: @product
 
 .row
   .col-md-1
-    = render 'products/top_thumb', product: @product
+    = render 'manage/products/top_thumb', product: @product
   .col-md-9
-    = render 'products/attributes', product: @product
+    = render 'manage/products/attributes', product: @product
 
 hr
 

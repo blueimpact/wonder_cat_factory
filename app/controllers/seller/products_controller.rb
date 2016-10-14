@@ -1,7 +1,5 @@
-class Seller::ProductsController < ProductsController
+class Seller::ProductsController < Manage::ProductsController
   include SellerController
-
-  before_action :set_events, only: [:show]
 
   # GET /seller/products
   def index

@@ -18,16 +18,4 @@ RSpec.describe Admin::ProductsController, type: :controller do
       expect(assigns(:products)).to eq products.reverse
     end
   end
-
-  describe 'GET #show' do
-    let(:product) { FactoryGirl.create(:product, :started) }
-
-    let!(:bids) { FactoryGirl.create_list(:bid, 2, product: product) }
-
-    it 'assings events for product' do
-      get :show, { id: product.id }
-      expect(assigns(:events).count).to eq 3
-      expect(assigns(:events)).to eq product.events
-    end
-  end
 end

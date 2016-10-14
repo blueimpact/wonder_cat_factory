@@ -12,7 +12,7 @@ class Seller::BidsController < BidsController
 
   # GET /seller/products/1/bids/1
   def show
-    render template: 'seller/products/show'
+    render template: 'manage/products/show'
   end
 
   private

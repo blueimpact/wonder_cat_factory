@@ -37,8 +37,6 @@ ja:
       previous: '<'
       truncate: '...'
   products:
-    attributes:
-      public_url: 公開URL
     bids:
       people_are_expected: '%{count}人並ぶと作り始めます。'
       people_are_waiting: '%{count}人並んでいます。'
@@ -47,6 +45,10 @@ ja:
       bidden: 並んでいます
       bid_question: 並ぶ？
       bid_requires_login: 並ぶにはログインしてください。
+  manage:
+    products:
+      attributes:
+        public_url: 公開URL
   admin:
     users:
       index:

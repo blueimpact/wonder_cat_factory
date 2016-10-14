@@ -1,7 +1,7 @@
 tr id=dom_id(product)
   td.text-center
     = link_to [:admin, product] do
-      = render 'products/top_thumb', product: product
+      = render 'manage/products/top_thumb', product: product
   td= link_to product.user, [:admin, product.user, :products]
   td= product.title
   td.text-right= number_to_currency(product.price)

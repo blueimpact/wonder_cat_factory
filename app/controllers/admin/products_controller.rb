@@ -1,8 +1,7 @@
-class Admin::ProductsController < ProductsController
+class Admin::ProductsController < Manage::ProductsController
   include AdminController
 
   before_action :set_user, only: [:index]
-  before_action :set_events, only: [:show]
 
   # GET /admin/products
   # GET /admin/users/1/products
