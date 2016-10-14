@@ -4,18 +4,15 @@ RSpec.describe Admin::EventsController, type: :controller do
   login_admin
 
   describe 'GET #index' do
-    let(:product) { FactoryGirl.create(:product) }
+    let(:product) { FactoryGirl.create(:product, :started) }
 
     let(:bid) { FactoryGirl.create(:bid, product: product) }
 
-    let(:bids) { [bid, *FactoryGirl.create_list(:bid, 2, product: product)] }
-
     let!(:events) {
+      FactoryGirl.create_list(:bid, 2, product: product)
       [
-        FactoryGirl.create(:started_event, product: product),
-        *bids.map { |bid|
-          FactoryGirl.create(:enqueued_event, product: product, bid: bid)
-        }
+        Events::StartedEvent.find_by(product: product),
+        *Events::EnqueuedEvent.where(product: product).to_a
       ]
     }
 
@@ -25,8 +22,12 @@ RSpec.describe Admin::EventsController, type: :controller do
     end
 
     it 'assings events for bid' do
+      events = [
+        Events::StartedEvent.find_by(product: product),
+        Events::EnqueuedEvent.find_by(bid: bid)
+      ]
       get :index, { product_id: product.id, bid_id: bid.id }
-      expect(assigns(:events)).to eq events.take(2)
+      expect(assigns(:events)).to eq events
     end
   end
 end

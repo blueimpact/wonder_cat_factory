@@ -25,9 +25,11 @@ RSpec.describe Seller::BidsController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:bid) { FactoryGirl.create(:bid, product: product) }
+    let(:product) {
+      FactoryGirl.create(:product, :started, user: @current_user)
+    }
 
-    let(:bids) { [bid, *FactoryGirl.create_list(:bid, 2, product: product)] }
+    let(:bid) { FactoryGirl.create(:bid, product: product) }
 
     it 'assigns bid' do
       get :show, { product_id: product.id, id: bid.id }
@@ -35,14 +37,13 @@ RSpec.describe Seller::BidsController, type: :controller do
     end
 
     it 'assings events for bid' do
+      FactoryGirl.create_list(:bid, 2, product: product)
       events = [
-        FactoryGirl.create(:started_event, product: product),
-        *bids.map { |bid|
-          FactoryGirl.create(:enqueued_event, product: product, bid: bid)
-        }
+        Events::StartedEvent.find_by(product: product),
+        Events::EnqueuedEvent.find_by(bid: bid)
       ]
       get :show, { product_id: product.id, id: bid.id }
-      expect(assigns(:events)).to eq events.take(2)
+      expect(assigns(:events)).to eq events
     end
 
     context 'with product by another seller' do

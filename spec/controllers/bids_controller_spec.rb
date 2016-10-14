@@ -19,6 +19,10 @@ RSpec.describe BidsController, type: :controller do
   end
 
   describe 'GET #show' do
+    let(:product) {
+      FactoryGirl.create(:product, :started, user: @current_user)
+    }
+
     let!(:bid) { product.bids.create(user: @current_user) }
 
     it 'assings bid by current_user as @bid' do
@@ -27,13 +31,11 @@ RSpec.describe BidsController, type: :controller do
     end
 
     it 'assings events for current_user as @events' do
+      FactoryGirl.create_list(:bid, 2, product: product)
       events = [
-        FactoryGirl.create(:started_event, product: product),
-        FactoryGirl.create(:enqueued_event, product: product, bid: bid)
+        Events::StartedEvent.find_by(product: product),
+        Events::EnqueuedEvent.find_by(bid: bid)
       ]
-      FactoryGirl.create(:bid, product: product).tap do |bid|
-        FactoryGirl.create(:enqueued_event, product: product, bid: bid)
-      end
       get :show, { product_id: product.id }
       expect(assigns(:events)).to eq events
     end

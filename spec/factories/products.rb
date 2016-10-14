@@ -8,6 +8,14 @@ FactoryGirl.define do
     sequence(:closes_on) { |i| 1.month.since + i.day }
     bids_count 0
 
+    trait :started do
+      started_at 5.days.ago
+    end
+
+    trait :goaled do
+      goaled_at 2.days.ago
+    end
+
     transient do
       pictures_count 0
     end

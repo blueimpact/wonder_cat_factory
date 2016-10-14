@@ -15,19 +15,16 @@ RSpec.describe Seller::ProductsController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:product) { FactoryGirl.create(:product, user: @current_user) }
+    let(:product) {
+      FactoryGirl.create(:product, :started, user: @current_user)
+    }
 
-    let(:bids) { FactoryGirl.create_list(:bid, 2, product: product) }
+    let!(:bids) { FactoryGirl.create_list(:bid, 2, product: product) }
 
     it 'assings events for product' do
-      events = [
-        FactoryGirl.create(:started_event, product: product),
-        *bids.map { |bid|
-          FactoryGirl.create(:enqueued_event, product: product, bid: bid)
-        }
-      ]
       get :show, { id: product.id }
-      expect(assigns(:events)).to eq events
+      expect(assigns(:events).count).to eq 3
+      expect(assigns(:events)).to eq product.events
     end
   end
 
