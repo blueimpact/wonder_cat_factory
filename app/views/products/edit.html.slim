@@ -8,9 +8,8 @@ ol.breadcrumb
     li= link_to @product.title, [current_role, @product]
   li=t 'helpers.links.edit'
 
-- if can? :manage, @product
-  .pull-right
-    = render 'action_buttons', product: @product
+.pull-right
+  = render 'action_buttons', product: @product
 
 .row
   .col-md-8

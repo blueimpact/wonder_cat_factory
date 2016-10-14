@@ -8,9 +8,8 @@ ol.breadcrumb
   - else
     li= @product.title
 
-- if can? :manage, @product
-  .pull-right
-    = render 'products/action_buttons', product: @product
+.pull-right
+  = render 'products/action_buttons', product: @product
 
 .row
   .col-md-1

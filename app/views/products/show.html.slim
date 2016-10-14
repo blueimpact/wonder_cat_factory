@@ -1,10 +1,10 @@
 - if can? :manage, @product
   .pull-right
-    - if as_admin?
+    - if current_user.admin?
       = link_to [:admin, @product], class: 'btn btn-default btn-xs' do
         i.fa.fa-fw.fa-cog>
         =t 'nav.admin_page'
-    - else
+    - if current_user.seller? && @product.user == current_user
       = link_to [:seller, @product], class: 'btn btn-default btn-xs' do
         i.fa.fa-fw.fa-cog>
         =t 'nav.seller_page'
