@@ -21,6 +21,10 @@ div id=dom_id(product, :bids)
         =t '.bidden'
       = link_to [product, :bid], class: 'btn btn-default btn-lg btn-block' do
         =t 'helpers.links.show'
-    - else
+    - elsif product.started?
       = link_to product_bid_path(product), method: :post, remote: true, class: 'btn btn-primary btn-lg btn-block' do
         =t 'helpers.links.bid'
+    - else
+      .btn.btn-default.btn-lg.btn-block.disabled
+        =t '.not_started'
+

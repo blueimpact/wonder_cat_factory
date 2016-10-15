@@ -1,6 +1,38 @@
+ol.breadcrumb
+  - if as_admin?
+    - if @user
+      li= link_to t('.all_products'), [current_role, :products]
+      li= @user
+    - else
+      =t '.all_products'
+  - else
+    li=t 'nav.seller_page'
+
+- if as_seller?
+  ul.list-inline
+    li= link_to t('helpers.submit.create'), [:new, current_role, :product], class: 'btn btn-success'
+
+- model_class = Product
 - if @products.present?
-  .row
-    = render @products
+  = paginate @products
+  table.table.table-striped
+    caption= render 'layouts/paginate_info', items: @products
+    thead
+      tr
+        th
+        th= Picture.model_name.human
+        - if as_admin?
+          th= model_class.human_attribute_name(:user)
+        th= model_class.human_attribute_name(:title)
+        th.text-right= model_class.human_attribute_name(:price)
+        th.text-right= model_class.human_attribute_name(:bids_count)
+        th.text-right= model_class.human_attribute_name(:goal)
+        th.text-right= model_class.human_attribute_name(:closes_on)
+        th.text-right= model_class.human_attribute_name(:created_at)
+        th
+    tbody
+      - @products.each do |product|
+        = render 'manage/products/product', product: product
 - else
   .alert
     p.text-muted=t 'messages.no_item', item: Product.model_name.human

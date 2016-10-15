@@ -1,0 +1,25 @@
+tr id=dom_id(product)
+  td
+    - if product.started?
+      - progress_bar_class = product.goaled? ? 'progress-bar-success' : 'progress-bar-info'
+      .progress
+        .progress-bar class=progress_bar_class style="width:#{[product.percentage, 100].min}%"
+    - else
+      .label.label-default=t '.not_started'
+  td
+    = link_to [current_role, product] do
+      = render 'manage/products/top_thumb', product: product
+  - if as_admin?
+    td= link_to product.user, [current_role, product.user, :products]
+  td= product.title
+  td.text-right= number_to_currency(product.price)
+  td.text-right= product.bids_count.to_i
+  td.text-right= product.goal
+  td.text-right title=(product.closes_on && l(product.closes_on))
+    = display_date product.closes_on
+  td.text-right title=l(product.created_at)
+    = time_ago_in_words(product.created_at) + t('datetime.ago')
+  td.text-right
+    - unless product.started?
+      = link_to product, method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-danger btn-xs', title: "#{ t('.destroy', default: t('helpers.links.destroy')) }"  do
+        i.fa.fa-fw.fa-times

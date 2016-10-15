@@ -9,7 +9,6 @@ ja:
     confirmation: 確認
     admin_page: 管理者ページ
     seller_page: 出品者ページ
-    my_bids: マイ並び中
     settings_page: 設定
     all: 全て
   helpers:
@@ -43,12 +42,15 @@ ja:
       you_are_nth: 'あなたは%{index}人目です。'
       left: あと
       bidden: 並んでいます
-      bid_question: 並ぶ？
-      bid_requires_login: 並ぶにはログインしてください。
+      not_started: 準備中
   manage:
     products:
+      product:
+        not_started: 未公開
       attributes:
         public_url: 公開URL
+      index:
+        all_products: 全作品
       show:
         start: 募集を開始する
   admin:
@@ -57,6 +59,3 @@ ja:
         default:  通常
       form:
         not_editable_for_self: '自分では変更できません。'
-    products:
-      index:
-        all_products: '全作品'
