@@ -47,4 +47,13 @@ RSpec.describe Seller::ProductsController, type: :controller do
       }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  describe 'POST #start' do
+    it 'fails to access if product user is not current_user' do
+      product = FactoryGirl.create(:product)
+      expect {
+        post :start, { id: product.id }
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
 end

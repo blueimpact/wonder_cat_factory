@@ -127,6 +127,36 @@ shared_examples_for Manage::ProductsController do
       expect(response).to redirect_to([role, :products])
     end
   end
+
+  describe 'POST #start' do
+    context 'with preparing product' do
+      it 'sets started_at' do
+        expect {
+          post :start, { id: product.id }
+        }.to change { product.reload.started_at? }.from(false).to(true)
+      end
+
+      it 'creates StartedEvent' do
+        expect {
+          post :start, { id: product.id }
+        }.to change(Events::StartedEvent, :count).by(1)
+        event = Events::StartedEvent.last
+        expect(event.product_id).to eq product.id
+      end
+    end
+
+    context 'with started product' do
+      before do
+        product.update started_at: Time.current
+      end
+
+      it 'skips to set started_at' do
+        expect {
+          post :start, { id: product.id }
+        }.not_to change { product.reload.started_at }
+      end
+    end
+  end
 end
 
 RSpec.describe Admin::ProductsController, type: :controller do

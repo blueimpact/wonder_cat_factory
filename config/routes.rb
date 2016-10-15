@@ -27,6 +27,9 @@ Rails.application.routes.draw do
         resources :events, only: [:index]
       end
       resources :pictures, only: [:create, :destroy]
+      member do
+        post :start
+      end
     end
   end
 

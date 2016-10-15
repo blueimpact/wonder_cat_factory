@@ -49,6 +49,8 @@ ja:
     products:
       attributes:
         public_url: 公開URL
+      show:
+        start: 募集を開始する
   admin:
     users:
       index:

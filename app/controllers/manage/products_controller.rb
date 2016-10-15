@@ -1,6 +1,6 @@
 class Manage::ProductsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :start]
   before_action :set_events, only: [:show]
 
   # GET /admin/products/1
@@ -51,6 +51,18 @@ class Manage::ProductsController < ApplicationController
     @product.destroy
     redirect_to [current_role, :products],
                 notice: 'Product was destroyed.'
+  end
+
+  # POST /admin/products/1/start
+  # POST /seller/products/1/start
+  def start
+    if !@product.started?
+      @product.update! started_at: Time.current
+      redirect_to [current_role, @product]
+    else
+      redirect_to [current_role, @product],
+                  alert: 'Product is already started.'
+    end
   end
 
   private

@@ -9,6 +9,3 @@
         id: nil,
         product_id: product&.id,
         bid_id: bid&.id }
-- else
-  .alert
-    p.text-muted=t 'messages.no_item', item: Event.model_name.human
