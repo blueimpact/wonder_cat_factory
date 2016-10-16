@@ -1,0 +1,33 @@
+ja:
+  devise:
+    confirmations:
+      send_instructions: "ログインのためのメールを送信しました。メールを確認してください。"
+    failure:
+      already_authenticated: "すでにログインしています。"
+      timeout: "セッションがタイムアウトしました。もう一度ログインしてください。"
+      unauthenticated: "ログインしてください。"
+      unconfirmed: "メールアドレスの確認に失敗しました。もう一度やり直してください。"
+    mailer:
+      confirmation_instructions:
+        action: "続ける"
+        greeting: "ようこそ、%{recipient}さん！"
+        instruction: "メールアドレスの確認です。"
+        subject: "【チェシャネ工房】メールアドレスの確認"
+    registrations:
+      signed_up_but_unconfirmed: "本人確認のメールを送信しました。メールを確認してください。"
+      update_needs_confirmation: "メールアドレス確認のメールを送信しました。メールを確認してください。"
+      updated: "設定を更新しました。"
+    sessions:
+      already_signed_out: "既にログアウト済みです。"
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+  errors:
+    messages:
+      already_confirmed: "は既に登録済みです。ログインしてください。"
+      confirmation_period_expired: "は%{period}以内に確認してください。"
+      expired: "の有効期限が切れました。新しくリクエストしてください。"
+      not_found: "は見つかりませんでした。"
+      not_locked: "は凍結されていません。"
+      not_saved:
+        one: "エラーが発生したため %{resource} は保存されませんでした:"
+        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした:"

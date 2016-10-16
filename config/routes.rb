@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   root 'bids#index'
 
   devise_for :users,
-             controllers: { registrations: 'users/registrations' }
+             controllers: {
+               sessions: 'users/sessions',
+               registrations: 'users/registrations',
+               confirmations: 'users/confirmations'
+             }
   devise_scope :user do
     get 'login' => 'devise/sessions#new', as: :login
     delete 'logout' => 'devise/sessions#destroy', as: :logout

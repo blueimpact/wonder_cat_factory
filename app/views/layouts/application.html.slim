@@ -55,9 +55,6 @@ html lang="ja"
               - if current_user.is_seller?
                 = link_to seller_products_path do
                   span.label.label-info> seller
-          - else
-            ul.nav.navbar-nav.navbar-right
-              li= link_to t('nav.login'), login_path
     .container
       .row
         .col-lg-12
