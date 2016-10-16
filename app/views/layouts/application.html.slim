@@ -20,15 +20,22 @@ html lang="ja"
   body
     .navbar.navbar-default.navbar-static-top
       .container
-        button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.navbar-brand href=root_path =t 'header.site_title'
+        .navbar-header
+          button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand href=root_path =t 'header.site_title'
         .navbar-collapse.collapse.navbar-responsive-collapse
           - if current_user
             = render 'layouts/admin_menu'
             ul.nav.navbar-nav.navbar-right
+              .navbar-text.hidden-xs
+                - if current_user.is_admin?
+                  span.label.label-danger> admin
+                - if current_user.is_seller?
+                  = link_to seller_products_path do
+                    span.label.label-info> seller
               li.dropdown.bordered
                 a.dropdown-toggle data-toggle="dropdown" href="#"
                   span>= current_user.label
@@ -49,12 +56,6 @@ html lang="ja"
                       li= link_to 'Letter Opener', letter_opener_web_path
                   li.divider
                   li= link_to t('nav.logout'), logout_path, method: :delete
-            p.navbar-text.navbar-right
-              - if current_user.is_admin?
-                span.label.label-danger> admin
-              - if current_user.is_seller?
-                = link_to seller_products_path do
-                  span.label.label-info> seller
     .container
       .row
         .col-lg-12

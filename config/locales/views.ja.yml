@@ -46,7 +46,9 @@ ja:
   manage:
     products:
       product:
-        not_started: 未公開
+        preparing: 準備中
+        started: 募集中
+        goaled: 製作中
       attributes:
         public_url: 公開URL
       index:

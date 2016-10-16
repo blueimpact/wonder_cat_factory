@@ -1,11 +1,17 @@
 tr id=dom_id(product)
   td
-    - if product.started?
-      - progress_bar_class = product.goaled? ? 'progress-bar-success' : 'progress-bar-info'
-      .progress
-        .progress-bar class=progress_bar_class style="width:#{[product.percentage, 100].min}%"
+    - if product.goaled?
+      .label.label-warning=t '.goaled'
+      p
+        .progress
+          .progress-bar.progress-bar-warning style="width:100%"
+    - elsif product.started?
+      .label.label-info=t '.started'
+      p
+        .progress
+          .progress-bar.progress-bar-info style="width:#{product.percentage}%"
     - else
-      .label.label-default=t '.not_started'
+      .label.label-default=t '.preparing'
   td
     = link_to [current_role, product] do
       = render 'manage/products/top_thumb', product: product
