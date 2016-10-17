@@ -1,3 +1,6 @@
-$('#<%= dom_id @product, :bids %>').replaceWith(
-'<%=j render('products/bids', product: @product) %>'
+$('#<%= dom_id @bid.product, :bid_info %>').replaceWith(
+'<%=j render('info', bid: @bid) %>'
+);
+$('#<%= dom_id @bid.product, :bid_buttons %>').replaceWith(
+'<%=j render('buttons', bid: @bid) %>'
 );

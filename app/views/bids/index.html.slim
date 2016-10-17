@@ -1,7 +1,16 @@
 - if @bids.present?
   .row
     - @bids.each do |bid|
-      = render bid.product
-- else
-  .alert
-    p.text-muted=t 'messages.no_item', item: Bid.model_name.human
+      - product = bid.product
+      .col-md-3 id=dom_id(product)
+        .thumbnail
+          - if product.pictures.present?
+            a href=product.external_url target='_blank'
+              img.img-responsive src=product.pictures.first.image.url(:rect)
+          .caption.text-center
+            h3= product.title
+            - progress_bar_class = product.goaled? ? 'progress-bar-success' : 'progress-bar-info'
+            .progress
+              .progress-bar class=progress_bar_class style="width:#{[product.percentage, 100].min}%"
+            = render 'bids/buttons', bid: bid, with_detail_link: true
+

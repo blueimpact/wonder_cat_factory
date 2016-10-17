@@ -35,12 +35,12 @@ ja:
       next: '>'
       previous: '<'
       truncate: '...'
-  products:
-    bids:
+  bids:
+    info:
       people_are_expected: '%{count}人並ぶと作り始めます。'
       people_are_waiting: '%{count}人並んでいます。'
       you_are_nth: 'あなたは%{index}人目です。'
-      left: あと
+    buttons:
       bidden: 並んでいます
       not_started: 準備中
   manage:

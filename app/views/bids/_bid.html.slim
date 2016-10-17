@@ -1,8 +1,9 @@
-.col-md-3 id=dom_id(product)
+- product = bid.product
+div id=dom_id(product)
   .thumbnail
     - if product.pictures.present?
       a href=product.external_url target='_blank'
         img.img-responsive src=product.pictures.first.image.url(:rect)
     .caption.text-center
-      h3= product.title
-      = render 'products/bids', product: product
+      = render 'bids/info', bid: bid
+      = render 'bids/buttons', bid: bid, with_detail_link: local_assigns[:with_detail_link]

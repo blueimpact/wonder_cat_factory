@@ -9,5 +9,5 @@
         i.fa.fa-fw.fa-cog>
         =t 'nav.seller_page'
 .row
-  .col-md-4
-  = render @product
+  .col-md-offset-4.col-md-4
+    = render @bid, with_detail_link: true

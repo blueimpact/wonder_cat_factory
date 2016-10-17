@@ -1,0 +1,15 @@
+- product = bid.product
+div id=dom_id(product, :bid_buttons)
+  - if bid.persisted?
+    .btn.btn-primary.btn-lg.btn-block.disabled
+      =t '.bidden'
+    - if local_assigns[:with_detail_link]
+      = link_to [product, :bid], class: 'btn btn-default btn-lg btn-block' do
+        =t 'helpers.links.show'
+  - elsif product.started?
+    = link_to [product, :bid], method: :post, remote: true, class: 'btn btn-primary btn-lg btn-block' do
+      =t 'helpers.links.bid'
+  - else
+    .btn.btn-default.btn-lg.btn-block.disabled
+      =t '.not_started'
+

@@ -12,13 +12,13 @@
   - label = nil
 .row.event-row id=dom_id(event)
   .col-md-3
-    div class=text_class
-      .pull-right
-        = link_to icon, link
-      ul.list-unstyled.text-right
-        li=l event.created_at
+    .media class=text_class
+      .media-body.media-middle
+        .text-right=l event.created_at
         - if label
-          li= label
+          .text-right= label
+      .media-right
+        = link_to icon, link
   .col-md-9
     .panel class=panel_class
       .panel-body class=text_class

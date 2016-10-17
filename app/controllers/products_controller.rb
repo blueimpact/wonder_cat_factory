@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
+    @bid = @product.bids.find_or_initialize_by(user: current_user)
   end
 
   private

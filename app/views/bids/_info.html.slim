@@ -1,0 +1,18 @@
+- product = bid.product
+div id=dom_id(product, :bid_info)
+  h3= product.title
+  - bid_index = bid.persisted? && bid.queue_index
+  p.text-left
+    - product.bids_count.times do |i|
+      - if i == bid_index
+        i.fa.fa-male.text-danger
+      - else
+        i.fa.fa-male.text-success
+    - [0, product.goal - product.bids_count].max.times do
+      i.fa.fa-male.text-muted
+  p
+    =t '.people_are_expected', count: product.goal
+    br
+    =t '.people_are_waiting', count: product.bids_count
+  - if bid_index
+    p=t '.you_are_nth', index: bid_index + 1
