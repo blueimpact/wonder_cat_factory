@@ -7,7 +7,7 @@ class BidsController < ApplicationController
     @bids = current_user
             .bids
             .includes(product: [:pictures, :bids])
-            .newer_first.page(params[:page])
+            .updated_first.page(params[:page])
   end
 
   # GET /products/1/bid

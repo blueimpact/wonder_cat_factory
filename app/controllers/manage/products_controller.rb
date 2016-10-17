@@ -1,6 +1,7 @@
 class Manage::ProductsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :start]
+  before_action :set_product,
+                only: [:show, :edit, :update, :destroy, :start, :accept]
   before_action :set_events, only: [:show]
 
   # GET /admin/products/1
@@ -62,6 +63,21 @@ class Manage::ProductsController < ApplicationController
     else
       redirect_to [current_role, @product],
                   alert: 'Product is already started.'
+    end
+  end
+
+  # POST /admin/products/1/accept
+  # POST /seller/products/1/accept
+  def accept
+    if @product.goaled?
+      count = params.require(:count)
+      @product.bids.not_accepted.oldest(count).each do |bid|
+        bid.update! accepted_at: Time.current
+      end
+      redirect_to [current_role, @product]
+    else
+      redirect_to [current_role, @product],
+                  alert: 'Product is not goaled yet.'
     end
   end
 

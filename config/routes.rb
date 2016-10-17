@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       resources :pictures, only: [:create, :destroy]
       member do
         post :start
+        post :accept
       end
     end
   end

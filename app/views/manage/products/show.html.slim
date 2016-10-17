@@ -27,7 +27,12 @@ hr
 - unless @product.started?
   .row
     .col-md-offset-3.col-md-9
-      ul.list-inline
-        li= link_to t('.start'), [:start, current_role, @product],
-          method: :post,
-          class: %w(btn btn-warning btn-lg)
+      = link_to t('.start'), [:start, current_role, @product],
+        method: :post,
+        class: %w(btn btn-warning btn-lg)
+- if @product.goaled?
+  .row
+    .col-md-offset-3.col-md-9
+      = form_tag [:accept, current_role, @product], class: %w(form-inline) do
+        = text_field_tag :count, [@product.bids.length, 10].min, class: %w(form-control)
+        = submit_tag t('.accept'), class: %w(btn btn-warning)

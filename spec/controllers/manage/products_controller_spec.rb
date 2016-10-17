@@ -129,7 +129,7 @@ shared_examples_for Manage::ProductsController do
   end
 
   describe 'POST #start' do
-    context 'with preparing product' do
+    context 'with non-started product' do
       it 'sets started_at' do
         expect {
           post :start, { id: product.id }
@@ -154,6 +154,32 @@ shared_examples_for Manage::ProductsController do
         expect {
           post :start, { id: product.id }
         }.not_to change { product.reload.started_at }
+      end
+    end
+  end
+
+  describe 'POST #accept' do
+    context 'with goaled product' do
+      before do
+        product.update goaled_at: Time.current
+      end
+
+      it 'sets Bid#accepted_at for requested count' do
+        bids = FactoryGirl.create_list(:bid, 2, product: product)
+        FactoryGirl.create(:bid, product: product)
+        expect {
+          post :accept, { id: product.id, count: 2 }
+        }.to change(Bid.accepted, :count).by(2)
+        expect(Bid.accepted.sort).to eq bids
+      end
+    end
+
+    context 'with non-goaled product' do
+      it 'skips to set accepted_at' do
+        FactoryGirl.create_list(:bid, 2, product: product)
+        expect {
+          post :accept, { id: product.id, count: 2 }
+        }.not_to change(Bid.accepted, :count)
       end
     end
   end
