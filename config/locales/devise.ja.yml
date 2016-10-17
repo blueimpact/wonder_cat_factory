@@ -8,11 +8,12 @@ ja:
       unauthenticated: "ログインしてください。"
       unconfirmed: "メールアドレスの確認に失敗しました。もう一度やり直してください。"
     mailer:
+      sender_label: 不思議のチェシャネ工房
       confirmation_instructions:
         action: "続ける"
         greeting: "ようこそ、%{recipient}さん！"
         instruction: "メールアドレスの確認です。"
-        subject: "【チェシャネ工房】メールアドレスの確認"
+        subject: "メールアドレスの確認"
     registrations:
       signed_up_but_unconfirmed: "本人確認のメールを送信しました。メールを確認してください。"
       update_needs_confirmation: "メールアドレス確認のメールを送信しました。メールを確認してください。"

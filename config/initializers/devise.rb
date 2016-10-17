@@ -12,7 +12,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = "info@#{ENV['HOST']}"
+  config.mailer_sender = proc { "#{I18n.t('devise.mailer.sender_label')}<noreply@#{ENV['HOST']}>" }
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
