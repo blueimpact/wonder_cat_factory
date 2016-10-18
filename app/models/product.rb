@@ -20,6 +20,7 @@ class Product < ActiveRecord::Base
     end
   end
   has_many :comments, -> { newer_first }, dependent: :destroy
+  has_many :instructions, dependent: :destroy
 
   validates :title, presence: true
   validates :price,

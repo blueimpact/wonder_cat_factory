@@ -15,5 +15,8 @@
         = icon
   .col-md-9
     .panel class=panel_class
-      .panel-body class=text_class
+      .panel-heading class=text_class
         = event.to_message
+      - if event.instruction
+        .panel-body class=text_class
+          p= event.instruction.body
