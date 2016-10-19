@@ -1,0 +1,18 @@
+.panel.panel-default id=dom_id(instruction)
+  .panel-heading
+    = instruction.class.model_name.human
+  - if instruction.new_record?
+    .panel-body.text-right
+      = link_to [:new, current_role, @product, :instruction, { type: instruction.type }], class: 'btn btn-success' do
+        i.fa.fa-plus>
+        =t 'helpers.links.new'
+  - else
+    .panel-body
+      = simple_format instruction.body
+    .panel-footer.text-right
+      = link_to [:edit, current_role, @product, instruction.becomes_base], class: 'btn btn-default'
+        i.fa.fa-pencil>
+        =t 'helpers.links.edit'
+      = link_to [current_role, @product, instruction.becomes_base], method: :delete, class: 'btn btn-danger'
+        i.fa.fa-trash>
+        =t 'helpers.links.destroy'

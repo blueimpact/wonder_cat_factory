@@ -1,0 +1,29 @@
+ol.breadcrumb
+  - if as_admin?
+    li= link_to t('manage.products.index.all_products'), [current_role, :products]
+    li= link_to @product.user, [current_role, @product.user, :products]
+  - else
+    li= link_to t('nav.seller_page'), [current_role, :products]
+  li= link_to @product.title, [current_role, @product]
+  li=t 'helpers.links.instructions'
+
+.row
+  .col-md-2.col-md-push-10
+    = render 'manage/products/action_buttons', product: @product
+
+  .col-md-2.col-md-pull-2
+    .thumbnail
+      - if picture = @product.pictures.first
+        img.img-responsive src=picture.image.url(:rect)
+      - else
+        - size = Settings.pictures.image.rect.size.values_at('width', 'height').join('x')
+        img.img-responsive data-src="holder.js/#{size}?text=No Photo&auto=yes"
+  .col-md-8.col-md-pull-2
+    = render 'manage/products/attributes', product: @product
+
+hr
+
+.row
+  - @instructions.each do |instruction|
+    .col-md-8.col-md-offset-2
+      = render 'manage/instructions/instruction', instruction: instruction

@@ -1,7 +1,7 @@
 - base_link = [current_role, product]
 ul.nav.nav-pills.nav-stacked
   - [[(controller_name == 'products' && action_name == 'show'), base_link, 'fa-list', t('helpers.links.show')],
-     [(action_name == 'edit'), [:edit, *base_link], 'fa-pencil', t('helpers.links.edit')],
+     [(controller_name == 'products' && action_name == 'edit'), [:edit, *base_link], 'fa-pencil', t('helpers.links.edit')],
      [(controller_name == 'instructions'), [*base_link, :instructions], 'fa-file-text-o', t('helpers.links.instructions')],
      [(controller_name == 'bids'), [*base_link, :bids], 'fa-users', t('helpers.links.bids')]].each do |active, link, icon_class, label|
     li class=(active ? 'active' : '')

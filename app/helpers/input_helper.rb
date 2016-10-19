@@ -19,9 +19,15 @@ module InputHelper
     end
   end
 
-  def input_text form, name
+  def input_hidden form, name
     form_group(form, name) do
-      form.text_area(name, class: 'form-control', rows: 2)
+      form.hidden_field(name, class: 'form-control')
+    end
+  end
+
+  def input_text form, name, options = { rows: 2 }
+    form_group(form, name) do
+      form.text_area(name, { class: 'form-control' }.merge(options))
     end
   end
 
