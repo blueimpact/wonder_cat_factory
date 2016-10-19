@@ -9,4 +9,10 @@ module SellerController
   def current_role
     :seller
   end
+
+  private
+
+  def set_product
+    @product = current_user.products.find(params[:product_id])
+  end
 end
