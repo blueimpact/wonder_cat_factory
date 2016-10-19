@@ -1,11 +1,10 @@
 - base_link = [current_role, product]
-- base_class = %w(btn btn-default btn-xs)
-- active_link_and_class = [base_link, [*base_class, 'active']]
-- edit_link, edit_class = (action_name == 'edit') ? active_link_and_class : [[:edit, *base_link], base_class]
-- bids_link, bids_class = (controller_name == 'bids') ? active_link_and_class : [[*base_link, :bids], base_class]
-= link_to edit_link, class: edit_class do
-  i.fa.fa-fw.fa-pencil>
-  =t 'helpers.links.edit'
-= link_to bids_link, class: bids_class do
-  i.fa.fa-fw.fa-users>
-  =t 'helpers.links.bids'
+ul.nav.nav-pills.nav-stacked
+  - [[(controller_name == 'products' && action_name == 'show'), base_link, 'fa-list', t('helpers.links.show')],
+     [(action_name == 'edit'), [:edit, *base_link], 'fa-pencil', t('helpers.links.edit')],
+     [(controller_name == 'instructions'), [*base_link, :instructions], 'fa-file-text-o', t('helpers.links.instructions')],
+     [(controller_name == 'bids'), [*base_link, :bids], 'fa-users', t('helpers.links.bids')]].each do |active, link, icon_class, label|
+    li class=(active ? 'active' : '')
+      = link_to link do
+        i.fa.fa-fw> class=icon_class
+        = label

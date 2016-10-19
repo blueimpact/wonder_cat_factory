@@ -7,13 +7,18 @@ ol.breadcrumb
   li= link_to @product.title, [current_role, @product]
   li=t 'helpers.links.bids'
 
-.pull-right
-  = render 'manage/products/action_buttons', product: @product
-
 .row
-  .col-md-1
-    = render 'manage/products/top_thumb', product: @product
-  .col-md-9
+  .col-md-2.col-md-push-10
+    = render 'manage/products/action_buttons', product: @product
+
+  .col-md-2.col-md-pull-2
+    .thumbnail
+      - if picture = @product.pictures.first
+        img.img-responsive src=picture.image.url(:rect)
+      - else
+        - size = Settings.pictures.image.rect.size.values_at('width', 'height').join('x')
+        img.img-responsive data-src="holder.js/#{size}?text=No Photo&auto=yes"
+  .col-md-8.col-md-pull-2
     = render 'manage/products/attributes', product: @product
 
 hr
@@ -26,6 +31,7 @@ hr
       tr
         th= User.human_attribute_name(:label)
         th= Bid.human_attribute_name(:created_at)
+        th= Bid.human_attribute_name(:accepted_at)
     tbody
       = render partial: 'manage/bids/bid', collection: @bids
 - else

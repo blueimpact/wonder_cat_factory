@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       resources :bids, only: [:index, :show] do
         resources :events, only: [:index]
       end
+      resources :instructions
       resources :pictures, only: [:create, :destroy]
       member do
         post :start

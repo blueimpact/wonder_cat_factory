@@ -1,5 +1,5 @@
-- if product.with_picture?
-  img src=product.pictures.first.image.url(:thumb)
+- if picture = product.pictures.first
+  img src=picture.image.url(:thumb)
 - else
   - size = Settings.pictures.image.thumb.size.values_at('width', 'height').join('x')
   img data-src="holder.js/#{size}?text=No Photo"
