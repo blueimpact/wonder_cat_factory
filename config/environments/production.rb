@@ -1,12 +1,12 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: 'www.wonder-cat-factory.com' }
+  config.action_mailer.default_url_options = { host: ENV['HOST'] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: ENV['MAILGUN_SMTP_SERVER'],
     port: ENV['MAILGUN_SMTP_PORT'],
     user_name: ENV['MAILGUN_SMTP_LOGIN'],
     password: ENV['MAILGUN_SMTP_PASSWORD'],
-    domain: ENV['MAILGUN_DOMAIN'],
+    domain: ENV['MAIL_HOST'],
     authentication: :plain,
     enable_starttls_auto: true
   }
