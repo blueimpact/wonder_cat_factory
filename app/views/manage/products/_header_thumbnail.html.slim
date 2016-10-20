@@ -1,0 +1,6 @@
+.thumbnail
+  - if picture = product.pictures.first
+    img.img-responsive src=picture.image.url(:rect)
+  - else
+    - size = Settings.pictures.image.rect.size.values_at('width', 'height').join('x')
+    img.img-responsive data-src="holder.js/#{size}?text=No Photo&auto=yes"

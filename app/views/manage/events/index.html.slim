@@ -1,3 +1,6 @@
 #events
-  = render partial: 'manage/events/event', collection: @events
+  - if @bid
+    = render partial: 'events/event', collection: events
+  - else
+    = render partial: 'manage/events/event', collection: @events
   = paginate @events

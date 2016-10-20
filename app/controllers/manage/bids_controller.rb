@@ -13,7 +13,6 @@ class Manage::BidsController < ApplicationController
   # GET /admin/products/1/bids/1
   # GET /seller/products/1/bids/1
   def show
-    render template: 'manage/products/show'
   end
 
   private

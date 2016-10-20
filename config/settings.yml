@@ -2,7 +2,7 @@ defaults: &defaults
   users:
     count_per_page: 100
   events:
-    count_per_page: 10
+    count_per_page: 1000
   pictures:
     image:
       rect:

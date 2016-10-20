@@ -57,6 +57,8 @@ ja:
       show:
         start: 募集を開始する
         accept: 入店させる
+        people_are_waiting: 'あと%{count}人並んでいます。'
+        people_unit: 人
   admin:
     users:
       index:

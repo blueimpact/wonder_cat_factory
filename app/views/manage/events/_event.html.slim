@@ -1,24 +1,21 @@
 - if event.bid
   - text_class = 'text-success'
   - panel_class = 'panel-success'
-  - link = [current_role, event.product, event.bid]
   - icon = render 'events/bid_icon'
-  - label = event.bid.user
+  - link = [event.bid.user, [current_role, event.product, event.bid]]
 - else
   - text_class = 'text-warning'
   - panel_class = 'panel-warning'
-  - link = [current_role, event.product]
   - icon = render 'events/product_icon'
-  - label = nil
 .row.event-row id=dom_id(event)
   .col-md-3
     .media class=text_class
       .media-body.media-middle
         .text-right=l event.created_at
-        - if label
-          .text-right= label
+        - if link
+          .text-right= link_to *link
       .media-right
-        = link_to icon, link
+        = icon
   .col-md-9
     .panel class=panel_class
       .panel-body class=text_class

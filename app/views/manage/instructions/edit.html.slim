@@ -10,20 +10,10 @@ ol.breadcrumb
 
 .row
   .col-md-2.col-md-push-10
-    = render 'manage/products/action_buttons', product: @product
+    = render 'manage/products/menu_buttons', product: @product
 
   .col-md-2.col-md-pull-2
-    .thumbnail
-      - if picture = @product.pictures.first
-        img.img-responsive src=picture.image.url(:rect)
-      - else
-        - size = Settings.pictures.image.rect.size.values_at('width', 'height').join('x')
-        img.img-responsive data-src="holder.js/#{size}?text=No Photo&auto=yes"
+    = render 'manage/products/header_thumbnail', product: @product
+
   .col-md-8.col-md-pull-2
-    = render 'manage/products/attributes', product: @product
-
-hr
-
-.row
-  .col-md-8.col-md-offset-2
     = render 'form'

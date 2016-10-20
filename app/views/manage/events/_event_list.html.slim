@@ -2,7 +2,10 @@
   - product = defined?(product) ? product : nil
   - bid = defined?(bid) ? bid : nil
   #events
-    = render partial: 'manage/events/event', collection: events
+    - if bid
+      = render partial: 'events/event', collection: events
+    - else
+      = render partial: 'manage/events/event', collection: events
     = paginate events,
       params: { controller: "#{current_role}/events",
         action: :index,

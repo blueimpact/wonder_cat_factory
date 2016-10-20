@@ -1,8 +1,10 @@
 = form_for [current_role, @product, @instruction.becomes_base], html: { class: 'form-horizontal' } do |f|
-  = f.hidden_field :type
-  = static @instruction, :type do
-    = @instruction.class.model_name.human
-  = input_text f, :body, rows: 10
-  = without_feedback do
-    = without_label do
-      = f.submit nil, class: 'btn btn-primary'
+  .panel.panel-default
+    .panel-heading
+      = @instruction.class.model_name.human
+    .panel-body
+      = f.hidden_field :type
+      = f.text_area :body, rows: 10, class: 'form-control'
+    .panel-footer
+      .text-right
+        = f.submit nil, class: 'btn btn-primary'

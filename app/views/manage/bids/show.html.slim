@@ -5,15 +5,12 @@ ol.breadcrumb
   - else
     li= link_to t('nav.seller_page'), [current_role, :products]
   li= link_to @product.title, [current_role, @product]
-  li=t 'helpers.links.instructions'
+  li= link_to t('helpers.links.bids'), [current_role, @product, :bids]
+  li= @bid.user
 
 .row
   .col-md-2.col-md-push-10
     = render 'manage/products/menu_buttons', product: @product
 
-  .col-md-2.col-md-pull-2
-    = render 'manage/products/header_thumbnail', product: @product
-
-  .col-md-8.col-md-pull-2
-    - @instructions.each do |instruction|
-      = render 'manage/instructions/instruction', instruction: instruction
+  .col-md-10.col-md-pull-2
+    = render 'manage/events/event_list', events: @events, product: @product, bid: @bid
