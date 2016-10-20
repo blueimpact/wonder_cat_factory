@@ -8,7 +8,6 @@ ja:
       unauthenticated: "ログインしてください。"
       unconfirmed: "メールアドレスの確認に失敗しました。もう一度やり直してください。"
     mailer:
-      sender_label: 不思議のチェシャネ工房
       confirmation_instructions:
         action: "続ける"
         greeting: "ようこそ、%{recipient}さん！"

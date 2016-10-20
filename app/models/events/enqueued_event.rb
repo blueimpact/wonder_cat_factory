@@ -3,6 +3,8 @@ class Events::EnqueuedEvent < Events::RegularEvent
 
   def self.trigger bid
     create(product_id: bid.product_id, bid: bid, created_at: bid.created_at)
+      .tap(&:deliver_to_seller)
+      .tap(&:deliver_to_user)
       .tap(&:try_goaling)
   end
 

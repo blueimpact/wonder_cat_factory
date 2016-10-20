@@ -13,12 +13,17 @@ defaults: &defaults
         size:
           width: 100
           height: 100
+  mail:
+    sender: noreply@<%= ENV['MAIL_HOST'] %>
+
 
 development:
   <<: *defaults
 
 test:
   <<: *defaults
+  mail:
+    sender: noreply@mail.wonder-cat-factory.test
 
 production:
   <<: *defaults

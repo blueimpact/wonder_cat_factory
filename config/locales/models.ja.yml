@@ -57,9 +57,17 @@ ja:
     events:
       started_event:
         message: 募集を開始しました。
+        short_message: 募集を開始しました。
+        to_seller_message: 募集を開始しました。
       goaled_event:
         message: 行列の人数が目標を達成しました。制作を開始します。
+        short_message: 行列の人数が目標を達成しました。
+        to_seller_message: 行列の人数が目標を達成しました。制作を開始してください。
       enqueued_event:
         message: 並びました。
+        short_message: 並びました。
+        to_seller_message: 並びました。
       dequeued_event:
         message: 順番が回ってきました。
+        short_message: 順番が回ってきました。
+        to_seller_message: 入店を促しました。

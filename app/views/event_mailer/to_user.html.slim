@@ -1,0 +1,6 @@
+p= @event.to_message
+
+ul
+  li= @product.title
+
+p= link_to t('mailers.confirm'), [@product, :bid]

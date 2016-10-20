@@ -1,0 +1,6 @@
+p= @event.to_message(:to_seller)
+
+ul
+  li= @product.title
+
+p= link_to t('mailers.confirm'), [:seller, @product]

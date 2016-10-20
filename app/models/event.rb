@@ -21,4 +21,18 @@ class Event < ActiveRecord::Base
   def instruction_type
     "Instructions::#{event_name}Instruction"
   end
+
+  def deliver_to_user
+    if bid
+      EventMailer.to_user(self, bid).deliver_later
+    else
+      product.bids.older_first.each do |bid|
+        EventMailer.to_user(self, bid).deliver_later
+      end
+    end
+  end
+
+  def deliver_to_seller
+    EventMailer.to_seller(self).deliver_later
+  end
 end

@@ -52,6 +52,8 @@ html lang="ja"
                     li.divider
                     li= link_to admin_users_path do
                       span=t 'nav.admin_page'
+                    - if Rails.env.development?
+                      li= link_to 'Mailer Preview', '/rails/mailers/'
                     - if respond_to? :letter_opener_web_path
                       li= link_to 'Letter Opener', letter_opener_web_path
                   li.divider

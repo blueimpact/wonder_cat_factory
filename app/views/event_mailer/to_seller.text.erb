@@ -1,0 +1,6 @@
+<%= @event.to_message %>
+
+- <%= @product.title %>
+
+<%= t('mailers.confirm') %>
+<%= url_for [:seller, @product] %>
