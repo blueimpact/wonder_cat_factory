@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  load_and_authorize_resource :product
+  before_action :set_product
   before_action :set_picture, only: [:destroy]
 
   # POST /products/1/pictures
@@ -24,6 +24,10 @@ class PicturesController < ApplicationController
   end
 
   private
+
+  def set_product
+    @product = Product.find(params[:product_id])
+  end
 
   def set_picture
     @picture = @product.pictures.find(params[:id])

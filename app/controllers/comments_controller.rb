@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  load_and_authorize_resource :product
+  before_action :set_product
   before_action :set_comment, only: [:destroy]
 
   # POST /comments

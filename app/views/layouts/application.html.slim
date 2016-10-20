@@ -44,11 +44,11 @@ html lang="ja"
                   li= link_to edit_user_registration_path do
                     i.fa.fa-cog>
                     span=t 'nav.settings_page'
-                  - if can? :access, :seller
+                  - if current_user.is_admin?
                     li.divider
                     li= link_to seller_products_path do
                       span=t 'nav.seller_page'
-                  - if can? :access, :admin
+                  - if current_user.is_seller?
                     li.divider
                     li= link_to admin_users_path do
                       span=t 'nav.admin_page'

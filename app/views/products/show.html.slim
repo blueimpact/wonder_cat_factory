@@ -1,4 +1,4 @@
-- if can? :manage, @product
+- if current_user.admin? || (current_user.seller? && @product.user == current_user)
   .pull-right
     - if current_user.admin?
       = link_to [:admin, @product], class: 'btn btn-default btn-xs' do
