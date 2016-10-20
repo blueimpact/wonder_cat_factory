@@ -8,7 +8,7 @@
         =t 'helpers.links.new'
   - else
     .panel-body
-      = simple_format instruction.body
+      = markdown instruction.body
     .panel-footer.text-right
       = link_to [:edit, current_role, @product, instruction.becomes_base], class: 'btn btn-default'
         i.fa.fa-pencil>

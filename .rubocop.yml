@@ -11,6 +11,10 @@ AllCops:
 Rails:
   Enabled: true
 
+Rails/OutputSafety:
+  Exclude:
+    - 'app/helpers/markdown_helper.rb'
+
 # Configuration parameters: EnforcedStyle, SupportedStyles, ProceduralMethods, FunctionalMethods, IgnoredMethods.
 Style/BlockDelimiters:
   Exclude:
