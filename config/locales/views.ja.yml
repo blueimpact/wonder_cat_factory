@@ -43,6 +43,7 @@ ja:
       you_are_nth: 'あなたは%{index}人目です。'
     buttons:
       bidden: 並んでいます
+      accepted: 順番が回ってきました
       not_started: 準備中
   manage:
     products:
