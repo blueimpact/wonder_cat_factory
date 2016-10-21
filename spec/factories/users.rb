@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    sequence(:email) { |i| "user#{i}@kawaii-plus.com" }
+    sequence(:email) { |i| "user#{i}@wonder-cat-factory.test" }
     sequence(:password) { |i| "password#{i}" }
     sequence(:label) { |i| "label_#{i}" }
 

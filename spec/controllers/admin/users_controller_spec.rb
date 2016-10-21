@@ -5,7 +5,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
   let(:valid_attributes) {
     {
-      email: 'user@kawaii-inc.com',
+      email: 'user@wonder-cat-factory.text',
       password: 'p@ssw0rd'
     }
   }
