@@ -32,7 +32,7 @@ RSpec.describe Seller::PicturesController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroys picture' do
-      picture = FactoryGirl.create(:picture, :with_image, product: @product)
+      picture = FactoryGirl.create(:picture, product: @product)
 
       expect {
         delete :destroy, { product_id: @product.id, id: picture.id }

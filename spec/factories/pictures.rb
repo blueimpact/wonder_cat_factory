@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :picture do
     product nil
-    image nil
+    image File.new(Rails.root.join('spec/fixtures/image.jpg'))
 
-    trait :with_image do
-      image File.new(Rails.root.join('spec/fixtures/image.jpg'))
+    trait :without_image do
+      image nil
     end
   end
 end

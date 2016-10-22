@@ -28,10 +28,9 @@ FactoryGirl.define do
       pictures_count 2
     end
 
-    after(:create) do |product, evaluator|
+    after(:build) do |product, evaluator|
       if evaluator.pictures_count > 0
-        product.pictures =
-          build_list(:picture, evaluator.pictures_count, :with_image)
+        product.pictures = build_list(:picture, evaluator.pictures_count)
       end
     end
   end
