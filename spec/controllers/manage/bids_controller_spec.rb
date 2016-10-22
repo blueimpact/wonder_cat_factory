@@ -18,6 +18,7 @@ shared_examples_for Manage::BidsController do
     end
 
     it 'assings events for bid' do
+      product.pictures = [FactoryGirl.create(:picture)]
       product.update started_at: Time.current
       events = [
         Events::StartedEvent.find_by(product: product),

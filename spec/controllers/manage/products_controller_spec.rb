@@ -5,6 +5,7 @@ shared_examples_for Manage::ProductsController do
 
   describe 'GET #show' do
     it 'assings events for product' do
+      product.pictures = [FactoryGirl.create(:picture)]
       product.update started_at: Time.current
       FactoryGirl.create_list(:bid, 2, product: product)
       get :show, { id: product.id }
@@ -130,6 +131,10 @@ shared_examples_for Manage::ProductsController do
 
   describe 'POST #start' do
     context 'with non-started product' do
+      before do
+        product.pictures = [FactoryGirl.create(:picture)]
+      end
+
       it 'sets started_at' do
         expect {
           post :start, { id: product.id }
@@ -145,8 +150,17 @@ shared_examples_for Manage::ProductsController do
       end
     end
 
+    context 'with non-started product without picture' do
+      it 'fails to set started_at' do
+        expect {
+          post :start, { id: product.id }
+        }.not_to change { product.reload.started_at }
+      end
+    end
+
     context 'with started product' do
       before do
+        product.pictures = [FactoryGirl.create(:picture)]
         product.update started_at: Time.current
       end
 

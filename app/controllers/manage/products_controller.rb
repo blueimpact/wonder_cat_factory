@@ -64,6 +64,9 @@ class Manage::ProductsController < ApplicationController
       redirect_to [current_role, @product],
                   alert: 'Product is already started.'
     end
+  rescue ActiveRecord::RecordInvalid
+    redirect_to [current_role, @product],
+                alert: 'Picture is not set.'
   end
 
   # POST /admin/products/1/accept

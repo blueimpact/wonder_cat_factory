@@ -3,6 +3,7 @@ require 'rails_helper'
 shared_examples_for Manage::EventsController do
   describe 'GET #index' do
     before do
+      product.pictures = [FactoryGirl.create(:picture)]
       product.update started_at: Time.current
       FactoryGirl.create_list(:bid, 2, product: product)
     end

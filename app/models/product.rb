@@ -29,6 +29,7 @@ class Product < ActiveRecord::Base
   validates :goal,
             presence: true,
             numericality: { only_integer: true, greater_than: 0 }
+  validates :pictures, presence: true, if: -> { started_at.present? }
 
   scope :ready, -> { active.with_picture }
   scope :active, -> { where(arel_table[:closes_on].gt(Time.zone.tomorrow)) }

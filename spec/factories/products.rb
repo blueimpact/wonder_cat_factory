@@ -9,6 +9,7 @@ FactoryGirl.define do
     bids_count 0
 
     trait :started do
+      pictures_count 1
       started_at 5.days.ago
     end
 
