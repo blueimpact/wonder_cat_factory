@@ -21,6 +21,7 @@ class Product < ActiveRecord::Base
   end
   has_many :comments, -> { newer_first }, dependent: :destroy
   has_many :instructions, dependent: :destroy
+  has_one :dequeued_instruction, class_name: 'Instructions::DequeuedInstruction'
 
   validates :title, presence: true
   validates :price,

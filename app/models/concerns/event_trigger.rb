@@ -4,7 +4,9 @@ module EventTrigger
   module ClassMethods
     def triggers event_class, attr
       after_save do
-        event_class.trigger self if changes.key? attr
+        if (change = changes[attr]) && change.first.nil?
+          event_class.trigger self
+        end
       end
     end
   end

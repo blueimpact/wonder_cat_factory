@@ -60,10 +60,16 @@ ol.breadcrumb
         hr
         .row
           .col-md-offset-3.col-md-9
-            p=t '.people_are_waiting', count: count
-            = form_tag [:accept, current_role, @product], class: %w(form-inline) do
-              .form-group
-                .input-group
-                  = number_field_tag :count, [count, 10].min, class: %w(form-control)
-                  .input-group-addon=t '.people_unit'
-              = submit_tag t('.accept'), class: %w(btn btn-warning)
+            - if @product.dequeued_instruction
+              .alert.alert-info
+                p=t '.people_are_waiting', count: count
+              = form_tag [:accept, current_role, @product], class: %w(form-inline) do
+                .form-group
+                  .input-group
+                    = number_field_tag :count, [count, 10].min, class: %w(form-control)
+                    .input-group-addon=t '.people_unit'
+                = submit_tag t('.accept'), class: %w(btn btn-warning)
+            - else
+              .alert.alert-warning
+                p=t '.people_are_waiting', count: count
+                p=t '.instruction_is_required_to_accept'
