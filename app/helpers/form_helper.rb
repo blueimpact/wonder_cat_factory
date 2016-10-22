@@ -37,7 +37,7 @@ module FormHelper
   end
 
   def with_feedback form, name, options = {}, &proc
-    group_class = ['form-group', 'has-feedback']
+    group_class = ['form-group']
     group_class << 'has-error' if form.object.errors.key?(name)
     options[:append_proc] = proc do
       concat feedback_icon

@@ -57,6 +57,7 @@ ja:
         all_products: 全作品
       show:
         start: 募集を開始する
+        picture_is_required_to_start: 募集を開始するには写真を登録してください。
         accept: 入店させる
         people_are_waiting: 'あと%{count}人並んでいます。'
         people_unit: 人
