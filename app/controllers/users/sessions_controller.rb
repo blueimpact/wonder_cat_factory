@@ -17,6 +17,8 @@ class Users::SessionsController < ApplicationController
       reconfirm
     end
     render :new
+  rescue ActiveRecord::RecordInvalid
+    render :new
   end
 
   private

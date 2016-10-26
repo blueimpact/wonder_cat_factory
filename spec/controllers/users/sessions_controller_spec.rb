@@ -36,5 +36,13 @@ RSpec.describe Users::SessionsController, type: :controller do
         }.to change { user.reload.pending_reconfirmation? }.from(false).to(true)
       end
     end
+
+    context 'with invalid mail' do
+      it 'fails to create user' do
+        expect {
+          post :create, { user: { email: 'invalid mail' } }
+        }.not_to change(User, :count)
+      end
+    end
   end
 end
