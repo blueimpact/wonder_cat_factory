@@ -38,7 +38,7 @@ ja:
         user: 作者
         title: タイトル
         description: 説明文
-        price: 値段
+        price: 税込価格
         goal: 目標数
         closes_on: 締切日
         external_url: 外部URL
