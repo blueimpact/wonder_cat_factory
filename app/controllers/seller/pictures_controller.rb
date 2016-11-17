@@ -1,3 +1,3 @@
-class Seller::PicturesController < PicturesController
+class Seller::PicturesController < Manage::PicturesController
   include SellerController
 end

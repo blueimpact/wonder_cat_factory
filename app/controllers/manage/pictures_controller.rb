@@ -1,4 +1,4 @@
-class PicturesController < ApplicationController
+class Manage::PicturesController < ApplicationController
   before_action :set_product
   before_action :set_picture, only: [:destroy]
 

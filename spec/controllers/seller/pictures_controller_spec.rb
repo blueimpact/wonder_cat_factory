@@ -8,35 +8,22 @@ RSpec.describe Seller::PicturesController, type: :controller do
     { image: Rack::Test::UploadedFile.new(file) }
   }
 
-  let(:invalid_attributes) {
-    { image: nil }
-  }
-
-  before do
-    @product = FactoryGirl.create(:product, user: @current_user)
-  end
-
   describe 'POST #create' do
-    it 'creates picture' do
+    it 'fails to access if product user is not current_user' do
+      product = FactoryGirl.create(:product)
       expect {
-        post :create, { product_id: @product.id, picture: valid_attributes }
-      }.to change(Picture, :count).by(1)
-    end
-
-    it 'fails without image' do
-      expect {
-        post :create, { product_id: @product.id, picture: invalid_attributes }
-      }.not_to change(Picture, :count)
+        post :create, { product_id: product.id, picture: valid_attributes }
+      }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys picture' do
-      picture = FactoryGirl.create(:picture, product: @product)
-
+    it 'fails to access if product user is not current_user' do
+      product = FactoryGirl.create(:product, :with_one_picture)
+      picture = product.pictures.first
       expect {
-        delete :destroy, { product_id: @product.id, id: picture.id }
-      }.to change(Picture, :count).by(-1)
+        delete :destroy, { product_id: product.id, id: picture.id }
+      }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end
