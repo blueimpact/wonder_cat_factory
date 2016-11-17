@@ -13,14 +13,16 @@ shared_examples_for Manage::PicturesController do
   describe 'POST #create' do
     it 'creates picture' do
       expect {
-        post :create, { product_id: product.id, picture: valid_attributes }
+        xhr :post, :create,
+            { product_id: product.id, picture: valid_attributes }
       }.to change(Picture, :count).by(1)
     end
 
     it 'fails without image' do
       expect {
-        post :create, { product_id: product.id, picture: invalid_attributes }
-      }.not_to change(Picture, :count)
+        xhr :post, :create,
+            { product_id: product.id, picture: invalid_attributes }
+      }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 
@@ -29,7 +31,8 @@ shared_examples_for Manage::PicturesController do
       picture = FactoryGirl.create(:picture, product: product)
 
       expect {
-        delete :destroy, { product_id: product.id, id: picture.id }
+        xhr :delete, :destroy,
+            { product_id: product.id, id: picture.id }
       }.to change(Picture, :count).by(-1)
     end
   end

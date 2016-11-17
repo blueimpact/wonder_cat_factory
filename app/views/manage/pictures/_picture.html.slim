@@ -1,0 +1,7 @@
+.col-md-3 id=dom_id(picture)
+  .thumbnail
+    p
+      img.img-responsive src=picture.image.url(:rect)
+    .text-right
+      = link_to [current_role, picture.product, picture], method: :delete, remote: true, class: 'btn btn-danger' do
+        i.fa.fa-fw.fa-trash

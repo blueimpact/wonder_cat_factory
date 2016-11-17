@@ -1,0 +1,6 @@
+$('#<%= dom_id @product, :pictures %>').append(
+    '<%=j render('manage/pictures/picture', picture: @picture) %>'
+);
+$('#<%= dom_id @product, :first_picture %>').replaceWith(
+    '<%=j render('manage/pictures/header_thumbnail', product: @product) %>'
+);

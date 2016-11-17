@@ -4,23 +4,12 @@ class Manage::PicturesController < ApplicationController
 
   # POST /products/1/pictures
   def create
-    @picture = Picture.new(picture_params)
-    @picture.product = @product
-
-    if @picture.save
-      redirect_to [:edit, current_role, @product],
-                  notice: 'Picture was created.'
-    else
-      redirect_to [:edit, current_role, @product],
-                  alert: 'Failed to create Picture.'
-    end
+    @picture = Picture.create!(picture_params.merge(product: @product))
   end
 
   # DELETE /products/1/pictures/1
   def destroy
-    @picture.destroy
-    redirect_to [:edit, current_role, @product],
-                notice: 'Picture was destroyed.'
+    @picture.destroy!
   end
 
   private
