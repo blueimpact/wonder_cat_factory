@@ -12,27 +12,17 @@ ol.breadcrumb
     = render 'menu_buttons', product: @product
 
   .col-md-2.col-md-pull-2
-    - if picture = @product.pictures.first
-      - count = @product.pictures.length
-      .thumbnail id=dom_id(picture)
-        - if picture.image.present?
-          p
-            img.img-responsive src=picture.image.url(:rect)
-        - if count > 1
-          span= 'o' * count
-        .pull-right
-          = link_to [current_role, @product, picture], method: :delete, class: 'btn btn-danger' do
-            i.fa.fa-fw.fa-trash
-        .clearfix
-    - else
-      .thumbnail
-        - size = Settings.pictures.image.rect.size.values_at('width', 'height').join('x')
-        img.img-responsive data-src="holder.js/#{size}?text=No Photo&auto=yes"
-        = form_for [current_role, @product, @product.pictures.build], html: {class: 'form'} do |f|
-          = f.file_field :image
-          .actions.text-right
-            button.btn.btn-success type="submit"
-              i.fa.fa-fw.fa-plus
-        .clearfix
+    = render 'manage/pictures/header_thumbnail', product: @product
+
   .col-md-8.col-md-pull-2
     = render 'form'
+
+hr
+
+.row id=dom_id(@product, :pictures)
+  = render partial: 'manage/pictures/picture', collection: @product.pictures
+
+.row
+  .col-md-12
+    = form_for [current_role, @product, @product.pictures.build], html: { id: 'product-picture-dropzone', class: 'dropzone' }, method: :post, format: 'js' do
+      - true

@@ -1,4 +1,4 @@
-.thumbnail
+.thumbnail id=dom_id(product, :first_picture)
   - if picture = product.pictures.first
     img.img-responsive src=picture.image.url(:rect)
   - else

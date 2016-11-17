@@ -20,4 +20,5 @@
 //= require moment
 //= require moment/ja
 //= require bootstrap-datetimepicker
+//= require dropzone.min
 //= require_tree .

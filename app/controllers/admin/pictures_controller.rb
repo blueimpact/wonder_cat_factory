@@ -1,3 +1,3 @@
-class Admin::PicturesController < PicturesController
+class Admin::PicturesController < Manage::PicturesController
   include AdminController
 end

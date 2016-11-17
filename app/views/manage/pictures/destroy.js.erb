@@ -1,0 +1,5 @@
+$('#<%= dom_id @picture %>').remove();
+$('#<%= dom_id @product, :first_picture %>').replaceWith(
+    '<%=j render('manage/pictures/header_thumbnail', product: @product) %>'
+);
+Holder.run({images: $('img[data-src]').get()});
