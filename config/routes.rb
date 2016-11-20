@@ -43,7 +43,11 @@ Rails.application.routes.draw do
     concerns :manage
     resources :users do
       resources :products, only: [:index]
+      member do
+        post :connect_stripe
+      end
     end
+
   end
 
   namespace :seller do

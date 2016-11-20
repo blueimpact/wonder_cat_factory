@@ -32,4 +32,27 @@ class User < ActiveRecord::Base
     @bidded_product_ids ||= bids.pluck(:product_id)
     @bidded_product_ids.include? product.id
   end
+
+  def create_stripe_account
+
+    begin
+      @account = Stripe::Account.create(
+        email: self.email,
+        managed: false,
+        country: 'JP'
+      )
+    rescue
+      nil
+    end
+
+    if @account
+      self.update_attributes(
+        stripe_user_id: @account.id,
+        secret_key: @account.keys.secret,
+        publishable_key: @account.keys.publishable,
+      )
+    end
+
+    @account
+  end
 end

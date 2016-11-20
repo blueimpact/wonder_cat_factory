@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   include AdminController
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :connect_stripe]
 
   # GET /admin/users
   def index
@@ -56,6 +56,19 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to admin_users_url, notice: 'User was successfully destroyed.'
+  end
+
+  def connect_stripe
+
+    account = @user.create_stripe_account
+
+    if account
+      flash[:notice] = "Standalone Stripe account created! <a target='_blank' rel='platform-account' href='https://dashboard.stripe.com/test/applications/users/#{account.id}'>View in dashboard &raquo;</a>"
+    else
+      flash[:error] = "Unable to create Stripe account!"
+    end
+    redirect_to admin_users_path
+
   end
 
   private
