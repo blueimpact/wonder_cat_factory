@@ -15,7 +15,8 @@ defaults: &defaults
           height: 100
   mail:
     sender: noreply@<%= ENV['MAIL_HOST'] %>
-
+  stripe:
+    fee_percentage: 0.1
 
 development:
   <<: *defaults
