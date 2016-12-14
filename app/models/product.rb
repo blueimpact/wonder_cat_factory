@@ -67,4 +67,18 @@ class Product < ActiveRecord::Base
   def goaling?
     !goaled? && bids_count >= goal
   end
+
+  def pay customer_id
+    raise 'Seller account must need stripe account.' unless user.stripe_account
+
+    application_fee = (price * Settings.stripe.fee_percentage).to_i
+    Stripe::Charge.create(
+      customer: customer_id,
+      destination: user.stripe_account.stripe_user_id,
+      amount: price,
+      description: description,
+      currency: 'jpy',
+      application_fee: application_fee
+    )
+  end
 end
