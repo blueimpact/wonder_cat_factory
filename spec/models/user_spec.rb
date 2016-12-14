@@ -16,4 +16,15 @@ RSpec.describe User, type: :model do
       expect(@user.bidded?(@product)).to eq true
     end
   end
+
+  describe '#attach_srtripe_account!' do
+    before do
+      @user = FactoryGirl.create(:user)
+    end
+
+    it "creates user's stripe_account" do
+      @user.attach_stripe_account!
+      expect(@user.stripe_account).to be_persisted
+    end
+  end
 end

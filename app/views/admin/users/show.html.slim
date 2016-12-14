@@ -25,4 +25,7 @@
   '
   = link_to t('.edit', default: t("helpers.links.edit")), edit_admin_user_path(@user.id), class: 'btn btn-default'
   '
+  - if @user.seller?
+    = link_to t('.connect_stripe', default: t("helpers.links.create_stripe_account")), admin_user_stripe_accounts_path(@user.id), method: "post", class: 'btn btn-default'
+  '
   = link_to t('.destroy', default: t("helpers.links.destroy")), admin_user_path(@user.id), method: "delete", data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-danger'

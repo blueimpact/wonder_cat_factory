@@ -23,6 +23,8 @@ ja:
       bids: 着列者
       events: イベント
       instructions: 案内文
+      create_stripe_account: Stripeのアカウントを作成
+
     submit:
       confirm: 確認
       comment: コメントする
