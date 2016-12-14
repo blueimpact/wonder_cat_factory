@@ -15,7 +15,11 @@ defaults: &defaults
           height: 100
   mail:
     sender: noreply@<%= ENV['MAIL_HOST'] %>
-
+  stripe:
+    stripe_publishable_key: <%= ENV["STRIPE_PUBLISHABLE_KEY"] %>
+    stripe_secret_key: <%= ENV["STRIPE_SECRET_KEY"] %>
+    stripe_client_id: <%= ENV["STRIPE_CLIENT_ID"] %>
+    fee_percentage: <%= ENV["FEE_PERCENTAGE"] %>
 
 development:
   <<: *defaults

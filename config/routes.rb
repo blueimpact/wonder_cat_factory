@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   resources :products, only: [:show] do
     resource :bid, only: [:show, :create, :destroy] do
       resources :events, only: [:index]
+      collection do
+        post :charge
+      end
     end
     resources :comments, only: [:create, :destroy]
   end
@@ -43,7 +46,9 @@ Rails.application.routes.draw do
     concerns :manage
     resources :users do
       resources :products, only: [:index]
+      resources :stripe_accounts, only: [:create]
     end
+
   end
 
   namespace :seller do

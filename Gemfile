@@ -18,6 +18,7 @@ gem 'carrierwave', require: %w(carrierwave carrierwave/orm/activerecord)
 gem 'carrierwave-aws'
 gem 'rmagick'
 gem 'redcarpet'
+gem 'stripe'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'

@@ -17,3 +17,6 @@ div id=dom_id(product, :bid_buttons)
     .btn.btn-default.btn-lg.btn-block.disabled
       =t '.not_started'
 
+= form_tag charge_product_bid_path(product_id: product.id) do
+
+  = javascript_include_tag "https://checkout.stripe.com/checkout.js", 'class': 'stripe-button', 'data-amount': product.price, 'data-locale': 'ja', 'data-description': 'TESTTEST', 'data-currency': 'jpy', 'data-email': bid.user.email, 'data-key': Settings.stripe.stripe_publishable_key
