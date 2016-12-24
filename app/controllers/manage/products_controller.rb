@@ -3,6 +3,7 @@ class Manage::ProductsController < ApplicationController
   before_action :set_product,
                 only: [:show, :edit, :update, :destroy, :start, :accept]
   before_action :set_events, only: [:show]
+  before_action :require_stripe_account, only: [:start]
 
   # GET /admin/products/1
   # GET /seller/products/1
@@ -99,5 +100,12 @@ class Manage::ProductsController < ApplicationController
     params
       .require(:product)
       .permit(:title, :description, :price, :goal, :closes_on, :external_url)
+  end
+
+  def require_stripe_account
+    unless @product.user.stripe_account.present?
+      redirect_to [current_role, @product],
+                  alert: 'Stripe account does not exists.'
+    end
   end
 end

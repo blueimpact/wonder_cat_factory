@@ -15,7 +15,7 @@ Module.new do
 
     def login_seller
       login_user do
-        FactoryGirl.create(:user, :seller)
+        FactoryGirl.create(:user, :seller, :with_stripe_account)
       end
     end
   end

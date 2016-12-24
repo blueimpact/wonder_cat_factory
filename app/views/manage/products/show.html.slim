@@ -48,13 +48,16 @@ ol.breadcrumb
       hr
       .row
         .col-md-offset-3.col-md-9
-          - if @product.pictures.present?
+          - if @product.user.stripe_account.nil?
+            .alert.alert-warning
+              p=t '.stripe_account_is_required_to_start'
+          - if @product.pictures.empty?
+            .alert.alert-warning
+              p=t '.picture_is_required_to_start'
+          - if @product.pictures.present? && @product.user.stripe_account.present?
             = link_to t('.start'), [:start, current_role, @product],
               method: :post,
               class: %w(btn btn-warning btn-lg)
-          - else
-            .alert.alert-warning
-              p=t '.picture_is_required_to_start'
     - if @product.goaled?
       - if (count = @product.bids.not_accepted.count) > 0
         hr
