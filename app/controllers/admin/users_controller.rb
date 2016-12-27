@@ -5,7 +5,7 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users
   def index
-    @users = User.order(:id)
+    @users = User.includes(:stripe_account).order(:id)
                  .page(params[:page]).per(Settings.users.count_per_page)
     case @role = params[:role]
     when 'admin'

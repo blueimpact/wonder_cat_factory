@@ -23,6 +23,7 @@ ul.nav.nav-pills
           br
           = model_class.human_attribute_name(:last_sign_in_at)
         th.text-right= model_class.human_attribute_name(:created_at)
+        th.text-right= model_class.human_attribute_name(:stripe_account)
         th
     tbody
       - @users.each do |user|

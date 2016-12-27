@@ -32,6 +32,7 @@ ja:
         current_sign_in_at: 現ログイン日時
         last_sign_in_at: 前ログイン日時
         created_at: 登録日時
+        stripe_account: ストライプ
       product:
         <<: *timestamps
         id: ID
