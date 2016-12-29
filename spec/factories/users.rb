@@ -32,4 +32,8 @@ FactoryGirl.define do
   trait :without_user do
     user nil
   end
+
+  trait :with_stripe_account do
+    stripe_account
+  end
 end

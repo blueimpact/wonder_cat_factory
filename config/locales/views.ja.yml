@@ -59,6 +59,7 @@ ja:
         all_products: 全作品
       show:
         picture_is_required_to_start: 募集を開始するには写真を登録してください。
+        stripe_account_is_required_to_start: ストライプのアカウントが無い為、募集を開始することができません。
         instruction_is_required_to_accept: 入店させるには案内文を登録してください。
         start: 募集を開始する
         accept: 入店させる

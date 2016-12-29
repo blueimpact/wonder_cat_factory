@@ -170,6 +170,17 @@ shared_examples_for Manage::ProductsController do
         }.not_to change { product.reload.started_at }
       end
     end
+
+    context 'with non-started product without stripe_account user' do
+      before do
+        product.user.stripe_account = nil
+      end
+      it 'fails to set started_at' do
+        expect {
+          post :start, { id: product.id }
+        }.not_to change { product.reload.started_at }
+      end
+    end
   end
 
   describe 'POST #accept' do
@@ -202,7 +213,11 @@ end
 RSpec.describe Admin::ProductsController, type: :controller do
   login_admin
   let(:role) { :admin }
-  let(:product) { FactoryGirl.create(:product) }
+  let(:product) {
+    FactoryGirl.create(
+      :product, user: FactoryGirl.create(:user, :with_stripe_account)
+    )
+  }
   it_behaves_like Manage::ProductsController
 end
 
