@@ -68,5 +68,11 @@ RSpec.describe BidsController, type: :controller do
         xhr :delete, :destroy, { product_id: product.id }
       }.to change(Bid, :count).by(-1)
     end
+
+    it 'redirects to the user page' do
+      FactoryGirl.create(:bid, user: @current_user, product: product)
+      delete :destroy, { product_id: product.id }
+      expect(response).to redirect_to(product_url(product))
+    end
   end
 end
