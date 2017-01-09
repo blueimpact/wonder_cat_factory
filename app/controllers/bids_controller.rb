@@ -26,7 +26,7 @@ class BidsController < ApplicationController
   # DELETE /products/1/bid
   def destroy
     @product.bids.by(current_user).destroy_all
-    render :update
+    redirect_to @product, notice: 'Bid was successfully destroyed.'
   end
 
   # POST /products/1/bid/charge

@@ -5,7 +5,7 @@ div id=dom_id(product, :bid_buttons)
       .btn.btn-success.btn-lg.btn-block.disabled
         =t '.accepted'
     -else
-      .btn.btn-info.btn-lg.btn-block.disabled
+      = link_to [product, :bid], method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: t('.confirm_cancel_bid'))) }, class: 'btn btn-info btn-lg btn-block' do
         =t '.bidden'
     - if local_assigns[:with_detail_link]
       = link_to [product, :bid], class: 'btn btn-default btn-lg btn-block' do
