@@ -19,6 +19,7 @@ gem 'carrierwave-aws'
 gem 'rmagick'
 gem 'redcarpet'
 gem 'stripe'
+gem 'mailgun_rails'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'

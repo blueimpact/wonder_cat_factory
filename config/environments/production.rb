@@ -1,14 +1,9 @@
 Rails.application.configure do
   config.action_mailer.default_url_options = { host: ENV['HOST'] }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: ENV['MAILGUN_SMTP_SERVER'],
-    port: ENV['MAILGUN_SMTP_PORT'],
-    user_name: ENV['MAILGUN_SMTP_LOGIN'],
-    password: ENV['MAILGUN_SMTP_PASSWORD'],
-    domain: ENV['MAIL_HOST'],
-    authentication: :plain,
-    enable_starttls_auto: true
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV['MAILGUN_API_KEY'],
+    domain: ENV['MAIL_HOST']
   }
 
   config.cache_classes = true
