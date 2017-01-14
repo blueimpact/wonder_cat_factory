@@ -40,6 +40,9 @@ class Product < ActiveRecord::Base
   scope :goaled, -> { where.not(goaled_at: nil) }
 
   scope :bidden_by, ->(user) { joins(:bids).where(bids: { user: user }) }
+  scope :paid_by, lambda{ |user|
+    joins(:bids).where(bids: { user: user }).where.not(bids: { paid_at: nil })
+  }
 
   triggers Events::StartedEvent, :started_at
   triggers Events::GoaledEvent, :goaled_at

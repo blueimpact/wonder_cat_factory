@@ -74,5 +74,36 @@ RSpec.describe BidsController, type: :controller do
       delete :destroy, { product_id: product.id }
       expect(response).to redirect_to(product_url(product))
     end
+
+    it 'cannot destroys paid bid' do
+      FactoryGirl.create(
+        :bid,
+        user: @current_user,
+        product: product,
+        paid_at: Time.current
+      )
+      expect {
+        xhr :delete, :destroy, { product_id: product.id }
+      }.not_to change(Bid, :count)
+    end
+  end
+
+  describe 'POST #charge' do
+    it 'fails charge if user does not bid' do
+      expect {
+        xhr :post, :charge, { product_id: product.id }
+      }.to raise_error
+    end
+  end
+
+  describe 'POST #charge' do
+    it 'fails charge if user already paid' do
+      FactoryGirl.create(
+        :bid, user: @current_user, product: product, paid_at: Time.current
+      )
+      expect {
+        xhr :post, :charge, { product_id: product.id }
+      }.to raise_error
+    end
   end
 end
