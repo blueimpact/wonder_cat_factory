@@ -40,9 +40,6 @@ class Product < ActiveRecord::Base
   scope :goaled, -> { where.not(goaled_at: nil) }
 
   scope :bidden_by, ->(user) { joins(:bids).where(bids: { user: user }) }
-  scope :paid_by, lambda{ |user|
-    joins(:bids).where(bids: { user: user }).where.not(bids: { paid_at: nil })
-  }
 
   triggers Events::StartedEvent, :started_at
   triggers Events::GoaledEvent, :goaled_at
@@ -71,7 +68,7 @@ class Product < ActiveRecord::Base
     !goaled? && bids_count >= goal
   end
 
-  def pay customer_id
+  def purchased_by customer_id
     raise 'Seller account must need stripe account.' unless user.stripe_account
 
     application_fee = (price * Settings.stripe.fee_percentage).to_i
@@ -83,5 +80,9 @@ class Product < ActiveRecord::Base
       currency: 'jpy',
       application_fee: application_fee
     )
+  end
+
+  def paid_by? user
+    bids.by(user).where.not(paid_at: nil).present?
   end
 end

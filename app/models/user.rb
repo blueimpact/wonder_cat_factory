@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
     @bidded_product_ids.include? product.id
   end
 
-  def paid? product
-    product.bids.by(current_user).paid.present?
+  def update_purchased product
+    bids.where(product: product).update_all paid_at: Time.current
   end
 
   def attach_stripe_account!

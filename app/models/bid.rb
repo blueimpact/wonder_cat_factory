@@ -12,7 +12,7 @@ class Bid < ActiveRecord::Base
   scope :accepted, -> { where.not(accepted_at: nil) }
   scope :not_accepted, -> { where(accepted_at: nil) }
   scope :paid, -> { where.not(paid_at: nil) }
-  scope :not_paid, -> { where(paid_at: nil) }
+  scope :unpaid, -> { where(paid_at: nil) }
 
   triggers Events::EnqueuedEvent, :created_at
   triggers Events::DequeuedEvent, :accepted_at
