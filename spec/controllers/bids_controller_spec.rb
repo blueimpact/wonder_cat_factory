@@ -97,6 +97,7 @@ RSpec.describe BidsController, type: :controller do
   describe 'POST #charge' do
     before(:each) do
       request.env['HTTP_REFERER'] = product_url(product)
+      allow(Settings.stripe).to receive(:fee_percentage) { 0.1 }
     end
 
     context 'with user does not bid' do
@@ -129,14 +130,14 @@ RSpec.describe BidsController, type: :controller do
       end
 
       it 'updates paid_at current_time' do
-        time_now = Time.current
-        allow(Time).to receive(:now).and_return(time_now)
+        time_current = Time.zone.local(2017, 1, 30, 15, 0, 0)
+        allow(Time).to receive_message_chain(:current).and_return(time_current)
         bid = FactoryGirl.create(
           :bid, user: @current_user, product: product
         )
         post :charge, { product_id: product.id }
         bid.reload
-        expect(bid.paid_at).to eq time_now
+        expect(bid.paid_at).to eq time_current
       end
     end
   end
