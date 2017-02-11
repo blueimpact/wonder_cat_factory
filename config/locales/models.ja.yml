@@ -7,6 +7,7 @@ ja:
       bid: 着列
       event: イベント
       instruction: 案内文
+      system_message: デザイナー側メールメッセージ
       instructions/started_instruction: 募集開始案内文
       instructions/goaled_instruction: 目標達成案内文
       instructions/enqueued_instruction: 着列案内文
@@ -56,6 +57,14 @@ ja:
       instruction:
         type: タイプ
         body: 本文
+      system_message:
+        title: 件名
+        body: 本文
+        message_type: メッセージの種類
+        message_types:
+          started: 募集開始時
+          enqueued: 着列時
+          goaled: 行列の人数が目標に達成時
     events:
       started_event:
         message: 募集を開始しました。

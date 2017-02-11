@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :products, dependent: :destroy
   has_many :bids, dependent: :destroy
+  has_many :system_messages
   has_one :stripe_account
 
   devise :database_authenticatable, :registerable,
@@ -8,6 +9,14 @@ class User < ActiveRecord::Base
 
   scope :admin, -> { where(is_admin: true) }
   scope :seller, -> { where(is_seller: true) }
+
+  after_save do
+    if seller? && system_messages.empty?
+      system_messages.started.create!
+      system_messages.enqueued.create!
+      system_messages.goaled.create!
+    end
+  end
 
   def to_s
     label.presence || email

@@ -26,6 +26,9 @@ tr id=dom_id(user)
     - if user.stripe_account.present?
       .fa.fa-check.text-success
   td.text-right
+    - if user.seller?
+      = link_to admin_user_system_messages_path(user.id), class: 'btn btn-default btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do
+        i.fa.fa-fw.fa-commenting-o
     = link_to admin_user_path(user.id), class: 'btn btn-default btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do
       i.fa.fa-fw.fa-info-circle
     = link_to edit_admin_user_path(user.id), class: 'btn btn-default btn-xs', title: "#{ t('.edit', default: t('helpers.links.edit')) }" do
