@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161204032048) do
+ActiveRecord::Schema.define(version: 20170214152934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,7 @@ ActiveRecord::Schema.define(version: 20161204032048) do
     t.datetime "accepted_at"
   end
 
-  add_index "bids", ["product_id"], name: "index_bids_on_product_id", using: :btree
-  add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
+  add_index "bids", ["user_id", "product_id"], name: "index_bids_on_user_id_and_product_id", unique: true, using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
