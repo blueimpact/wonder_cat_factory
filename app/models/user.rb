@@ -12,9 +12,9 @@ class User < ActiveRecord::Base
 
   after_save do
     if seller? && system_messages.empty?
-      system_messages.started.create!
-      system_messages.enqueued.create!
-      system_messages.goaled.create!
+      system_messages.started_event.create!
+      system_messages.enqueued_event.create!
+      system_messages.goaled_event.create!
     end
   end
 

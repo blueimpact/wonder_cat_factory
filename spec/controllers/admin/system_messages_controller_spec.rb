@@ -8,7 +8,7 @@ RSpec.describe Admin::SystemMessagesController, type: :controller do
     @seller = FactoryGirl.create(:user, :seller)
   end
 
-  let(:invalid_attributes) { { title: nil } }
+  let(:invalid_attributes) { { subject: nil } }
 
   describe 'GET #index' do
     it "assigns seller's system_message as @system_messages" do
@@ -43,7 +43,7 @@ RSpec.describe Admin::SystemMessagesController, type: :controller do
     context 'with valid params' do
       let(:new_attributes) {
         {
-          title: 'New Title'
+          subject: 'New subject'
         }
       }
 
@@ -55,7 +55,7 @@ RSpec.describe Admin::SystemMessagesController, type: :controller do
           system_message: new_attributes
         }
         system_message.reload
-        expect(system_message.title).to eq 'New Title'
+        expect(system_message.subject).to eq 'New subject'
       end
 
       it 'assigns the requested system_message as @system_message' do

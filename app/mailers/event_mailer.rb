@@ -11,6 +11,10 @@ class EventMailer < ApplicationMailer
     @event = event
     @product = event.product
     @user = event.product.user
-    mail to: @user.email, subject: event.to_message(:short)
+    @system_message = @user.system_messages.send(
+      event.class.model_name.element
+    ).first
+
+    mail to: @user.email, subject: @system_message.subject
   end
 end

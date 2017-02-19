@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20170214152934) do
   add_index "stripe_accounts", ["user_id"], name: "index_stripe_accounts_on_user_id", using: :btree
 
   create_table "system_messages", force: :cascade do |t|
-    t.string   "title",        default: "件名未設定"
+    t.string   "subject",      default: "件名未設定"
     t.text     "body",         default: "本文未設定"
     t.integer  "user_id"
     t.integer  "message_type"

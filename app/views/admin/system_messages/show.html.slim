@@ -1,9 +1,9 @@
 - model_class = SystemMessage
 .fieldset
   dl
-    dt.label.label-default= model_class.human_attribute_name(:title)
+    dt.label.label-default= model_class.human_attribute_name(:subject)
     dd
-      pre.prettyprint= @system_message.title
+      pre.prettyprint= @system_message.subject
     dt.label.label-default= model_class.human_attribute_name(:body)
     dd
       pre.prettyprint= @system_message.body

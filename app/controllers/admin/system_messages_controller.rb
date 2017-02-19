@@ -37,6 +37,6 @@ class Admin::SystemMessagesController < ApplicationController
   end
 
   def system_message_params
-    params.require(:system_message).permit(:title, :body)
+    params.require(:system_message).permit(:subject, :body)
   end
 end

@@ -5,13 +5,13 @@ h1= t('activerecord.models.system_message')
 table.table.table-striped
   thead
     tr
-      th= model_class.human_attribute_name(:title)
+      th= model_class.human_attribute_name(:subject)
       th= model_class.human_attribute_name(:message_type)
       th
   tbody
     - @system_messages.each do |system_message|
       tr
-        td= system_message.title
+        td= system_message.subject
         td= t ("activerecord.attributes.system_message.message_types.#{system_message.message_type}")
         td.text-right
           = link_to admin_user_system_message_path(@user, system_message), class: 'btn btn-default btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do

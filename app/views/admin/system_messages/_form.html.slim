@@ -1,6 +1,6 @@
 = form_for [:admin, @user, @system_message], html: { class: "form-horizontal" }  do |f|
 
-  = input f, :title
+  = input f, :subject
   = input_text f, :body, rows: 7
 
   = labelless do
