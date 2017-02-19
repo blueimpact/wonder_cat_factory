@@ -77,11 +77,11 @@ RSpec.describe BidsController, type: :controller do
 
     it 'redirects to the user page' do
       FactoryGirl.create(:bid, user: @current_user, product: product)
-      delete :destroy, { product_id: product.id }
+      xhr :delete, :destroy, { product_id: product.id }
       expect(response).to redirect_to(product_url(product))
     end
 
-    it 'cannot destroys paid bid' do
+    it 'cannot destroy paid bid' do
       FactoryGirl.create(
         :bid,
         user: @current_user,
@@ -118,7 +118,7 @@ RSpec.describe BidsController, type: :controller do
     end
 
     context 'with user bid and not charged' do
-      it 'seller does not have stripe account' do
+      it 'raises error when seller does not have stripe account' do
         FactoryGirl.create(
           :bid, user: @current_user, product: product_not_have_stripe_account
         )
@@ -129,7 +129,7 @@ RSpec.describe BidsController, type: :controller do
         )
       end
 
-      it 'updates paid_at current_time' do
+      it 'updates paid_at to current time' do
         time_current = Time.zone.local(2017, 1, 30, 15, 0, 0)
         allow(Time).to receive_message_chain(:current).and_return(time_current)
         bid = FactoryGirl.create(

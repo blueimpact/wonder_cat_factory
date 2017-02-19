@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
       allow(Time).to receive_message_chain(:current).and_return(@time_current)
     end
 
-    it "sets current_time at user's bids" do
+    it "sets current time to paid_at of user's bids" do
       @user.update_purchased @product
       expect(@user.bids.first.paid_at).to eq @time_current
     end

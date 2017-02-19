@@ -33,7 +33,7 @@ class BidsController < ApplicationController
 
   # POST /products/1/bid/charge
   def charge
-    @product.purchased_by(@stripe_customer.id)
+    @product.create_charge(@stripe_customer.id)
 
     current_user.update_purchased(@product)
     redirect_to :back, notice: 'Product was successfully purchased.'
@@ -50,9 +50,9 @@ class BidsController < ApplicationController
   end
 
   def verify_bid_by_current_user
-    message = 'User does not bid yet.' unless current_user.bidded?(@product)
+    message = t('.does_not_bid_yet') unless current_user.bidded?(@product)
 
-    message = 'User already charged.' if @product.paid_by?(current_user)
+    message = t('.already_charged') if @product.paid_by?(current_user)
 
     redirect_to :back, alert: message if message
   end
