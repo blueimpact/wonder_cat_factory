@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20170214152934) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.datetime "accepted_at"
+    t.datetime "paid_at"
   end
 
   add_index "bids", ["user_id", "product_id"], name: "index_bids_on_user_id_and_product_id", unique: true, using: :btree

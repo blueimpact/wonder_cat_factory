@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
     @bidded_product_ids.include? product.id
   end
 
+  def update_purchased product
+    bids.where(product: product).update_all paid_at: Time.current
+  end
+
   def attach_stripe_account!
     Stripe::Account.create(
       email: email,

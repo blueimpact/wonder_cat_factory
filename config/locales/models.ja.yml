@@ -52,6 +52,7 @@ ja:
       bid:
         created_at: 着列日時
         accepted_at: 入店日時
+        paid_at: 支払い日時
       instruction:
         type: タイプ
         body: 本文

@@ -43,8 +43,12 @@ ja:
       people_are_expected: '%{count}人並ぶと作り始めます。'
       people_are_waiting: '%{count}人並んでいます。'
       you_are_nth: 'あなたは%{index}人目です。'
+    charge:
+      does_not_bid_yet: 'まだ並んでいないため、支払いを行うことができません。'
+      already_charged: '既に支払い済です。'
     buttons:
       bidden: 並んでいます
+      confirm_cancel_bid: 脱列しますか？
       accepted: 順番が回ってきました
       not_started: 準備中
   manage:

@@ -1,6 +1,8 @@
 class BidsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_product, only: [:show, :create, :destroy, :charge]
+  before_action :verify_bid_by_current_user, only: [:charge]
+  before_action :create_stripe_customer, only: [:charge]
 
   # GET /bids
   def index
@@ -25,20 +27,16 @@ class BidsController < ApplicationController
 
   # DELETE /products/1/bid
   def destroy
-    @product.bids.by(current_user).destroy_all
-    render :update
+    @product.bids.by(current_user).unpaid.destroy_all
+    redirect_to @product, notice: 'Bid was successfully destroyed.'
   end
 
   # POST /products/1/bid/charge
   def charge
-    customer = Stripe::Customer.create(
-      email: params[:stripeEmail],
-      source: params[:stripeToken]
-    )
+    @product.create_charge(@stripe_customer.id)
 
-    @product.pay(customer.id)
-
-    redirect_to :back
+    current_user.update_purchased(@product)
+    redirect_to :back, notice: 'Product was successfully purchased.'
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -49,5 +47,20 @@ class BidsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:product_id])
+  end
+
+  def verify_bid_by_current_user
+    message = t('.does_not_bid_yet') unless current_user.bidded?(@product)
+
+    message = t('.already_charged') if @product.paid_by?(current_user)
+
+    redirect_to :back, alert: message if message
+  end
+
+  def create_stripe_customer
+    @stripe_customer = Stripe::Customer.create(
+      email: params[:stripeEmail],
+      source: params[:stripeToken]
+    )
   end
 end

@@ -68,7 +68,7 @@ class Product < ActiveRecord::Base
     !goaled? && bids_count >= goal
   end
 
-  def pay customer_id
+  def create_charge customer_id
     raise 'Seller account must need stripe account.' unless user.stripe_account
 
     application_fee = (price * Settings.stripe.fee_percentage).to_i
@@ -80,5 +80,9 @@ class Product < ActiveRecord::Base
       currency: 'jpy',
       application_fee: application_fee
     )
+  end
+
+  def paid_by? user
+    bids.by(user).where.not(paid_at: nil).present?
   end
 end
