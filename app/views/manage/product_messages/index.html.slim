@@ -1,0 +1,19 @@
+h1 Listing manage_product_messages
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @manage_product_messages.each do |manage_product_message|
+      tr
+        td = link_to 'Show', manage_product_message
+        td = link_to 'Edit', edit_manage_product_message_path(manage_product_message)
+        td = link_to 'Destroy', manage_product_message, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Product message', new_manage_product_message_path

@@ -1,0 +1,9 @@
+= form_for @manage_product_message do |f|
+  - if @manage_product_message.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@manage_product_message.errors.count, "error")} prohibited this manage_product_message from being saved:"
+      ul
+        - @manage_product_message.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit

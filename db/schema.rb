@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214152934) do
+ActiveRecord::Schema.define(version: 20170226082606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,19 @@ ActiveRecord::Schema.define(version: 20170214152934) do
   end
 
   add_index "pictures", ["product_id"], name: "index_pictures_on_product_id", using: :btree
+
+  create_table "product_messages", force: :cascade do |t|
+    t.string   "subject",      default: "件名未設定"
+    t.text     "body",         default: "本文未設定"
+    t.integer  "product_id"
+    t.integer  "message_type"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "product_messages", ["message_type"], name: "index_product_messages_on_message_type", using: :btree
+  add_index "product_messages", ["product_id", "message_type"], name: "index_product_messages_on_product_id_and_message_type", unique: true, using: :btree
+  add_index "product_messages", ["product_id"], name: "index_product_messages_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.integer  "user_id"
@@ -145,6 +158,7 @@ ActiveRecord::Schema.define(version: 20170214152934) do
   add_foreign_key "events", "products"
   add_foreign_key "instructions", "products"
   add_foreign_key "pictures", "products"
+  add_foreign_key "product_messages", "products"
   add_foreign_key "products", "users"
   add_foreign_key "stripe_accounts", "users"
   add_foreign_key "system_messages", "users"
