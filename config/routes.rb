@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       end
       resources :instructions, only: [:index, :new, :edit, :create, :update, :destroy]
       resources :pictures, only: [:create, :destroy]
-      resources :product_messages
+      resources :product_messages, only: [:index, :edit, :update]
       member do
         post :start
         post :accept

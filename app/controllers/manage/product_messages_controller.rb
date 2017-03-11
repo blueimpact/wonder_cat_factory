@@ -1,58 +1,40 @@
 class Manage::ProductMessagesController < ApplicationController
-  before_action :set_manage_product_message, only: [:show, :edit, :update, :destroy]
+  before_action :set_product
+  before_action :set_product_message, only: [:edit, :update]
 
-  # GET /manage/product_messages
+  # GET /admin/products/1/product_messages
+  # GET /seller/products/1/product_messages
   def index
-    @manage_product_messages = Manage::ProductMessage.all
+    @product_messages = ProductMessage.order(message_type: :asc)
   end
 
-  # GET /manage/product_messages/1
-  def show
-  end
-
-  # GET /manage/product_messages/new
-  def new
-    @manage_product_message = Manage::ProductMessage.new
-  end
-
-  # GET /manage/product_messages/1/edit
+  # GET /admin/products/1/product_messages/1/edit
+  # GET /seller/products/1/product_messages/1/edit
   def edit
   end
 
-  # POST /manage/product_messages
-  def create
-    @manage_product_message = Manage::ProductMessage.new(manage_product_message_params)
-
-    if @manage_product_message.save
-      redirect_to @manage_product_message, notice: 'Product message was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  # PATCH/PUT /manage/product_messages/1
+  # PATCH/PUT /admin/products/1/product_messages/1
+  # PATCH/PUT /seller/products/1/product_messages/1
   def update
-    if @manage_product_message.update(manage_product_message_params)
-      redirect_to @manage_product_message, notice: 'Product message was successfully updated.'
+    if @product_message.update(product_message_params)
+      redirect_to [current_role, @product, :product_messages],
+                  notice: 'Instruction was successfully updated.'
     else
       render :edit
     end
   end
 
-  # DELETE /manage/product_messages/1
-  def destroy
-    @manage_product_message.destroy
-    redirect_to manage_product_messages_url, notice: 'Product message was successfully destroyed.'
-  end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_manage_product_message
-      @manage_product_message = Manage::ProductMessage.find(params[:id])
+
+    def set_product
+      @product = Product.find(params[:product_id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def manage_product_message_params
-      params[:manage_product_message]
+    def set_product_message
+      @product_message = ProductMessage.find(params[:id])
+    end
+
+    def product_message_params
+      params.require(:product_message).permit(:subject, :body)
     end
 end

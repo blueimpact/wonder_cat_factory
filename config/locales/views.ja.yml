@@ -22,6 +22,7 @@ ja:
       bid: 並ぶ
       bids: 着列者
       events: イベント
+      product_messages: メッセージ
       instructions: 案内文
       create_stripe_account: Stripeのアカウントを作成
 

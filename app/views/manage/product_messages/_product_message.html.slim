@@ -1,0 +1,10 @@
+.panel.panel-default id=dom_id(product_message)
+  .panel-heading
+    span.label.label-primary= t ("activerecord.attributes.product_message.message_types.#{product_message.message_type}")
+    = " #{product_message.subject}"
+  .panel-body
+    = simple_format(product_message.body)
+  .panel-footer.text-right
+    = link_to [:edit, current_role, @product, product_message], class: 'btn btn-default'
+      i.fa.fa-pencil>
+      =t 'helpers.links.edit'

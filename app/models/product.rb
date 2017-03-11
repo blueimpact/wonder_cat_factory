@@ -19,6 +19,17 @@ class Product < ActiveRecord::Base
         .where(bid_is_nil.or(bid_user_is_arg_user))
     end
   end
+
+  has_many :product_messages
+
+  after_create do
+    if product_messages.empty?
+      product_messages.enqueued_event.create!
+      product_messages.goaled_event.create!
+      product_messages.dequeued_event.create!
+    end
+  end
+
   has_many :comments, -> { newer_first }, dependent: :destroy
   has_many :instructions, dependent: :destroy
   has_one :dequeued_instruction, class_name: 'Instructions::DequeuedInstruction'

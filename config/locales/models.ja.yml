@@ -65,6 +65,14 @@ ja:
           started_event: 募集開始時
           enqueued_event: 着列時
           goaled_event: 行列の人数が目標に達成時
+      product_message:
+        subject: 件名
+        body: 本文
+        message_type: メッセージの種類
+        message_types:
+          enqueued_event: 着列時
+          goaled_event: 行列の人数が目標に達成時
+          dequeued_event: 順番が回ってきた時
     events:
       started_event:
         message: 募集を開始しました。
