@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :product_message do
-    subject "MyString"
-    body "MyText"
-    product nil
-    message_type 1
+    product
+    sequence(:subject) { |i| "SystemMessage subject #{i}" }
+    sequence(:body) { |i| "SystemMessage Body #{i}" }
+    message_type :enqueued_event
   end
 end

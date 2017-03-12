@@ -26,15 +26,15 @@ class Manage::ProductMessagesController < ApplicationController
 
   private
 
-    def set_product
-      @product = Product.find(params[:product_id])
-    end
+  def set_product
+    @product = Product.find(params[:product_id])
+  end
 
-    def set_product_message
-      @product_message = ProductMessage.find(params[:id])
-    end
+  def set_product_message
+    @product_message = ProductMessage.find(params[:id])
+  end
 
-    def product_message_params
-      params.require(:product_message).permit(:subject, :body)
-    end
+  def product_message_params
+    params.require(:product_message).permit(:subject, :body)
+  end
 end

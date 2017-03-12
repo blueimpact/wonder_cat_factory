@@ -10,5 +10,4 @@ class ProductMessage < ActiveRecord::Base
   validates :subject, presence: true
   validates :body, presence: true
   validates :message_type, presence: true
-
 end

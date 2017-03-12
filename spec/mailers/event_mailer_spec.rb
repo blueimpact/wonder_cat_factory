@@ -16,7 +16,8 @@ RSpec.describe EventMailer, type: :mailer do
       let(:event) { Events::GoaledEvent.last }
 
       it 'renders the headers' do
-        expect(mail.subject).to eq event.to_message(:short)
+        product_message = product.product_messages.goaled_event.first
+        expect(mail.subject).to eq product_message.subject
         expect(mail.to).to eq [bid.user.email]
         expect(mail.from).to eq ['noreply@mail.wonder-cat-factory.test']
       end
@@ -27,7 +28,8 @@ RSpec.describe EventMailer, type: :mailer do
       let(:event) { Events::EnqueuedEvent.last }
 
       it 'renders the headers' do
-        expect(mail.subject).to eq event.to_message(:short)
+        product_message = product.product_messages.enqueued_event.first
+        expect(mail.subject).to eq product_message.subject
         expect(mail.to).to eq [bid.user.email]
         expect(mail.from).to eq ['noreply@mail.wonder-cat-factory.test']
       end
@@ -38,7 +40,8 @@ RSpec.describe EventMailer, type: :mailer do
       let(:event) { Events::DequeuedEvent.last }
 
       it 'renders the headers' do
-        expect(mail.subject).to eq event.to_message(:short)
+        product_message = product.product_messages.dequeued_event.first
+        expect(mail.subject).to eq product_message.subject
         expect(mail.to).to eq [bid.user.email]
         expect(mail.from).to eq ['noreply@mail.wonder-cat-factory.test']
       end

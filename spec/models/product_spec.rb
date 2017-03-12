@@ -29,4 +29,21 @@ RSpec.describe Product, type: :model do
       end
     end
   end
+
+  describe '#create' do
+    context 'create product' do
+      it 'creates 3 product messages' do
+        expect {
+          FactoryGirl.create(:product)
+        }.to change(ProductMessage, :count).by(3)
+      end
+
+      it 'creates 3 type system messages' do
+        product = FactoryGirl.create(:product)
+        expect(product.product_messages.enqueued_event.first).to be_persisted
+        expect(product.product_messages.goaled_event.first).to be_persisted
+        expect(product.product_messages.dequeued_event.first).to be_persisted
+      end
+    end
+  end
 end

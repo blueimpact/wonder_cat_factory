@@ -20,7 +20,7 @@ class Product < ActiveRecord::Base
     end
   end
 
-  has_many :product_messages
+  has_many :product_messages, dependent: :destroy
 
   after_create do
     if product_messages.empty?
