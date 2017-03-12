@@ -55,11 +55,26 @@ RSpec.describe EventMailer, type: :mailer do
         product.update! started_at: Time.current
       end
 
-      it 'renders the headers' do
-        system_message = seller.system_messages.started_event.first
-        expect(mail.subject).to eq system_message.subject
-        expect(mail.to).to eq [seller.email]
-        expect(mail.from).to eq ['noreply@mail.wonder-cat-factory.test']
+      context 'with system_message' do
+        let!(:system_message) {
+          FactoryGirl.create(
+            :system_message, user: seller, message_type: :started_event
+          )
+        }
+
+        it 'renders the headers' do
+          expect(mail.subject).to eq system_message.subject
+          expect(mail.to).to eq [seller.email]
+          expect(mail.from).to eq ['noreply@mail.wonder-cat-factory.test']
+        end
+      end
+
+      context 'without system_message' do
+        it 'renders the headers default subject' do
+          expect(mail.subject).to eq I18n.t('event_mailer.to_seller.subject')
+          expect(mail.to).to eq [seller.email]
+          expect(mail.from).to eq ['noreply@mail.wonder-cat-factory.test']
+        end
       end
     end
 
@@ -67,11 +82,26 @@ RSpec.describe EventMailer, type: :mailer do
       let!(:bid) { product.bids.create(user: user) }
       let(:event) { Events::EnqueuedEvent.last }
 
-      it 'renders the headers' do
-        system_message = seller.system_messages.enqueued_event.first
-        expect(mail.subject).to eq system_message.subject
-        expect(mail.to).to eq [seller.email]
-        expect(mail.from).to eq ['noreply@mail.wonder-cat-factory.test']
+      context 'with system_message' do
+        let!(:system_message) {
+          FactoryGirl.create(
+            :system_message, user: seller, message_type: :enqueued_event
+          )
+        }
+
+        it 'renders the headers' do
+          expect(mail.subject).to eq system_message.subject
+          expect(mail.to).to eq [seller.email]
+          expect(mail.from).to eq ['noreply@mail.wonder-cat-factory.test']
+        end
+      end
+
+      context 'without system_message' do
+        it 'renders the headers' do
+          expect(mail.subject).to eq I18n.t('event_mailer.to_seller.subject')
+          expect(mail.to).to eq [seller.email]
+          expect(mail.from).to eq ['noreply@mail.wonder-cat-factory.test']
+        end
       end
     end
 
@@ -79,11 +109,26 @@ RSpec.describe EventMailer, type: :mailer do
       let!(:bid) { product.bids.create(user: user) }
       let(:event) { Events::GoaledEvent.last }
 
-      it 'renders the headers' do
-        system_message = seller.system_messages.goaled_event.first
-        expect(mail.subject).to eq system_message.subject
-        expect(mail.to).to eq [seller.email]
-        expect(mail.from).to eq ['noreply@mail.wonder-cat-factory.test']
+      context 'with system_message' do
+        let!(:system_message) {
+          FactoryGirl.create(
+            :system_message, user: seller, message_type: :goaled_event
+          )
+        }
+
+        it 'renders the headers' do
+          expect(mail.subject).to eq system_message.subject
+          expect(mail.to).to eq [seller.email]
+          expect(mail.from).to eq ['noreply@mail.wonder-cat-factory.test']
+        end
+      end
+
+      context 'without system_message' do
+        it 'renders the headers' do
+          expect(mail.subject).to eq I18n.t('event_mailer.to_seller.subject')
+          expect(mail.to).to eq [seller.email]
+          expect(mail.from).to eq ['noreply@mail.wonder-cat-factory.test']
+        end
       end
     end
   end

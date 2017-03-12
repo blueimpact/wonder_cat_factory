@@ -10,14 +10,6 @@ class User < ActiveRecord::Base
   scope :admin, -> { where(is_admin: true) }
   scope :seller, -> { where(is_seller: true) }
 
-  after_save do
-    if seller? && system_messages.empty?
-      system_messages.started_event.create!
-      system_messages.enqueued_event.create!
-      system_messages.goaled_event.create!
-    end
-  end
-
   def to_s
     label.presence || email
   end

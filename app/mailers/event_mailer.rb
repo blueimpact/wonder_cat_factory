@@ -15,6 +15,8 @@ class EventMailer < ApplicationMailer
       event.class.model_name.element
     ).first
 
-    mail to: @user.email, subject: @system_message.subject
+    subject = @system_message ? @system_message.subject : default_i18n_subject
+
+    mail to: @user.email, subject: subject
   end
 end

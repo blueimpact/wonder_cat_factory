@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     resources :users do
       resources :products, only: [:index]
       resources :stripe_accounts, only: [:create]
-      resources :system_messages, only: [:index, :show, :edit, :update]
+      resources :system_messages
     end
 
   end

@@ -1,4 +1,7 @@
-= simple_format(@system_message.body)
+- if @system_message
+  = simple_format(@system_message.body)
+- else
+  = t('event_mailer.to_seller.body')
 
 ul
   li= @product.title

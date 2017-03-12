@@ -1,8 +1,8 @@
 class CreateSystemMessages < ActiveRecord::Migration
   def change
     create_table :system_messages do |t|
-      t.string :subject, default: '件名未設定'
-      t.text :body, default: '本文未設定'
+      t.string :subject, null: false
+      t.text :body, null: false
       t.references :user, index: true, foreign_key: true
       t.integer :message_type, index: true
 

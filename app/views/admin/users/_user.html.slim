@@ -27,7 +27,7 @@ tr id=dom_id(user)
       .fa.fa-check.text-success
   td.text-right
     - if user.seller?
-      = link_to admin_user_system_messages_path(user.id), class: 'btn btn-default btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do
+      = link_to admin_user_system_messages_path(user.id), class: 'btn btn-default btn-xs', title: "#{ t('.show', default: t('helpers.links.system_messages')) }" do
         i.fa.fa-fw.fa-commenting-o
     = link_to admin_user_path(user.id), class: 'btn btn-default btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do
       i.fa.fa-fw.fa-info-circle

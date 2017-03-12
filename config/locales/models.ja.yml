@@ -82,3 +82,9 @@ ja:
         message: 順番が回ってきました。
         short_message: 順番が回ってきました。
         to_seller_message: 入店を促しました。
+    enum:
+      system_message:
+        message_type:
+          started_event: 募集開始時
+          enqueued_event: 着列時
+          goaled_event: 行列の人数が目標に達成時

@@ -1,5 +1,6 @@
 = form_for [:admin, @user, @system_message], html: { class: "form-horizontal" }  do |f|
 
+  = input_select f, :message_type, @selectable_message_types.keys.map { |s| [t("activerecord.enum.system_message.message_type.#{s}"), s] }
   = input f, :subject
   = input_text f, :body, rows: 7
 
