@@ -38,11 +38,15 @@ class User < ActiveRecord::Base
     bids.where(product: product).update_all paid_at: Time.current
   end
 
-  def attach_stripe_account!
+  def attach_stripe_account! request
     Stripe::Account.create(
       email: email,
       managed: true,
-      country: 'JP'
+      country: 'JP',
+      tos_acceptance: {
+        date: Time.current.to_i,
+        ip: request.remote_ip
+      }
     ).tap do |account|
       account_attrs = stripe_account_attrs account
       create_stripe_account!(account_attrs)

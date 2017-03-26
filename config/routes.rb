@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     concerns :manage
     resources :users do
       resources :products, only: [:index]
-      resources :stripe_accounts, only: [:create]
+      resource :stripe_accounts
     end
 
   end

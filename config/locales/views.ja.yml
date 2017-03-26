@@ -24,7 +24,7 @@ ja:
       events: イベント
       instructions: 案内文
       create_stripe_account: Stripeのアカウントを作成
-
+      show_stripe_account: Stripeアカウント
     submit:
       confirm: 確認
       comment: コメントする
