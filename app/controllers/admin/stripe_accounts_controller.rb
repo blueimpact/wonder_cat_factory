@@ -1,8 +1,12 @@
 class Admin::StripeAccountsController < ApplicationController
-  before_action :set_user, only: [:show, :create]
-  before_action :set_stripe_account, only: [:show]
+  before_action :set_user, only: [:show, :edit, :create]
+  before_action :set_stripe_object, only: [:show, :edit]
 
   # GET /admin/users/1/stripe_accounts
+  def show
+  end
+
+  # GET /admin/users/1/stripe_accounts/edit
   def show
   end
 
@@ -16,16 +20,17 @@ class Admin::StripeAccountsController < ApplicationController
     redirect_to [:admin, @user], alert: err.message
   end
 
+  def update
+  end
+
   private
 
   def set_user
     @user = User.find(params[:user_id])
   end
 
-  def set_stripe_account
-    @stripe_account = Stripe::Account.retrieve(
-      @user.stripe_account.stripe_user_id
-    )
+  def set_stripe_object
+    @stripe_object = @user.stripe_account.retrieve
   end
 
 end

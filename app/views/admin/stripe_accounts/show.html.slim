@@ -1,0 +1,13 @@
+- model_class = StripeAccount
+
+.fieldset
+  dl
+      dt.label.label-default= model_class.human_attribute_name(:full_name)
+      dd
+        pre.prettyprint= @stripe_object.legal_entity.last_name_kanji
+
+.form-group
+  = link_to t('.back', default: t("helpers.links.back")), admin_user_path(@user), class: 'btn btn-default'
+  '
+  = link_to t('.edit', default: t("helpers.links.edit")), edit_admin_user_stripe_accounts_path(@user), class: 'btn btn-default'
+  '

@@ -1,0 +1,9 @@
+ja:
+  stripe:
+    legal_entity:
+      heading: 個人情報
+      full_name: 氏名
+      last_name_kanji: 氏
+      last_name_kana: 氏（カタカナ）
+      first_name_kanji: 名
+      first_name_kana: 氏（カタカナ）
