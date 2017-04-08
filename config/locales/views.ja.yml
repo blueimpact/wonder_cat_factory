@@ -23,6 +23,7 @@ ja:
       bids: 着列者
       events: イベント
       system_messages: デザイナー側メールメッセージ
+      product_messages: メッセージ
       instructions: 案内文
       create_stripe_account: Stripeのアカウントを作成
 

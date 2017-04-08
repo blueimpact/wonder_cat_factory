@@ -23,6 +23,8 @@ class Product < ActiveRecord::Base
   has_many :instructions, dependent: :destroy
   has_one :dequeued_instruction, class_name: 'Instructions::DequeuedInstruction'
 
+  has_many :product_messages, dependent: :destroy
+
   validates :title, presence: true
   validates :price,
             presence: true,
