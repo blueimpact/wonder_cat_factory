@@ -16,7 +16,10 @@ class Admin::SystemMessagesController < ApplicationController
 
   # GET /admin/system_messages/new
   def new
-    @system_message = @user.system_messages.new
+    @system_message = @user.system_messages.new(
+      subject: t('event_mailer.to_seller.subject'),
+      body: t('event_mailer.to_seller.body')
+    )
   end
 
   # GET /admin/system_messages/1/edit
