@@ -1,10 +1,10 @@
 class CreateProductMessages < ActiveRecord::Migration
   def change
     create_table :product_messages do |t|
-      t.string :subject
-      t.text :body
+      t.string :subject, null: false
+      t.text :body, null: false
       t.references :product, index: true, foreign_key: true, null: false
-      t.integer :message_type
+      t.integer :message_type, null: false
 
       t.timestamps null: false
     end
