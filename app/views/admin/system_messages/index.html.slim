@@ -1,0 +1,34 @@
+- model_class = SystemMessage
+
+h1= t('activerecord.models.system_message')
+
+- if @system_messages.present?
+  table.table.table-striped
+    thead
+      tr
+        th= model_class.human_attribute_name(:subject)
+        th= model_class.human_attribute_name(:message_type)
+        th
+    tbody
+      - @system_messages.each do |system_message|
+        tr
+          td= system_message.subject
+          td= t ("activerecord.attributes.system_message.message_types.#{system_message.message_type}")
+          td.text-right
+            = link_to admin_user_system_message_path(@user, system_message), class: 'btn btn-default btn-xs', title: "#{ t('.show', default: t('helpers.links.show')) }" do
+              i.fa.fa-fw.fa-info-circle
+            = link_to edit_admin_user_system_message_path(@user, system_message), class: 'btn btn-default btn-xs', title: "#{ t('.edit', default: t('helpers.links.edit')) }" do
+              i.fa.fa-fw.fa-pencil
+            = link_to admin_user_system_message_path(@user, system_message), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-danger btn-xs', title: "#{ t('.destroy', default: t('helpers.links.destroy')) }"  do
+              i.fa.fa-fw.fa-times
+- else
+  .alert
+    p.text-muted=t 'messages.no_item', item: SystemMessage.model_name.human
+
+.form-group
+  = link_to t('.back', default: t("helpers.links.back")), admin_users_path, class: 'btn btn-default'
+  '
+  - if @system_messages.count < 3
+    = link_to new_admin_user_system_message_path, class: 'btn btn-success' do
+      i.fa.fa-plus>
+      =t 'helpers.links.new'

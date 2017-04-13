@@ -1,0 +1,17 @@
+- model_class = SystemMessage
+.fieldset
+  dl
+    dt.label.label-default= model_class.human_attribute_name(:subject)
+    dd
+      pre.prettyprint= @system_message.subject
+    dt.label.label-default= model_class.human_attribute_name(:body)
+    dd
+      pre.prettyprint= @system_message.body
+    dt.label.label-default= model_class.human_attribute_name(:message_type)
+    dd
+      pre.prettyprint= t("activerecord.attributes.system_message.message_types.#{@system_message.message_type}")
+
+.form-group
+  = link_to t('.back', default: t("helpers.links.back")), admin_user_system_messages_path(@user), class: 'btn btn-default'
+  '
+  = link_to t('.edit', default: t("helpers.links.edit")), edit_admin_user_system_message_path(id: @system_message) , class: 'btn btn-default'

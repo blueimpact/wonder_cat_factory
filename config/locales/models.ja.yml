@@ -7,6 +7,7 @@ ja:
       bid: 着列
       event: イベント
       instruction: 案内文
+      system_message: デザイナー側メールメッセージ
       instructions/started_instruction: 募集開始案内文
       instructions/goaled_instruction: 目標達成案内文
       instructions/enqueued_instruction: 着列案内文
@@ -56,6 +57,14 @@ ja:
       instruction:
         type: タイプ
         body: 本文
+      system_message:
+        subject: 件名
+        body: 本文
+        message_type: メッセージの種類
+        message_types:
+          started_event: 募集開始時
+          enqueued_event: 着列時
+          goaled_event: 行列の人数が目標に達成時
     events:
       started_event:
         message: 募集を開始しました。
@@ -73,3 +82,9 @@ ja:
         message: 順番が回ってきました。
         short_message: 順番が回ってきました。
         to_seller_message: 入店を促しました。
+    enum:
+      system_message:
+        message_type:
+          started_event: 募集開始時
+          enqueued_event: 着列時
+          goaled_event: 行列の人数が目標に達成時

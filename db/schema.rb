@@ -97,6 +97,19 @@ ActiveRecord::Schema.define(version: 20170214152934) do
 
   add_index "stripe_accounts", ["user_id"], name: "index_stripe_accounts_on_user_id", using: :btree
 
+  create_table "system_messages", force: :cascade do |t|
+    t.string   "subject",      null: false
+    t.text     "body",         null: false
+    t.integer  "user_id"
+    t.integer  "message_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "system_messages", ["message_type"], name: "index_system_messages_on_message_type", using: :btree
+  add_index "system_messages", ["user_id", "message_type"], name: "index_system_messages_on_user_id_and_message_type", unique: true, using: :btree
+  add_index "system_messages", ["user_id"], name: "index_system_messages_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -134,4 +147,5 @@ ActiveRecord::Schema.define(version: 20170214152934) do
   add_foreign_key "pictures", "products"
   add_foreign_key "products", "users"
   add_foreign_key "stripe_accounts", "users"
+  add_foreign_key "system_messages", "users"
 end

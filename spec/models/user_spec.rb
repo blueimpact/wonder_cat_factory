@@ -27,19 +27,4 @@ RSpec.describe User, type: :model do
       expect(@user.stripe_account).to be_persisted
     end
   end
-
-  describe '#update_purchased' do
-    before do
-      @user = FactoryGirl.create(:user)
-      @product = FactoryGirl.create(:product)
-      @user.bids.create(product: @product)
-      @time_current = Time.zone.local(2017, 1, 30, 15, 0, 0)
-      allow(Time).to receive_message_chain(:current).and_return(@time_current)
-    end
-
-    it "sets current time to paid_at of user's bids" do
-      @user.update_purchased @product
-      expect(@user.bids.first.paid_at).to eq @time_current
-    end
-  end
 end

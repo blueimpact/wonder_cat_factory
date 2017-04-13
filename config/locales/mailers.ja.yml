@@ -2,3 +2,7 @@ ja:
   mailers:
     sender_label: 不思議のチェシャネ工房
     confirm: 確認する
+  event_mailer:
+    to_seller:
+      subject: 件名未設定
+      body: 本文未設定

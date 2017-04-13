@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :products, dependent: :destroy
   has_many :bids, dependent: :destroy
+  has_many :system_messages
   has_one :stripe_account
 
   devise :database_authenticatable, :registerable,

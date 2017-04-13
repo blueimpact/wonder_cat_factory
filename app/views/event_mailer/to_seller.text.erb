@@ -1,4 +1,8 @@
-<%= @event.to_message %>
+<% if @system_message %>
+<%= simple_format(@system_message.body) %>
+<% else %>
+<%= t('event_mailer.to_seller.body') %>
+<% end %>
 
 - <%= @product.title %>
 
