@@ -3,7 +3,7 @@ module AdminController
 
   included do
     skip_before_action :authenticate_user!
-    before_action :authenticate_admin!
+    prepend_before_action :authenticate_admin!
   end
 
   def current_role
