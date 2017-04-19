@@ -3,7 +3,7 @@ module SellerController
 
   included do
     skip_before_action :authenticate_user!
-    before_action :authenticate_seller!
+    prepend_before_action :authenticate_seller!
   end
 
   def current_role
