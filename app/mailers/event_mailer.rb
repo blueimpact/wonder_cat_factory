@@ -4,7 +4,13 @@ class EventMailer < ApplicationMailer
     @product = event.product
     @bid = bid
     @user = bid.user
-    mail to: @user.email, subject: event.to_message(:short)
+    @product_message = @product.product_messages.send(
+      event.class.model_name.element
+    ).first
+
+    subject = @product_message ? @product_message.subject : default_i18n_subject
+
+    mail to: @user.email, subject: subject
   end
 
   def to_seller event

@@ -6,3 +6,6 @@ ja:
     to_seller:
       subject: 件名未設定
       body: 本文未設定
+    to_user:
+      subject: 件名未設定
+      body: 本文未設定

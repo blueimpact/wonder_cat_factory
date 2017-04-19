@@ -5,8 +5,7 @@ ol.breadcrumb
   - else
     li= link_to t('nav.seller_page'), [current_role, :products]
   li= link_to @product.title, [current_role, @product]
-  li= link_to t('helpers.links.product_messages'), [current_role, @product, :product_messages]
-  li=t 'helpers.links.edit'
+  li=t 'helpers.links.product_messages'
 
 .row
   .col-md-2.col-md-push-10
@@ -16,4 +15,11 @@ ol.breadcrumb
     = render 'manage/pictures/header_thumbnail', product: @product
 
   .col-md-8.col-md-pull-2
-    = render 'form'
+    - @product_messages.each do |product_message|
+      = render 'manage/product_messages/product_message', product_message: product_message
+
+    .form-group
+      - if @product_messages.count < 3
+        = link_to [:new, current_role, @product, :product_message], class: 'btn btn-success' do
+            i.fa.fa-plus>
+            =t 'helpers.links.new'

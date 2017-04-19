@@ -185,14 +185,14 @@ RSpec.describe Admin::SystemMessagesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested user' do
+    it 'destroys the requested system_message' do
       system_message = FactoryGirl.create(:system_message, user: seller)
       expect {
         delete :destroy, { id: system_message.to_param, user_id: seller.id }
       }.to change(SystemMessage, :count).by(-1)
     end
 
-    it 'redirects to the users list' do
+    it 'redirects to the system_messages list' do
       system_message = FactoryGirl.create(:system_message, user: seller)
       delete :destroy, { id: system_message.to_param, user_id: seller.id }
       expect(response).to redirect_to(admin_user_system_messages_url)

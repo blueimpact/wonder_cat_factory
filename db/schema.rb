@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214152934) do
+ActiveRecord::Schema.define(version: 20170413144254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,18 @@ ActiveRecord::Schema.define(version: 20170214152934) do
 
   add_index "pictures", ["product_id"], name: "index_pictures_on_product_id", using: :btree
 
+  create_table "product_messages", force: :cascade do |t|
+    t.string   "subject",      null: false
+    t.text     "body",         null: false
+    t.integer  "product_id",   null: false
+    t.integer  "message_type", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "product_messages", ["product_id", "message_type"], name: "index_product_messages_on_product_id_and_message_type", unique: true, using: :btree
+  add_index "product_messages", ["product_id"], name: "index_product_messages_on_product_id", using: :btree
+
   create_table "products", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
@@ -100,8 +112,8 @@ ActiveRecord::Schema.define(version: 20170214152934) do
   create_table "system_messages", force: :cascade do |t|
     t.string   "subject",      null: false
     t.text     "body",         null: false
-    t.integer  "user_id"
-    t.integer  "message_type"
+    t.integer  "user_id",      null: false
+    t.integer  "message_type", null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -145,6 +157,7 @@ ActiveRecord::Schema.define(version: 20170214152934) do
   add_foreign_key "events", "products"
   add_foreign_key "instructions", "products"
   add_foreign_key "pictures", "products"
+  add_foreign_key "product_messages", "products"
   add_foreign_key "products", "users"
   add_foreign_key "stripe_accounts", "users"
   add_foreign_key "system_messages", "users"

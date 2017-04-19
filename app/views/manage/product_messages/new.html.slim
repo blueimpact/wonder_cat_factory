@@ -6,7 +6,7 @@ ol.breadcrumb
     li= link_to t('nav.seller_page'), [current_role, :products]
   li= link_to @product.title, [current_role, @product]
   li= link_to t('helpers.links.product_messages'), [current_role, @product, :product_messages]
-  li=t 'helpers.links.edit'
+  li=t 'helpers.links.new'
 
 .row
   .col-md-2.col-md-push-10
