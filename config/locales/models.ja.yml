@@ -90,6 +90,10 @@ ja:
         message: 順番が回ってきました。
         short_message: 順番が回ってきました。
         to_seller_message: 入店を促しました。
+      comment_event:
+        message: 出品者からコメントが投稿されました。
+        short_message: 出品者からコメントが投稿されました。
+        to_seller_message: 出品者からのコメントを投稿しました。
     enum:
       system_message:
         message_type:

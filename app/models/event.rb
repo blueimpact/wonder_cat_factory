@@ -4,6 +4,8 @@ class Event < ActiveRecord::Base
   belongs_to :product
   belongs_to :bid
 
+  has_one :comment
+
   validates :product_id, presence: true
 
   def self.trigger *_

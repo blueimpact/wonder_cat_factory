@@ -1,0 +1,10 @@
+.panel.panel-default id=dom_id(comment)
+  .panel-body
+    = simple_format(comment.body)
+  .panel-footer.text-right
+  /   = link_to [:edit, current_role, @product, comment], class: 'btn btn-default'
+  /     i.fa.fa-pencil>
+  /     =t 'helpers.links.edit'
+  /   = link_to [current_role, @product, comment], method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-danger'
+  /       i.fa.fa-trash>
+  /       =t 'helpers.links.destroy'

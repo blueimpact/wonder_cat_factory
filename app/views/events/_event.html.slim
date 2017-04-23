@@ -20,3 +20,6 @@
       - if event.instruction
         .panel-body class=text_class
           p= markdown event.instruction.body
+      - elsif event.comment
+        .panel-body class=text_class
+          p= markdown event.comment.body

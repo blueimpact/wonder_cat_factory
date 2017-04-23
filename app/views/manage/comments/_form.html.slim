@@ -1,0 +1,9 @@
+= form_for [current_role, @product, @comment], html: { class: 'form-horizontal' } do |f|
+  .panel.panel-default
+    .panel-heading
+      = "#{@product.title}の投稿者コメント"
+    .panel-body
+      = f.text_area :body, rows: 10, class: 'form-control'
+    .panel-footer
+      .text-right
+        = f.submit nil, class: 'btn btn-primary'

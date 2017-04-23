@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         post :start
         post :accept
       end
+      resources :comments, only: [:index, :new, :create, :destroy]
     end
   end
 

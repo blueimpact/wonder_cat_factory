@@ -25,6 +25,7 @@ ja:
       system_messages: デザイナー側メールメッセージ
       product_messages: メッセージ
       instructions: 案内文
+      comments: 投稿コメント
       create_stripe_account: Stripeのアカウントを作成
 
     submit:

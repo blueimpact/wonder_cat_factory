@@ -1,0 +1,24 @@
+ol.breadcrumb
+  - if as_admin?
+    li= link_to t('manage.products.index.all_products'), [current_role, :products]
+    li= link_to @product.user, [current_role, @product.user, :products]
+  - else
+    li= link_to t('nav.seller_page'), [current_role, :products]
+  li= link_to @product.title, [current_role, @product]
+  li=t 'helpers.links.comments'
+
+.row
+  .col-md-2.col-md-push-10
+    = render 'manage/products/menu_buttons', product: @product
+
+  .col-md-2.col-md-pull-2
+    = render 'manage/pictures/header_thumbnail', product: @product
+
+  .col-md-8.col-md-pull-2
+    - @comments.each do |comment|
+      = render 'manage/comments/comment', comment: comment
+
+    .form-group
+      = link_to [:new, current_role, @product, :comment], class: 'btn btn-success' do
+          i.fa.fa-plus>
+          =t 'helpers.links.new'
